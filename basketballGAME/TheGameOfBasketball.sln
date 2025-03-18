@@ -1,0 +1,32 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35825.156
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "basketballUI", "TheGameOfBasketball\basketballUI.csproj", "{010CE89E-068D-4262-8240-E999502E0800}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "basketballAPI", "basketballAPI\basketballAPI.csproj", "{02363B3A-2377-4C56-9D19-F5C68C25840B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{010CE89E-068D-4262-8240-E999502E0800}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{010CE89E-068D-4262-8240-E999502E0800}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{010CE89E-068D-4262-8240-E999502E0800}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{010CE89E-068D-4262-8240-E999502E0800}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{010CE89E-068D-4262-8240-E999502E0800}.Release|Any CPU.Build.0 = Release|Any CPU
+		{010CE89E-068D-4262-8240-E999502E0800}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{02363B3A-2377-4C56-9D19-F5C68C25840B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02363B3A-2377-4C56-9D19-F5C68C25840B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02363B3A-2377-4C56-9D19-F5C68C25840B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02363B3A-2377-4C56-9D19-F5C68C25840B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {00151E5C-B7E3-4E02-8B6D-3D8718F5747B}
+	EndGlobalSection
+EndGlobal
