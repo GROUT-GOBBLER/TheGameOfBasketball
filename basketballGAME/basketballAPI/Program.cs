@@ -1,4 +1,6 @@
 
+using basketballAPI.models;
+
 namespace basketballAPI
 {
     public class Program
@@ -13,6 +15,7 @@ namespace basketballAPI
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddDbContext<SoftwareBirbContext>();
 
             var app = builder.Build();
 
@@ -22,7 +25,7 @@ namespace basketballAPI
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+            
             app.UseAuthorization();
 
 

@@ -2,11 +2,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35825.156
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "basketballAPI", "basketballAPI\basketballAPI.csproj", "{02363B3A-2377-4C56-9D19-F5C68C25840B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "basketballAPI", "basketballAPI\basketballAPI.csproj", "{02363B3A-2377-4C56-9D19-F5C68C25840B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "basketballUI", "basketballUI\basketballUI.csproj", "{E1FD69E0-5CB9-48AB-89C8-30182656A345}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "basketballUI", "basketballUI\basketballUI.csproj", "{E1FD69E0-5CB9-48AB-89C8-30182656A345}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "unitTESTING", "unitTESTING\unitTESTING.vbproj", "{E8958655-06C9-4B16-A1D7-F3B05D707CF8}"
+Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "unitTESTING", "unitTESTING\unitTESTING.vbproj", "{E8958655-06C9-4B16-A1D7-F3B05D707CF8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
