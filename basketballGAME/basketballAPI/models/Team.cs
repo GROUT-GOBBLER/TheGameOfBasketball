@@ -11,9 +11,9 @@ public partial class Team
 
     public string TeamAbbreviation { get; set; } = null!;
 
-    public int Wins { get; set; }
+    public short Wins { get; set; }
 
-    public int Losses { get; set; }
+    public short Losses { get; set; }
 
     public virtual ICollection<Game> GameTeamNoOneNavigations { get; set; } = new List<Game>();
 
