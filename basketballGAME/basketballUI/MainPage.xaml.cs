@@ -32,25 +32,12 @@ namespace basketballUI
                         CounterBtn.Text = $"Player num " + players[0].PlayerNo + " First name " + players[0].FName + " Last name " + players[0].LName;
 
                     }
-                    
-
-
-
 
                 }
                 catch (Exception ex)
                 {
                     CounterBtn.Text = $"Clicked and failed";
                 }
-
-
-
-
-
-
-
-
-
             }
         }
 
@@ -76,18 +63,13 @@ namespace basketballUI
                     {
                         CounterBtn2.Text = $"no success";
                     }
-
-
-
-
-
                 }
                 catch (Exception ex)
                 {
                     CounterBtn2.Text = $"Clicked and failed";
                 }
             }
-            }
+        }
     }
 
 }
