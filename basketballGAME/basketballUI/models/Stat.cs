@@ -11,9 +11,9 @@ public partial class Stat
 
     public int? GameId { get; set; }
 
-    public int? StatTypeId { get; set; }
+    public short? StatTypeId { get; set; }
 
-    public int? StatValue { get; set; }
+    public short? StatValue { get; set; }
 
     public virtual Game? Game { get; set; }
 

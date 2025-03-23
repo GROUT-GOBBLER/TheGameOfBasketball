@@ -32,6 +32,7 @@ public partial class SoftwareBirbContext : DbContext
     public virtual DbSet<TeamPlayer> TeamPlayers { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Server=will-software-sql.database.windows.net;Database=SoftwareBirb;User Id=dbadmin;Password=$Egg420gryph;Encrypt=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -102,11 +103,6 @@ public partial class SoftwareBirbContext : DbContext
             entity.Property(e => e.Zipcode)
                 .HasMaxLength(15)
                 .HasColumnName("zipcode");
-
-            entity.HasOne(d => d.GameNoNavigation).WithMany(p => p.Schedules)
-                .HasForeignKey(d => d.GameNo)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Schedule_Schedule");
         });
 
         modelBuilder.Entity<Stat>(entity =>
@@ -162,14 +158,12 @@ public partial class SoftwareBirbContext : DbContext
 
         modelBuilder.Entity<TeamPlayer>(entity =>
         {
-            entity.HasIndex(e => e.PlayerId, "IX_TeamPlayers").IsUnique();
-
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.PlayerId).HasColumnName("playerId");
             entity.Property(e => e.TeamId).HasColumnName("teamId");
 
-            entity.HasOne(d => d.Player).WithOne(p => p.TeamPlayer)
-                .HasForeignKey<TeamPlayer>(d => d.PlayerId)
+            entity.HasOne(d => d.Player).WithMany(p => p.TeamPlayers)
+                .HasForeignKey(d => d.PlayerId)
                 .HasConstraintName("FK_TeamPlayers_Players");
 
             entity.HasOne(d => d.Team).WithMany(p => p.TeamPlayers)
