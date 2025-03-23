@@ -3,27 +3,164 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="basketballUI.MainPage">
 
-    <ContentPage Title="Tab 1">
+    <!-- STAT MODE -->
+    <ContentPage Title="Stat Mode">
         <StackLayout>
-            <Label Text="Welcome to Tab 1!"
-                   VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand" />
+            <Label
+                Text="Stat Mode"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
         </StackLayout>
     </ContentPage>
     
-    <ContentPage Title="Tab 2">
+    <!-- GAME VIEW MODE -->
+    <ContentPage Title="Game View Mode">
         <StackLayout>
-            <Label Text="Welcome to Tab 2!"
-               VerticalOptions="CenterAndExpand"
-               HorizontalOptions="CenterAndExpand" />
+            <Label
+                Text="Game View Mode"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
         </StackLayout>
     </ContentPage>
-    
-    <ContentPage Title="Tab 3">
+
+    <!-- SCORE KEEPING MODE -->
+    <ContentPage Title="Score Keeping Mode">
+        <StackLayout Padding="20,20,20,20" Margin="10">
+            <!--Right,Down,Left,Up-->
+            <Label 
+                Text="Score Keeping Mode"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="10" />
+
+            <!-- TWO POINTER MADE -->
+            <Button
+                x:Name="TwoPointMade"
+                Text="2PT shot made."
+                SemanticProperties.Hint="A player made a two-pointer."
+                Clicked="Button_Clicked"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="10" />
+
+            <!-- TWO POINTER MISSED -->
+            <Button 
+                x:Name="TwoPointMiss"
+                Text="2PT shot missed."
+                SemanticProperties.Hint="A player miss a two-pointer."
+                Clicked="Button_Clicked"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="10" />
+
+            <!-- THREE POINTER MADE -->
+            <Button 
+                x:Name="ThreePtMiss"
+                Text="3PT shot made."
+                SemanticProperties.Hint="A player made a three-pointer."
+                Clicked="Button_Clicked"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="10" />
+
+            <!-- THREE POINTER MISSED -->
+            <Button 
+                x:Name="ThreePointMiss"
+                Text="3PT shot missed."
+                SemanticProperties.Hint="A player missed a three-pointer."
+                Clicked="Button_Clicked"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="10" />
+
+            <!-- FREE THROW -->
+            <Button 
+                x:Name="FreeThrow"
+                Text="Free throw."
+                SemanticProperties.Hint="A player is shooting a freethrow."
+                Clicked="Button_Clicked"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="10" />
+
+            <!-- OFFENSIVE REBOUND -->
+            <Button 
+                x:Name="OffensiveRebound"
+                Text="OffRebound."
+                SemanticProperties.Hint="A player caught a rebound on offense."
+                Clicked="Button_Clicked"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="10" />
+
+            <!-- DEFENSIVE REBOUND -->
+            <Button 
+                x:Name="DefensiveRebound"
+                Text="DefRebound."
+                SemanticProperties.Hint="A player caught a rebound on defense."
+                Clicked="Button_Clicked"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="10" />
+
+            <!-- ASSIST -->
+            <Button 
+                x:Name="Assist"
+                Text="Assist."
+                SemanticProperties.Hint="A player made an assist."
+                Clicked="Button_Clicked"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="10" />
+
+            <!-- TURNOVER -->
+            <Button 
+                x:Name="Turnover"
+                Text="TOver."
+                SemanticProperties.Hint="A player has made a turnover."
+                Clicked="Button_Clicked"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="10" />
+
+            <!-- BLOCK -->
+            <Button 
+                x:Name="Block"
+                Text="Block."
+                SemanticProperties.Hint="A player has blocked a shot."
+                Clicked="Button_Clicked"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="10" />
+
+            <!-- STEAL -->
+            <Button 
+                x:Name="Steal"
+                Text="Steal."
+                SemanticProperties.Hint="A player made a three-pointer."
+                Clicked="Button_Clicked"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="10" />
+
+            <!-- FOUL -->
+            <Button 
+                x:Name="Foul"
+                Text="Foul."
+                SemanticProperties.Hint="A player has committed a foul."
+                Clicked="Button_Clicked"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="10" />
+        </StackLayout>
+    </ContentPage>
+
+    <!-- MANAGEMENT -->
+    <ContentPage Title="Management">
         <StackLayout>
-            <Label Text="Welcome to Tab 3!"
-               VerticalOptions="CenterAndExpand"
-               HorizontalOptions="CenterAndExpand" />
+            <Label Text="Management"
+           VerticalOptions="CenterAndExpand"
+           HorizontalOptions="CenterAndExpand" />
         </StackLayout>
     </ContentPage>
 
