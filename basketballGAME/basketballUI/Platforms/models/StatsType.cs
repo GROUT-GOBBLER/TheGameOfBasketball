@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace basketballUI.models;
+namespace basketballAPI.models;
 
 public partial class StatsType
 {

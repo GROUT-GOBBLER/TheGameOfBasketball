@@ -12,6 +12,31 @@ namespace basketballUI
             InitializeComponent();
         }
 
+        async private void Reload_Clicked(object sender, EventArgs e) {
+            string API_URL = "http://localhost:5121/api/Players";
+
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    HttpResponseMessage response = await client.GetAsync(API_URL);
+                    // List<Weather> w = JsonArray.JsonConvert.DeserializeObject<List<Person>>
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string json = await response.Content.ReadAsStringAsync();
+                        List<Player> players = JsonConvert.DeserializeObject<List<Player>>(json);
+                        ReloadBtn.Text = $"Player num " + players[0].PlayerNo + " First name " + players[0].FName + " Last name " + players[0].LName;
+
+                        statsList.ItemsSource = players;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ReloadBtn.Text = $"Clicked and failed";
+                }
+            }
+        }
+
         private void Button_Clicked (object sender, EventArgs e)
         {
             Navigation.PushAsync(new PlayerSelect());
