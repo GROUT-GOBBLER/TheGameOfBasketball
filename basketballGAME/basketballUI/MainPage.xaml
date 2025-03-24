@@ -5,14 +5,30 @@
 
     <!-- STAT MODE -->
     <ContentPage Title="Stat Mode">
-        <StackLayout>
+        <AbsoluteLayout>
             <Label
-                Text="Stat Mode"
+                Text="Player           Team"
+                FontSize="23"
                 VerticalOptions="Center"
-                HorizontalOptions="Center" />
-        </StackLayout>
+                HorizontalOptions="Center"
+                Margin="23,3,0,0" />
+            <Switch IsToggled="False"
+                Margin="100,0,0,0"/>
+
+            <SearchBar 
+                Margin="700,0,0,0"/>
+
+            <ListView Margin="50,50,0,0">
+                <ListView.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Help</x:String>
+                        <x:String>Help</x:String>
+                    </x:Array>
+                </ListView.ItemsSource>
+            </ListView>
+        </AbsoluteLayout>
     </ContentPage>
-    
+
     <!-- GAME VIEW MODE -->
     <ContentPage Title="Game View Mode">
         <StackLayout>
