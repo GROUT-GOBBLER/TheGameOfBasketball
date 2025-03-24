@@ -14,27 +14,45 @@
                 SemanticProperties.Description="dot net bot in a race car number eight" />
 
             <Label
-                Text="Hello, World!"
+                Text="Maui api demo"
                 Style="{StaticResource Headline}"
                 SemanticProperties.HeadingLevel="Level1" />
 
             <Label
-                Text="Welcome to &#10;.NET Multi-platform App UI"
+                Text="look at the xaml.cs to look at what your adding"
                 Style="{StaticResource SubHeadline}"
                 SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I" />
+                SemanticProperties.Description="look at the xaml.cs to look at what your adding" />
 
             <Button
                 x:Name="CounterBtn"
-                Text="Click me" 
+                Text="Get all" 
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Fill" />
             <Button
                 x:Name="CounterBtn2"
-                Text="Click me" 
+                Text="Post" 
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="CounterBtn2_Clicked"
+                HorizontalOptions="Fill" />
+            <Button
+                x:Name="CounterBtn3"
+                Text="Put " 
+                SemanticProperties.Hint="Counts the number of times you click"
+                Clicked="CounterBtn3_Clicked"
+                HorizontalOptions="Fill" />
+            <Button
+                x:Name="CounterBtn4"
+                Text="get at specific location" 
+                SemanticProperties.Hint="Counts the number of times you click"
+                Clicked="CounterBtn4_Clicked"
+                HorizontalOptions="Fill" />
+            <Button
+                x:Name="CounterBtn5"
+                Text="Delete" 
+                SemanticProperties.Hint="Counts the number of times you click"
+                Clicked="CounterBtn5_Clicked"
                 HorizontalOptions="Fill" />
         </VerticalStackLayout>
     </ScrollView>
