@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using basketballAPI.models;
 
-namespace basketballAPI.Controllers
+namespace basketballAPI.controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -29,7 +29,7 @@ namespace basketballAPI.Controllers
 
         // GET: api/StatsTypes/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<StatsType>> GetStatsType(int id)
+        public async Task<ActionResult<StatsType>> GetStatsType(short id)
         {
             var statsType = await _context.StatsTypes.FindAsync(id);
 
@@ -44,7 +44,7 @@ namespace basketballAPI.Controllers
         // PUT: api/StatsTypes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutStatsType(int id, StatsType statsType)
+        public async Task<IActionResult> PutStatsType(short id, StatsType statsType)
         {
             if (id != statsType.StatId)
             {
@@ -85,7 +85,7 @@ namespace basketballAPI.Controllers
 
         // DELETE: api/StatsTypes/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteStatsType(int id)
+        public async Task<IActionResult> DeleteStatsType(short id)
         {
             var statsType = await _context.StatsTypes.FindAsync(id);
             if (statsType == null)
@@ -99,7 +99,7 @@ namespace basketballAPI.Controllers
             return NoContent();
         }
 
-        private bool StatsTypeExists(int id)
+        private bool StatsTypeExists(short id)
         {
             return _context.StatsTypes.Any(e => e.StatId == id);
         }

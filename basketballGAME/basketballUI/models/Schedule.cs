@@ -16,6 +16,4 @@ public partial class Schedule
     public string? State { get; set; }
 
     public string? Zipcode { get; set; }
-
-    public virtual Game GameNoNavigation { get; set; } = null!;
 }
