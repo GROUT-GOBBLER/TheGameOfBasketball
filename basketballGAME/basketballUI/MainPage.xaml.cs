@@ -2,17 +2,19 @@ using System.Text.Json.Serialization;
 using System.Text.Json.Nodes;
 using basketballUI.models;
 using Newtonsoft.Json;
+
 namespace basketballUI
 {
     public partial class MainPage: TabbedPage
     {
-
+        private string _selectedAction;
         public MainPage()
         {
             InitializeComponent();
         }
 
         async private void Reload_Clicked(object sender, EventArgs e) {
+            
             string API_URL = "http://localhost:5121/api/Players";
 
             using (HttpClient client = new HttpClient())
@@ -37,9 +39,22 @@ namespace basketballUI
             }
         }
 
-        private void Button_Clicked (object sender, EventArgs e)
+        private async void Button_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new PlayerSelect());
+            await Navigation.PushAsync(new PlayerSelect());
+           
+        }
+
+        private async void GoToScoreKeeper_Clicked(object sender, EventArgs e)
+        {
+            if (Navigation != null)
+            {
+                await Navigation.PushAsync(new ScoreKeeper());
+            }
+            else
+            {
+                await DisplayAlert("Error", "Navigation is not available", "OK");
+            }
         }
 
     }

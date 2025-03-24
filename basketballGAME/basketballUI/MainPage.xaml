@@ -3,19 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="basketballUI.MainPage">
 
-    <!-- STAT MODE -->
-    <ContentPage Title="Stat Mode">
-        <AbsoluteLayout>
-            <Label
+        <!-- STAT MODE -->
+        <ContentPage Title="Stat Mode">
+            <AbsoluteLayout>
+                <Label
                 Text="Player           Team"
                 FontSize="23"
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
                 Margin="23,3,0,0" />
-            <Switch IsToggled="False"
+                <Switch IsToggled="False"
                 Margin="100,0,0,0"/>
 
-            <Button 
+                <Button 
                 x:Name="ReloadBtn"
                 Text="Reload stats"
                 SemanticProperties.Hint="A player miss a two-pointer."
@@ -24,42 +24,42 @@
                 HorizontalOptions="Center"
                 Margin="300,0,0,0" />
 
-            <SearchBar 
+                <SearchBar 
                 Margin="700,0,0,0"/>
 
-            <ListView x:Name="statsList" Margin="50,50,0,0">
-                <ListView.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Help</x:String>
-                        <x:String>Help</x:String>
-                    </x:Array>
-                </ListView.ItemsSource>
-            </ListView>
-        </AbsoluteLayout>
-    </ContentPage>
+                <ListView x:Name="statsList" Margin="50,50,0,0">
+                    <ListView.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Help</x:String>
+                            <x:String>Help</x:String>
+                        </x:Array>
+                    </ListView.ItemsSource>
+                </ListView>
+            </AbsoluteLayout>
+        </ContentPage>
 
-    <!-- GAME VIEW MODE -->
-    <ContentPage Title="Game View Mode">
-        <StackLayout>
-            <Label
+        <!-- GAME VIEW MODE -->
+        <ContentPage Title="Game View Mode">
+            <StackLayout>
+                <Label
                 Text="Game View Mode"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
-        </StackLayout>
-    </ContentPage>
+            </StackLayout>
+        </ContentPage>
 
-    <!-- SCORE KEEPING MODE -->
-    <ContentPage Title="Score Keeping Mode">
-        <StackLayout Padding="20,20,20,20" Margin="10">
-            <!--Right,Down,Left,Up-->
-            <Label 
+        <!-- SCORE KEEPING MODE -->
+        <ContentPage Title="Score Keeping Mode">
+            <StackLayout Padding="20,20,20,20" Margin="10">
+                <!--Right,Down,Left,Up-->
+                <Label 
                 Text="Score Keeping Mode"
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
                 Margin="10" />
 
-            <!-- TWO POINTER MADE -->
-            <Button
+                <!-- TWO POINTER MADE -->
+                <Button
                 x:Name="TwoPointMade"
                 Text="2PT shot made."
                 SemanticProperties.Hint="A player made a two-pointer."
@@ -68,8 +68,8 @@
                 HorizontalOptions="Center"
                 Margin="10" />
 
-            <!-- TWO POINTER MISSED -->
-            <Button 
+                <!-- TWO POINTER MISSED -->
+                <Button 
                 x:Name="TwoPointMiss"
                 Text="2PT shot missed."
                 SemanticProperties.Hint="A player miss a two-pointer."
@@ -78,8 +78,8 @@
                 HorizontalOptions="Center"
                 Margin="10" />
 
-            <!-- THREE POINTER MADE -->
-            <Button 
+                <!-- THREE POINTER MADE -->
+                <Button 
                 x:Name="ThreePtMiss"
                 Text="3PT shot made."
                 SemanticProperties.Hint="A player made a three-pointer."
@@ -88,8 +88,8 @@
                 HorizontalOptions="Center"
                 Margin="10" />
 
-            <!-- THREE POINTER MISSED -->
-            <Button 
+                <!-- THREE POINTER MISSED -->
+                <Button 
                 x:Name="ThreePointMiss"
                 Text="3PT shot missed."
                 SemanticProperties.Hint="A player missed a three-pointer."
@@ -98,8 +98,8 @@
                 HorizontalOptions="Center"
                 Margin="10" />
 
-            <!-- FREE THROW -->
-            <Button 
+                <!-- FREE THROW -->
+                <Button 
                 x:Name="FreeThrow"
                 Text="Free throw."
                 SemanticProperties.Hint="A player is shooting a freethrow."
@@ -108,8 +108,8 @@
                 HorizontalOptions="Center"
                 Margin="10" />
 
-            <!-- OFFENSIVE REBOUND -->
-            <Button 
+                <!-- OFFENSIVE REBOUND -->
+                <Button 
                 x:Name="OffensiveRebound"
                 Text="OffRebound."
                 SemanticProperties.Hint="A player caught a rebound on offense."
@@ -118,8 +118,8 @@
                 HorizontalOptions="Center"
                 Margin="10" />
 
-            <!-- DEFENSIVE REBOUND -->
-            <Button 
+                <!-- DEFENSIVE REBOUND -->
+                <Button 
                 x:Name="DefensiveRebound"
                 Text="DefRebound."
                 SemanticProperties.Hint="A player caught a rebound on defense."
@@ -128,8 +128,8 @@
                 HorizontalOptions="Center"
                 Margin="10" />
 
-            <!-- ASSIST -->
-            <Button 
+                <!-- ASSIST -->
+                <Button 
                 x:Name="Assist"
                 Text="Assist."
                 SemanticProperties.Hint="A player made an assist."
@@ -138,8 +138,8 @@
                 HorizontalOptions="Center"
                 Margin="10" />
 
-            <!-- TURNOVER -->
-            <Button 
+                <!-- TURNOVER -->
+                <Button 
                 x:Name="Turnover"
                 Text="TOver."
                 SemanticProperties.Hint="A player has made a turnover."
@@ -148,8 +148,8 @@
                 HorizontalOptions="Center"
                 Margin="10" />
 
-            <!-- BLOCK -->
-            <Button 
+                <!-- BLOCK -->
+                <Button 
                 x:Name="Block"
                 Text="Block."
                 SemanticProperties.Hint="A player has blocked a shot."
@@ -158,8 +158,8 @@
                 HorizontalOptions="Center"
                 Margin="10" />
 
-            <!-- STEAL -->
-            <Button 
+                <!-- STEAL -->
+                <Button 
                 x:Name="Steal"
                 Text="Steal."
                 SemanticProperties.Hint="A player made a three-pointer."
@@ -168,8 +168,8 @@
                 HorizontalOptions="Center"
                 Margin="10" />
 
-            <!-- FOUL -->
-            <Button 
+                <!-- FOUL -->
+                <Button 
                 x:Name="Foul"
                 Text="Foul."
                 SemanticProperties.Hint="A player has committed a foul."
@@ -177,16 +177,17 @@
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
                 Margin="10" />
-        </StackLayout>
-    </ContentPage>
+            </StackLayout>
+        </ContentPage>
 
-    <!-- MANAGEMENT -->
-    <ContentPage Title="Management">
-        <StackLayout>
-            <Label Text="Management"
+        <!-- MANAGEMENT -->
+        <ContentPage Title="Management">
+            <StackLayout>
+                <Label Text="Management"
            VerticalOptions="CenterAndExpand"
            HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage>
+            </StackLayout>
+        </ContentPage>
 
-</TabbedPage>
+    </TabbedPage>
+
