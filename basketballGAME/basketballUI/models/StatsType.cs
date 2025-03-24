@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 
 namespace basketballUI.models;
+
 public partial class StatsType
 {
-    public int StatId { get; set; }
+    public short StatId { get; set; }
 
     public string? StatName { get; set; }
 

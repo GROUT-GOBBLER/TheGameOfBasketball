@@ -15,8 +15,6 @@ public partial class Game
 
     public short ScoreTwo { get; set; }
 
-    public virtual ICollection<Schedule> Schedules { get; set; } = new List<Schedule>();
-
     public virtual ICollection<Stat> Stats { get; set; } = new List<Stat>();
 
     public virtual Team TeamNoOneNavigation { get; set; } = null!;

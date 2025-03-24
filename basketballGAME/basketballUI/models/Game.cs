@@ -11,11 +11,9 @@ public partial class Game
 
     public int TeamNoTwo { get; set; }
 
-    public int ScoreOne { get; set; }
+    public short ScoreOne { get; set; }
 
-    public int ScoreTwo { get; set; }
-
-    public virtual ICollection<Schedule> Schedules { get; set; } = new List<Schedule>();
+    public short ScoreTwo { get; set; }
 
     public virtual ICollection<Stat> Stats { get; set; } = new List<Stat>();
 
