@@ -42,6 +42,20 @@ namespace basketballUI
             Navigation.PushAsync(new PlayerSelect());
         }
 
+        private void Schedule_Management_Button_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new ScheduleManagement());
+        }
+
+        private void Player_Management_Button_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new PlayerManagement());
+        }
+
+        private void Team_Management_Button_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new TeamManagement());
+        }
     }
 
 }

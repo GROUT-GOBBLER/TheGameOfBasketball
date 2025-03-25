@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="basketballUI.PlayerManagement"
+             Title="PlayerManagement">
+    <VerticalStackLayout>
+        <Label 
+            Text="Player Management!"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+        <Button
+            x:Name="CreatePlayerButton"
+            Text="Create Player."
+            SemanticProperties.Hint="Create a player."
+            Clicked="Create_Player_Button_Click"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            Margin="20" />
+
+        <Entry 
+            x:Name="entry"
+            Placeholder="Enter text"
+            TextChanged="entry_TextChanged"
+            Completed="entry_Completed" />
+
+    </VerticalStackLayout>
+</ContentPage>
