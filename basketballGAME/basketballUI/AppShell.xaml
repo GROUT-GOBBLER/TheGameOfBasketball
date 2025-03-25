@@ -15,6 +15,16 @@
     <ShellContent
         Title="Score Keeping Mode"
         ContentTemplate="{DataTemplate local:ScoreKeeper}"
-        Route="ScoreKeeperPage" />
+        Route="ScoreKeeper" />
+
+    <ShellContent
+        Title="Player Select"
+        ContentTemplate="{DataTemplate local:PlayerSelect}"
+        Route="PlayerSelect" />
+
+    <ShellContent
+        Title="Free Throw"
+        ContentTemplate="{DataTemplate local:FreeThrow}"
+        Route="FreeThrow" />
 
 </Shell>

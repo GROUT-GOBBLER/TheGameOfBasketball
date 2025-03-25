@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="basketballUI.FreeThrow"
+             Title="Free Throw">
+    
+    <VerticalStackLayout Padding="20">
+        <!-- Header -->
+        <Label Text="Free Throw"
+               FontSize="24"
+               HorizontalOptions="Center"
+               Margin="0,0,0,20"/>
+
+        <!-- Main Content: Number of Shots and Miss/Made Buttons -->
+        <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
+            <!-- Left Side: Number of Shots -->
+            <VerticalStackLayout Spacing="10">
+                <Button x:Name="OneShotButton"
+                        Text="1"
+                        WidthRequest="50"
+                        HeightRequest="50"
+                        CornerRadius="25"
+                        BackgroundColor="LightGray"
+                        Clicked="OnShotCountClicked"/>
+                <Button x:Name="TwoShotsButton"
+                        Text="2"
+                        WidthRequest="50"
+                        HeightRequest="50"
+                        CornerRadius="25"
+                        BackgroundColor="LightGray"
+                        Clicked="OnShotCountClicked"/>
+                <Button x:Name="ThreeShotsButton"
+                        Text="3"
+                        WidthRequest="50"
+                        HeightRequest="50"
+                        CornerRadius="25"
+                        BackgroundColor="LightGray"
+                        Clicked="OnShotCountClicked"/>
+                <Label Text="Generates miss # of foul shot"
+                       FontSize="12"
+                       HorizontalOptions="Center"
+                       Margin="0,5,0,0"/>
+            </VerticalStackLayout>
+
+            <!-- Right Side: Miss and Made Buttons -->
+            <VerticalStackLayout Spacing="10">
+                <Button x:Name="MissButton"
+                        Text="MISS"
+                        WidthRequest="100"
+                        HeightRequest="50"
+                        BackgroundColor="Red"
+                        TextColor="White"
+                        Clicked="OnMissClicked"/>
+                <Button x:Name="MadeButton"
+                        Text="MADE"
+                        WidthRequest="100"
+                        HeightRequest="50"
+                        BackgroundColor="Green"
+                        TextColor="White"
+                        Clicked="OnMadeClicked"/>
+            </VerticalStackLayout>
+        </HorizontalStackLayout>
+
+        <!-- Back Button -->
+        <Button Text="Back"
+                HorizontalOptions="Center"
+                Margin="0,20,0,0"
+                Clicked="OnBackClicked"/>
+    </VerticalStackLayout>
+</ContentPage>
