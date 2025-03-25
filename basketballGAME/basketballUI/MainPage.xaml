@@ -39,13 +39,159 @@
     </ContentPage>
 
     <!-- GAME VIEW MODE -->
-    <ContentPage Title="Game View Mode">
-        <StackLayout>
+    <ContentPage Title="Game View Mode"
+                 x:Name="GameView">
+        <HorizontalStackLayout Padding="20,0,20,0"
+            Margin="20,20,20,20"
+            HorizontalOptions="Start"
+            VerticalOptions="StartAndExpand">
+
+            <HorizontalStackLayout
+                Margin="20,0,20,0">
+                <Picker x:Name= "GameViewPicker"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Start"
+                    Title="Search by">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Team</x:String>
+                            <x:String>Date</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+                <VerticalStackLayout Padding="20,0,50,0">
+                    <SearchBar x:Name= "GameViewSearch"
+                        Placeholder="Search items...       "
+                        HorizontalOptions="Center"
+                        
+                        TextChanged="GameViewSearch_TextChanged"/>
+                    <ListView x:Name= "GameViewSearchResults" 
+                              ItemSelected = "GameViewSearchResults_ItemSelected" />
+                </VerticalStackLayout>
+
+
+
+            </HorizontalStackLayout>
+                
+                
+                
+              
+
+                
+           
+            
+            
+            
+            <StackLayout Padding="25,20,20,20"  AnchorX =" 50">
+
             <Label
                 Text="Game View Mode"
+                FontSize="23"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
+
+                <HorizontalStackLayout Padding="20,0,20,0"
+                    HorizontalOptions="Center">
+                    <Label
+                        Text= "Team 1"
+                        x:Name = "GameViewTeam1"
+                        FontSize="23"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="Center" 
+                        Padding="10,10,10,0"/>
+                    <Label
+                        Text="-"
+                        FontSize="50"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center" 
+                        Padding="20,0,20,0"/>
+                    <Label
+                        x:Name= "GameViewTeam2"
+                        Text="Team2"
+                        FontSize="23"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="Center" 
+                        Padding="20,10,20,0"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Padding="20,0,20,0"
+                        HorizontalOptions="Center">
+                    <Label
+                        x:Name= "GameViewTeam1Score"
+                        Text="#"
+                        FontSize="23"
+                        TextColor ="Green"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="Center" 
+                        Padding="20,0,20,0"/>
+                    <Label
+                        Text=" "
+                        
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center" 
+                        Padding="20,0,20,0"/>
+                    <Label
+                        x:Name= "GameViewTeam2Score"
+                        Text="#" 
+                        FontSize="23"
+                        TextColor = "Red"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="Center" 
+                        Padding="20,0,20,0"/>
+
+
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Padding="10,10,10,10"
+                        Margin="15,0,15,0" 
+                        HorizontalOptions="Center"
+                        VerticalOptions = "FillAndExpand"
+                        BackgroundColor = "Gray">
+                    <ScrollView
+                        Padding="60,0,60,0"
+                        x:Name ="GameViewTeam1Stats"
+                        BackgroundColor = "BlanchedAlmond"
+                        Grid.Row="1"
+                        VerticalOptions="FillAndExpand"
+                        >
+                        <Label
+                            Text="#"
+                            FontSize="23"
+                            TextColor ="Green"
+                            VerticalOptions="Start"
+                            HorizontalOptions="Center" 
+                            Padding="20,0,20,0"/>
+
+
+
+                    </ScrollView>
+                    <ScrollView
+                        Padding= "60,0,60,0"
+                        x:Name ="GameViewTeam2Stats"
+                        BackgroundColor = "BlanchedAlmond"
+                        Grid.Row="1"
+                        VerticalOptions="FillAndExpand"
+                        >
+                        <Label
+                            Text="#"
+                            FontSize="23"
+                            TextColor ="Red"
+                            VerticalOptions="Start"
+                            HorizontalOptions="Center" 
+                            Padding="20,0,20,0"/>
+
+
+
+
+                    </ScrollView>
+
+
+                </HorizontalStackLayout>
+
+
+
         </StackLayout>
+
+        </HorizontalStackLayout>
+        
     </ContentPage>
 
     <!-- SCORE KEEPING MODE -->
