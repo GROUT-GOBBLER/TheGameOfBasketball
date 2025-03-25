@@ -29,14 +29,14 @@ namespace basketballUI
                     {
                         string json = await response.Content.ReadAsStringAsync();
                         List<Player> players = JsonConvert.DeserializeObject<List<Player>>(json);
-                        ReloadBtn.Text = $"Player num " + players[0].PlayerNo + " First name " + players[0].FName + " Last name " + players[0].LName;
+                       // ReloadBtn.Text = $"Player num " + players[0].PlayerNo + " First name " + players[0].FName + " Last name " + players[0].LName;
 
-                        statsList.ItemsSource = players;
+                       // statsList.ItemsSource = players;
                     }
                 }
                 catch (Exception ex)
                 {
-                    ReloadBtn.Text = $"Clicked and failed";
+                   // ReloadBtn.Text = $"Clicked and failed";
                 }
             }
         }
