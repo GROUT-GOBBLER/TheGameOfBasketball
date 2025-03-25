@@ -4,10 +4,49 @@
              x:Class="basketballUI.PlayerManagement"
              Title="PlayerManagement">
     <VerticalStackLayout>
-        <Label 
-            Text="Player Management!"
+        <HorizontalStackLayout 
+            Margin="20" 
+            Padding="10" 
+            VerticalOptions="Center"
+            HorizontalOptions="Center" >
+            <Label 
+            Text="Enter player first name: "
+            FontSize="15"
             VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            HorizontalOptions="Center"
+            Margin="20"/>
+
+            <Entry 
+            x:Name="PlayerFirstNameEntry"
+            Placeholder="First name."
+            TextChanged="PlayerFirstNameEntry_TextChanged"
+            ClearButtonVisibility="WhileEditing"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            Margin="0" />
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout 
+            Margin="0" 
+            Padding="0" 
+            VerticalOptions="Center"
+            HorizontalOptions="Center" >
+            <Label 
+            Text="Enter player last name: "
+            FontSize="15"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            Margin="20"/>
+
+            <Entry 
+            x:Name="PlayerLastNameEntry"
+            Placeholder="Last name."
+            TextChanged="PlayerLastNameEntry_TextChanged"
+            ClearButtonVisibility="WhileEditing"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            Margin="0" />
+        </HorizontalStackLayout>
 
         <Button
             x:Name="CreatePlayerButton"
@@ -17,12 +56,6 @@
             VerticalOptions="Center"
             HorizontalOptions="Center"
             Margin="20" />
-
-        <Entry 
-            x:Name="entry"
-            Placeholder="Enter text"
-            TextChanged="entry_TextChanged"
-            Completed="entry_Completed" />
 
     </VerticalStackLayout>
 </ContentPage>
