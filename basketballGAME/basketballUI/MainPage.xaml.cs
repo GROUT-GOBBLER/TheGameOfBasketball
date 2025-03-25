@@ -4,6 +4,8 @@ using basketballUI.models;
 using Newtonsoft.Json;
 using Windows.Media.Audio;
 using Windows.Media.Protection.PlayReady;
+using System.Collections.Generic;
+using Windows.Media.PlayTo;
 namespace basketballUI
 {
     public partial class MainPage: TabbedPage
@@ -14,6 +16,22 @@ namespace basketballUI
         public MainPage()
         {
             InitializeComponent();
+            this.Loaded += CurrentTime;
+        }
+
+        private void CurrentTime(object? sender, EventArgs e)
+        {
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                var timer = new System.Threading.Timer(
+               obj =>
+               {
+                   MainThread.InvokeOnMainThreadAsync(() => { RefreshGameViewStats(); });
+                   }, null, TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(10)
+               );
+            });
+           
+                
         }
 
         async private void Reload_Clicked(object sender, EventArgs e) {
@@ -334,12 +352,91 @@ namespace basketballUI
             }
             GameViewSearchResults.ItemsSource = results;
         }
-
-        private void GameViewSearchResults_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        
+      
+        
+        GameViewSearchResult selectedGameSearchResult = null;
+        async private void RefreshGameViewStats()
         {
-            int i = e.SelectedItemIndex;
-            
+            using (HttpClient client = new HttpClient())
+            {
+                List<String> result1 = new List<String>();
+                List<String> result2 = new List<String>();
+                GameViewTeam1Stats.ClearLogicalChildren();
+                GameViewTeam2Stats.ClearLogicalChildren();
+                if (selectedGameSearchResult == null)
+                {
+                    GameViewTeam1.Text = "?";
+                    GameViewTeam2.Text = "?";
+                    return;
+                }
+                GameViewTeam1.Text = selectedGameSearchResult.GetTeam1().TeamName;
+                GameViewTeam2.Text = selectedGameSearchResult.GetTeam2().TeamName;
+                GameViewTeam1Score.Text = selectedGameSearchResult.GetGame().ScoreOne.ToString();
+                GameViewTeam2Score.Text = selectedGameSearchResult.GetGame().ScoreTwo.ToString();
 
+
+                HttpResponseMessage response = await client.GetAsync($"{URL}/{"Stats"}");
+
+                String json = await response.Content.ReadAsStringAsync();
+                List<Stat> stat = JsonConvert.DeserializeObject<List<Stat>>(json);
+                foreach(Stat s in stat)
+                {
+                    if(s.GameId == selectedGameSearchResult.GetGame().GameNo)
+                    {
+                        response = await client.GetAsync($"{URL}/{"TeamPlayers"}/{s.PlayerTeamId}");
+                        json = await response.Content.ReadAsStringAsync();
+                        TeamPlayer tp = JsonConvert.DeserializeObject<TeamPlayer>(json);
+                        response = await client.GetAsync($"{URL}/{"Players"}/{tp.PlayerId}");
+                        json = await response.Content.ReadAsStringAsync();
+                        Player p = JsonConvert.DeserializeObject<Player>(json);
+                        response = await client.GetAsync($"{URL}/{"StatsTypes"}/{s.StatTypeId}");
+                        json = await response.Content.ReadAsStringAsync();
+                        StatsType st = JsonConvert.DeserializeObject<StatsType>(json);
+
+                        String output = "" + p.FName + " " + p.LName + " " + st.StatName;
+                        
+                        if (tp.TeamId == selectedGameSearchResult.GetTeam1().TeamNo)
+                        {
+
+                            result1.Add(output);
+
+
+                        }
+                        if (tp.TeamId == selectedGameSearchResult.GetTeam2().TeamNo)
+                        {
+
+                            result2.Add(output);
+
+                        }
+
+
+
+                    }
+                }
+
+                GameViewTeam1Stats.ItemsSource = result1;
+                GameViewTeam2Stats.ItemsSource = result2;
+
+
+
+            }
+        }
+
+        private void GameViewSearchResults_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            GameViewTeam1.Text = "?";
+            GameViewTeam2.Text = "?";
+            int i = e.ItemIndex;
+            selectedGameSearchResult = gvsr[i];
+            RefreshGameViewStats();
+
+
+        }
+
+        private void GameViewReload_Clicked(object sender, EventArgs e)
+        {
+            RefreshGameViewStats();
         }
     }
   

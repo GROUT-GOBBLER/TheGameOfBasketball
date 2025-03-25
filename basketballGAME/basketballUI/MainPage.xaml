@@ -38,6 +38,14 @@
             Margin="20,20,20,20"
             HorizontalOptions="Start"
             VerticalOptions="StartAndExpand">
+            <Button 
+               x:Name= "GameViewReload"
+                Text="Reload"
+               
+                Clicked="GameViewReload_Clicked"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="10" />
 
             <HorizontalStackLayout
                 Margin="20,0,20,0">
@@ -60,22 +68,12 @@
                         
                         TextChanged="GameViewSearch_TextChanged"/>
                     <ListView x:Name= "GameViewSearchResults" 
-                              ItemSelected = "GameViewSearchResults_ItemSelected" />
+                              ItemTapped="GameViewSearchResults_ItemTapped"></ListView>
                 </VerticalStackLayout>
 
 
 
             </HorizontalStackLayout>
-                
-                
-                
-              
-
-                
-           
-            
-            
-            
             <StackLayout Padding="25,20,20,20"  AnchorX =" 50">
 
                 <Label
@@ -141,40 +139,15 @@
                         BackgroundColor = "Gray">
                     <ScrollView
                         Padding="60,0,60,0"
-                        x:Name ="GameViewTeam1Stats"
-                        BackgroundColor = "BlanchedAlmond"
                         Grid.Row="1"
-                        VerticalOptions="FillAndExpand"
-                        >
-                        <Label
-                            Text="#"
-                            FontSize="23"
-                            TextColor ="Green"
-                            VerticalOptions="Start"
-                            HorizontalOptions="Center" 
-                            Padding="20,0,20,0"/>
-
-
-
+                        VerticalOptions= "FillAndExpand">
+                        <ListView x:Name= "GameViewTeam1Stats" ></ListView>
                     </ScrollView>
                     <ScrollView
                         Padding= "60,0,60,0"
-                        x:Name ="GameViewTeam2Stats"
-                        BackgroundColor = "BlanchedAlmond"
                         Grid.Row="1"
-                        VerticalOptions="FillAndExpand"
-                        >
-                        <Label
-                            Text="#"
-                            FontSize="23"
-                            TextColor ="Red"
-                            VerticalOptions="Start"
-                            HorizontalOptions="Center" 
-                            Padding="20,0,20,0"/>
-
-
-
-
+                        VerticalOptions= "FillAndExpand">
+                        <ListView x:Name= "GameViewTeam2Stats" ></ListView>
                     </ScrollView>
 
 

@@ -29,5 +29,21 @@ namespace basketballUI.models
                 return team1.TeamName + " vs " + team2.TeamName + " at " + schedule.GameTime;
             }
         }
+        public virtual Game? GetGame()
+        {
+            return game;
+        }
+        public virtual Team? GetTeam1()
+        {
+            return team1;
+        }
+        public virtual Team? GetTeam2()
+        {
+            return team2;
+        }
+
+
+
+
     }
 }
