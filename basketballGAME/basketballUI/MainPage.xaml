@@ -37,7 +37,7 @@
             </ListView>
         </AbsoluteLayout>
     </ContentPage>
-
+    
     <!-- GAME VIEW MODE -->
     <ContentPage Title="Game View Mode"
                  x:Name="GameView">
@@ -56,6 +56,7 @@
                         <x:Array Type="{x:Type x:String}">
                             <x:String>Team</x:String>
                             <x:String>Date</x:String>
+
                         </x:Array>
                     </Picker.ItemsSource>
                 </Picker>
@@ -84,7 +85,7 @@
             
             <StackLayout Padding="25,20,20,20"  AnchorX =" 50">
 
-            <Label
+                <Label
                 Text="Game View Mode"
                 FontSize="23"
                 VerticalOptions="Center"
@@ -188,7 +189,7 @@
 
 
 
-        </StackLayout>
+            </StackLayout>
 
         </HorizontalStackLayout>
         

@@ -216,13 +216,13 @@ namespace basketballUI
             }
             GameViewSearchResults.ItemsSource = results;
         }
-                                    
+
         private void GameViewSearchResults_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             int i = e.SelectedItemIndex;
+            
 
-
+        }
     }
-    }
-
+  
 }
