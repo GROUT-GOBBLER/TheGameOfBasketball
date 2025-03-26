@@ -1,12 +1,20 @@
 using CommunityToolkit.Maui.Views;
-
+using Windows.Media.Playlists;
+using basketballUI.models;
+using Newtonsoft.Json;
 namespace basketballUI;
 
 public partial class ScoreKeeper : ContentPage
 {
+    private List<Player> playerList;
+
     public ScoreKeeper()
     {
         InitializeComponent();
+    }
+    public void UpdatePlayerList(List<Player> players)
+    {
+        playerList = players;
     }
 
     private async void OnActionButtonClicked(object sender, EventArgs e)
@@ -20,7 +28,7 @@ public partial class ScoreKeeper : ContentPage
             {
                 DisplayAlert("Action Recorded", $"Player {selectedPlayer} performed: {lastAction}", "OK");
             }
-        });
+        }, SavedList.CurrentPlayerList);
 
         await this.ShowPopupAsync(popup);
     }
@@ -31,7 +39,7 @@ public partial class ScoreKeeper : ContentPage
         var popup = new PlayerSelect("Free Throw", selectedPlayer =>
         {
 
-        });
+        }, SavedList.CurrentPlayerList);
 
         var result = await this.ShowPopupAsync(popup);
 
