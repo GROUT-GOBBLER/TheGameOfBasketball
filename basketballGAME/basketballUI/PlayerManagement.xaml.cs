@@ -108,100 +108,146 @@ public partial class PlayerManagement : ContentPage
         firstName = null;
         lastName = null;
         teamID = null;
+        playerID = null;
 	}
 
-    //async private void EditPlayerButton_Clicked_1(object sender, EventArgs e)
-    //{
-    //    string API_URL_1 = "http://localhost:5121/api/Players";
-    //    string API_URL_2 = "http://localhost:5121/api/TeamPlayers";
+    async private void EditPlayerButton_Clicked_1(object sender, EventArgs e)
+    {
+        string API_URL_1 = "http://localhost:5121/api/Players/";
+        string API_URL_2 = "http://localhost:5121/api/TeamPlayers/";
 
-    //    using (HttpClient client = new HttpClient())
-    //    {
-    //        try
-    //        {
-    //            HttpResponseMessage response1 = await client.GetAsync(API_URL_1);
-    //            HttpResponseMessage response2 = await client.GetAsync(API_URL_2);
+        using (HttpClient client = new HttpClient())
+        {
+            try
+            {
+                HttpResponseMessage response1 = await client.GetAsync(API_URL_1);//player
+                HttpResponseMessage response2 = await client.GetAsync(API_URL_2);//teamplayer
 
-    //            List<Player> players;
-    //            List<TeamPlayer> teamsPlayers;
+                List<Player> players;
+                List<TeamPlayer> teamsPlayers;
 
-    //            if (response1.IsSuccessStatusCode && response2.IsSuccessStatusCode)
-    //            {
-    //                string json1 = await response1.Content.ReadAsStringAsync();
-    //                players = JsonConvert.DeserializeObject<List<Player>>(json1);
-    //                string json2 = await response2.Content.ReadAsStringAsync();
-    //                teamsPlayers = JsonConvert.DeserializeObject<List<TeamPlayer>>(json2);
+                if (response1.IsSuccessStatusCode && response2.IsSuccessStatusCode)
+                {
+                    // Fill json and teamPlayers with values.
+                    string json = await response1.Content.ReadAsStringAsync();
+                    players = JsonConvert.DeserializeObject<List<Player>>(json);
+                    string json1 = await response1.Content.ReadAsStringAsync();
+                    teamsPlayers = JsonConvert.DeserializeObject<List<TeamPlayer>>(json1);
 
-    //                int PlayerIdValue = int.Parse(playerID);
-    //                int teamIdValue;
+                    Player player = new Player();
+                    TeamPlayer teamPlayer = new TeamPlayer();
 
-    //                // Set player equal to specified player number.
-    //                // If player number does not exist make a new player.
-    //                    int index = -1;
-    //                    foreach (Player pl in players)
-    //                    {
-    //                        if(pl.PlayerNo == PlayerIdValue)
-    //                        {
-    //                            index = pl.PlayerNo;
-    //                            break;  
-    //                        }
-    //                    }
+                    int indexOfThePlayerNoInTeamPlayers = -1;
+                    int indexOfThePlayerNoInPlayers = -1;
+                    Boolean wasFound = false; // does the player with player number exist?
+                    int PLAYERnumber = int.Parse(playerID);
+                    int TEAMnumber = -1;
 
-    //                    Player player;
+                    if (teamID != null)
+                        TEAMnumber = int.Parse(teamID); // otherwise, we set it equal to the teamID from the current player.
 
-    //                    if (index == -1)
-    //                    {
-    //                        player = new Player();
-    //                    }
-    //                    else
-    //                    {
-    //                        player = players[index - 1];
-    //                    }
+                    // Iterate through Players table in DB.
+                    for(int x = 0; x < players.Count; x++)
+                    {
+                        if (players[x].PlayerNo == PLAYERnumber)
+                        {
+                            wasFound = true;
+                            indexOfThePlayerNoInPlayers = x;
+                            break;
+                        }
+                    }
 
-    //                // Find team number from TeamPlayers.
-    //                for (int x = 0; x < teamsPlayers.Count; x++)
-    //                {
-                        
-    //                }
+                    // If entry exists, iterate through the TeamPlayers table in DB.
+                    if(wasFound)
+                    {
+                        for(int x = 0; x < teamsPlayers.Count; x++)
+                        {
+                            if (players[x].PlayerNo == PLAYERnumber)
+                            {
+                                indexOfThePlayerNoInTeamPlayers = x;
+                                break;
+                            }
+                        }
+                    }
 
-    //                TeamPlayer teamPlayer = new TeamPlayer();
+                    // Enter player values.
+                    if(firstName != null)
+                        player.FName = firstName;
+                    if(lastName != null)
+                        player.LName = lastName;
+                    player.TeamPlayers = new List<TeamPlayer>();// use the list for any addition that references other connections
 
-    //                int length = players.Count - 1;
-    //                player.PlayerNo = 10;
-    //                player.FName = "Editoria";
-    //                player.LName = "Ami";
-    //                player.TeamPlayers = new List<TeamPlayer>();// use the list for any addition that references other connections
+                    if (teamID != null)
+                        teamPlayer.TeamId = int.Parse(teamID);
 
-    //                HttpResponseMessage response3 = await client.PutAsJsonAsync($"{API_URL_1}/{10}", player);// "/{13}" is the id.
-    //                HttpResponseMessage response4 = await client.PutAsJsonAsync($"{API_URL_1}/{10}", player);// "/{13}" is the id.
+                    HttpResponseMessage response3 = await client.PutAsJsonAsync($"{API_URL_1}", player);//indexOfThePlayerNoInPlayers
+                    HttpResponseMessage response4 = await client.PutAsJsonAsync($"{API_URL_2}", teamPlayer);//indexOfThePlayerNoInTeamPlayers
 
-    //                if (response3.IsSuccessStatusCode)
-    //                {
-    //                    if (response4.IsSuccessStatusCode)
-    //                        EditPlayerButton.Text = $"both success ";
-    //                    else
-    //                        EditPlayerButton.Text = $"3 success 4 fail " + response4;
-    //                }
-    //                else
-    //                {
-    //                    if (response4.IsSuccessStatusCode)
-    //                        EditPlayerButton.Text = $"3 fail 4 success " + response3;
-    //                    else
-    //                        EditPlayerButton.Text = $"both fail " + response3 + "\n\n" + response4;
-    //                }
-    //            }
-    //            else
-    //            {
-    //                EditPlayerButton.Text = $"no success";
-    //            }
-    //        }
-    //        catch (Exception ex)
-    //        {
-    //            EditPlayerButton.Text = $"Clicked and failed " + ex;
-    //        }
+                    if (response3.IsSuccessStatusCode)
+                    {
+                        if (response4.IsSuccessStatusCode)
+                            EditPlayerButton.Text = $"success";
+                        else
+                            EditPlayerButton.Text = $"3 worked 4 failed " + response4;
+                    }
+                    else
+                    {
+                        if (response4.IsSuccessStatusCode)
+                            EditPlayerButton.Text = $"3 failed 4 worked " + response3;
+                        else
+                            EditPlayerButton.Text = $"no success  " + response3 + "\n" + response4;
+                    }
+                }
+                else
+                {
+                    EditPlayerButton.Text = $"no success ...";
+                }
+            }
+            catch (Exception ex)
+            {
+                EditPlayerButton.Text = $"Clicked and failed " + ex;
+            }
+        }
 
-    //    }
-    //}
+        firstName = null;
+        lastName = null;
+        teamID = null;
+        playerID = null;
+    }
+
+    async private void DeletePlayerButton_Clicked(object sender, EventArgs e)
+    {
+        string API_URL = "http://localhost:5121/api/Players";
+        
+        using (HttpClient client = new HttpClient())
+        {
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync(API_URL);
+                
+                if (response.IsSuccessStatusCode)
+                {
+                    HttpResponseMessage response1 = await client.DeleteAsync($"{API_URL}/{6}");
+                    if (response1.IsSuccessStatusCode)
+                    {
+                        DeletePlayerButton.Text = $"success";
+                    }
+                    else
+                    {
+                        DeletePlayerButton.Text = $"no success  " + response1;
+                    }
+                }
+                else
+                {
+                    DeletePlayerButton.Text = $"no success";
+                }
+            }
+            catch (Exception ex)
+            {
+                DeletePlayerButton.Text = $"Clicked and failed " + ex;
+            }
+        }
+    }
 
     private void PlayerFirstNameEntry_TextChanged(object sender, TextChangedEventArgs e)
     {

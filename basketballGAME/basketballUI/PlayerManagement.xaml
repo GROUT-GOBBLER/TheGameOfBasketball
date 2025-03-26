@@ -85,8 +85,7 @@
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
                 Margin="20" />
-        </VerticalStackLayout
-            >
+        </VerticalStackLayout>
         <VerticalStackLayout Margin="10,10,10,10">
             <Label
                 Text="EDIT A PLAYER"
@@ -183,14 +182,53 @@
                     Margin="0" />
             </HorizontalStackLayout>
 
-            <!--<Button
+            <Button
                 x:Name="EditPlayerButton"
                 Text="Edit Player."
                 SemanticProperties.Hint="Edit a player's info."
                 Clicked="EditPlayerButton_Clicked_1"
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
-                Margin="20" />-->
+                Margin="20" />
+        </VerticalStackLayout>
+        <VerticalStackLayout Margin="10,10,10,10">
+            <Label
+                Text="DELETE A PLAYER"
+                FontSize="20"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="0" />
+
+            <HorizontalStackLayout 
+                Margin="0" 
+                Padding="0" 
+                VerticalOptions="Center"
+                HorizontalOptions="Center" >
+                <Label 
+                    Text="Player ID: "
+                    FontSize="15"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    Margin="20"/>
+
+                <Entry 
+                    x:Name="PlayerIDDelete"
+                    Placeholder="Player ID."
+                    TextChanged="PlayerIDEdit_TextChanged"
+                    ClearButtonVisibility="WhileEditing"
+                    VerticalOptions="Center"            
+                    HorizontalOptions="Center"               
+                    Margin="0" />
+            </HorizontalStackLayout>
+
+            <Button
+                x:Name="DeletePlayerButton"
+                Text="Edit Player."
+                SemanticProperties.Hint="Delete a player."
+                Clicked="DeletePlayerButton_Clicked"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="20" />
         </VerticalStackLayout>
     </HorizontalStackLayout>
 </ContentPage>
