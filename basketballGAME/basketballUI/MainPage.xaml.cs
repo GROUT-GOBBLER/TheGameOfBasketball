@@ -45,6 +45,7 @@ namespace basketballUI
             string API_URL3 = "http://localhost:5121/api/Stats";
             string API_URL4 = "http://localhost:5121/api/Teams";
 
+
             using (HttpClient client = new HttpClient())
             {
                 try
@@ -640,6 +641,7 @@ namespace basketballUI
                 scoreKeeperPage.UpdatePlayerList(playerList);
             }
 
+           // await DisplayAlert("Wheeze", $"{selectedPlayer}", "OK");
 
             var popup = new PlayerSelect("Select Player", selectedPlayer =>
             {

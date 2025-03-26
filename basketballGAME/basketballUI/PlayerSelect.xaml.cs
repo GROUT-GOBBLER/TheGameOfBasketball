@@ -84,7 +84,7 @@ public partial class PlayerSelect : Popup
 
             var button = new Button
             {
-                Text = $"Player {player.FName}",
+                Text = $"{player.FName}",
                 WidthRequest = 180,
                 HeightRequest = 100,
                 FontSize = 22,
