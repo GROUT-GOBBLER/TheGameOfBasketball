@@ -58,14 +58,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Maui" Version="8.0.1" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.3" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.100" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.100" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="FreeThrow.xaml.cs">
+	    <DependentUpon>FreeThrow.xaml</DependentUpon>
 	  <Compile Update="Player-Team_Management.xaml.cs">
 	    <DependentUpon>Player-Team_Management.xaml</DependentUpon>
 	  </Compile>
@@ -75,6 +78,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="FreeThrow.xaml">
 	  <MauiXaml Update="Player-Team_Management.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -84,6 +88,7 @@
 	  <MauiXaml Update="PlayerSelect.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="ScoreKeeper.xaml">
 	  <MauiXaml Update="ScheduleManagement.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
