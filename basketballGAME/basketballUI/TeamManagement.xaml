@@ -7,7 +7,7 @@
         <!-- Create Team Section -->
         <VerticalStackLayout Margin="10,10,10,10">
             <Label
-                Text="CREATE A TEAM"
+                Text="CREATE TEAM."
                 FontSize="20"
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
@@ -234,10 +234,10 @@
                 Margin="20" />
         </VerticalStackLayout>
 
-        <!-- Delete Team Section -->
         <VerticalStackLayout Margin="10,10,10,10">
+            <!-- Delete Team Section -->
             <Label
-                Text="DELETE A TEAM"
+                Text="DELETE TEAM."
                 FontSize="20"
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
@@ -273,16 +273,14 @@
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
                 Margin="20" />
-        </VerticalStackLayout>
 
-        <!-- View Team Section -->
-        <VerticalStackLayout Margin="10,10,10,10">
+            <!-- View Team Section -->
             <Label
-                Text="VIEW A TEAM"
+                Text="VIEW TEAM."
                 FontSize="20"
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
-                Margin="0" />
+                Margin="20" />
 
             <HorizontalStackLayout 
                 Margin="0" 
@@ -314,12 +312,21 @@
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
                 Margin="20" />
+
+            <Label
+                x:Name="TEAMinfoLABEL"
+                Text="*** waiting ^-^ for team ^-^ number *** :3"
+                FontSize="10"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Padding="0" >
+            </Label>
         </VerticalStackLayout>
 
-        <!-- Add Player to Team Section -->
         <VerticalStackLayout Margin="10,10,10,10">
+            <!-- Add Player to Team Section -->
             <Label
-                Text="ADD PLAYER TO TEAM"
+                Text="ADD PLAYER TO TEAM."
                 FontSize="20"
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
@@ -377,12 +384,10 @@
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
                 Margin="20" />
-        </VerticalStackLayout>
 
-        <!-- Remove Player from Team Section -->
-        <VerticalStackLayout Margin="10,10,10,10">
+            <!-- Remove Player from Team Section -->
             <Label
-                Text="REMOVE PLAYER FROM TEAM"
+                Text="REMOVE PLAYER FROM TEAM."
                 FontSize="20"
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
@@ -440,6 +445,6 @@
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
                 Margin="20" />
-        </VerticalStackLayout>
+        </VerticalStackLayout
     </HorizontalStackLayout>
 </ContentPage>
