@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="basketballUI.TeamManagement"
+             Title="TeamManagement">
+    <HorizontalStackLayout>
+        <!-- Create Team Section -->
+        <VerticalStackLayout Margin="10,10,10,10">
+            <Label
+                Text="CREATE TEAM."
+                FontSize="20"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Padding="0" />
+
+            <HorizontalStackLayout 
+                Margin="0" 
+                Padding="0" 
+                VerticalOptions="Center"
+                HorizontalOptions="Center">
+                <Label 
+                    Text="Enter team name: "
+                    FontSize="15"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    Padding="20"/>
+                <Entry 
+                    x:Name="TeamNameEntry"
+                    Placeholder="Team name."
+                    TextChanged="TeamNameEntry_TextChanged"
+                    ClearButtonVisibility="WhileEditing"
+                    VerticalOptions="Center"            
+                    HorizontalOptions="Center" />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout 
+                Margin="0" 
+                Padding="0" 
+                VerticalOptions="Center"
+                HorizontalOptions="Center">
+                <Label 
+                    Text="Enter team abbreviation: "
+                    FontSize="15"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    Margin="20"/>
+                <Entry 
+                    x:Name="TeamAbbreviationEntry"
+                    Placeholder="Abbreviation."
+                    TextChanged="TeamAbbreviationEntry_TextChanged"
+                    ClearButtonVisibility="WhileEditing"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    Margin="0" />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout 
+                Margin="0" 
+                Padding="0" 
+                VerticalOptions="Center"
+                HorizontalOptions="Center">
+                <Label 
+                    Text="Enter wins: "
+                    FontSize="15"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    Margin="20"/>
+                <Entry 
+                    x:Name="TeamWinsEntry"
+                    Placeholder="Wins."
+                    TextChanged="TeamWinsEntry_TextChanged"
+                    ClearButtonVisibility="WhileEditing"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    Margin="0"
+                    Keyboard="Numeric" />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout 
+                Margin="0" 
+                Padding="0" 
+                VerticalOptions="Center"
+                HorizontalOptions="Center">
+                <Label 
+                    Text="Enter losses: "
+                    FontSize="15"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    Margin="20"/>
+                <Entry 
+                    x:Name="TeamLossesEntry"
+                    Placeholder="Losses."
+                    TextChanged="TeamLossesEntry_TextChanged"
+                    ClearButtonVisibility="WhileEditing"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    Margin="0"
+                    Keyboard="Numeric" />
+            </HorizontalStackLayout>
+
+            <Button
+                x:Name="CreateTeamButton"
+                Text="Create Team."
+                SemanticProperties.Hint="Create a team."
+                Clicked="CreateTeamButton_Clicked"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="20" />
+        </VerticalStackLayout>
+
+        <!-- Edit Team Section -->
+        <VerticalStackLayout Margin="10,10,10,10">
+            <Label
+                Text="EDIT A TEAM"
+                FontSize="20"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="0" />
+
+            <HorizontalStackLayout 
+                Margin="0" 
+                Padding="0" 
+                VerticalOptions="Center"
+                HorizontalOptions="Center">
+                <Label 
+                    Text="Team ID: "
+                    FontSize="15"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    Margin="20"/>
+                <Entry 
+                    x:Name="TeamIDEdit"
+                    Placeholder="Team ID."
+                    TextChanged="TeamIDEdit_TextChanged"
+                    ClearButtonVisibility="WhileEditing"
+                    VerticalOptions="Center"            
+                    HorizontalOptions="Center"               
+                    Margin="0"
+                    Keyboard="Numeric" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout 
+                Margin="0" 
+                Padding="0" 
+                VerticalOptions="Center"
+                HorizontalOptions="Center">
+                <Label 
+                    Text="Edit team name: "
+                    FontSize="15"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    Margin="20"/>
+                <Entry 
+                    x:Name="TeamNameEdit"
+                    Placeholder="Team name."
+                    TextChanged="TeamNameEntry_TextChanged"
+                    ClearButtonVisibility="WhileEditing"
+                    VerticalOptions="Center"            
+                    HorizontalOptions="Center"               
+                    Margin="0" />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout 
+                Margin="0" 
+                Padding="0" 
+                VerticalOptions="Center"
+                HorizontalOptions="Center">
+                <Label 
+                    Text="Edit abbreviation: "
+                    FontSize="15"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    Margin="20"/>
+                <Entry 
+                    x:Name="TeamAbbreviationEdit"
+                    Placeholder="Abbreviation."
+                    TextChanged="TeamAbbreviationEntry_TextChanged"
+                    ClearButtonVisibility="WhileEditing"
+                    VerticalOptions="Center"            
+                    HorizontalOptions="Center"               
+                    Margin="0" />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout 
+                Margin="0" 
+                Padding="0" 
+                VerticalOptions="Center"
+                HorizontalOptions="Center">
+                <Label 
+                    Text="Edit wins: "
+                    FontSize="15"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    Margin="20"/>
+                <Entry 
+                    x:Name="TeamWinsEdit"
+                    Placeholder="Wins."
+                    TextChanged="TeamWinsEntry_TextChanged"
+                    ClearButtonVisibility="WhileEditing"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    Margin="0"
+                    Keyboard="Numeric" />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout 
+                Margin="0" 
+                Padding="0" 
+                VerticalOptions="Center"
+                HorizontalOptions="Center">
+                <Label 
+                    Text="Edit losses: "
+                    FontSize="15"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    Margin="20"/>
+                <Entry 
+                    x:Name="TeamLossesEdit"
+                    Placeholder="Losses."
+                    TextChanged="TeamLossesEntry_TextChanged"
+                    ClearButtonVisibility="WhileEditing"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    Margin="0"
+                    Keyboard="Numeric" />
+            </HorizontalStackLayout>
+
+            <Button
+                x:Name="EditTeamButton"
+                Text="Edit Team."
+                SemanticProperties.Hint="Edit a team's info."
+                Clicked="EditTeamButton_Clicked"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="20" />
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Margin="10,10,10,10">
+            <!-- Delete Team Section -->
+            <Label
+                Text="DELETE TEAM."
+                FontSize="20"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="0" />
+
+            <HorizontalStackLayout 
+                Margin="0" 
+                Padding="0" 
+                VerticalOptions="Center"
+                HorizontalOptions="Center">
+                <Label 
+                    Text="Team ID: "
+                    FontSize="15"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    Margin="20"/>
+                <Entry 
+                    x:Name="TeamIDDelete"
+                    Placeholder="Team ID."
+                    TextChanged="TeamIDEdit_TextChanged"
+                    ClearButtonVisibility="WhileEditing"
+                    VerticalOptions="Center"            
+                    HorizontalOptions="Center"               
+                    Margin="0"
+                    Keyboard="Numeric" />
+            </HorizontalStackLayout>
+
+            <Button
+                x:Name="DeleteTeamButton"
+                Text="Delete Team."
+                SemanticProperties.Hint="Delete a team."
+                Clicked="DeleteTeamButton_Clicked"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="20" />
+
+            <!-- View Team Section -->
+            <Label
+                Text="VIEW TEAM."
+                FontSize="20"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="20" />
+
+            <HorizontalStackLayout 
+                Margin="0" 
+                Padding="0" 
+                VerticalOptions="Center"
+                HorizontalOptions="Center">
+                <Label 
+                    Text="Team ID: "
+                    FontSize="15"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    Margin="20"/>
+                <Entry 
+                    x:Name="TeamIDView"
+                    Placeholder="Team ID."
+                    TextChanged="TeamIDEdit_TextChanged"
+                    ClearButtonVisibility="WhileEditing"
+                    VerticalOptions="Center"            
+                    HorizontalOptions="Center"               
+                    Margin="0"
+                    Keyboard="Numeric" />
+            </HorizontalStackLayout>
+
+            <Button
+                x:Name="ViewTeamButton"
+                Text="View Team."
+                SemanticProperties.Hint="View a team."
+                Clicked="ViewTeamButton_Clicked"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="20" />
+
+            <Label
+                x:Name="TEAMinfoLABEL"
+                Text="*** waiting ^-^ for team ^-^ number *** :3"
+                FontSize="10"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Padding="0" >
+            </Label>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Margin="10,10,10,10">
+            <!-- Add Player to Team Section -->
+            <Label
+                Text="ADD PLAYER TO TEAM."
+                FontSize="20"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="0" />
+
+            <HorizontalStackLayout 
+                Margin="0" 
+                Padding="0" 
+                VerticalOptions="Center"
+                HorizontalOptions="Center">
+                <Label 
+                    Text="Team ID: "
+                    FontSize="15"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    Margin="20"/>
+                <Entry 
+                    x:Name="TeamIDAddPlayer"
+                    Placeholder="Team ID."
+                    TextChanged="TeamIDAddPlayer_TextChanged"
+                    ClearButtonVisibility="WhileEditing"
+                    VerticalOptions="Center"            
+                    HorizontalOptions="Center"               
+                    Margin="0"
+                    Keyboard="Numeric" />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout 
+                Margin="0" 
+                Padding="0" 
+                VerticalOptions="Center"
+                HorizontalOptions="Center">
+                <Label 
+                    Text="Player ID: "
+                    FontSize="15"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    Margin="20"/>
+                <Entry 
+                    x:Name="PlayerIDAddToTeam"
+                    Placeholder="Player ID."
+                    TextChanged="PlayerIDAddToTeam_TextChanged"
+                    ClearButtonVisibility="WhileEditing"
+                    VerticalOptions="Center"            
+                    HorizontalOptions="Center"               
+                    Margin="0"
+                    Keyboard="Numeric" />
+            </HorizontalStackLayout>
+
+            <Button
+                x:Name="AddPlayerToTeamButton"
+                Text="Add Player to Team."
+                SemanticProperties.Hint="Add a player to a team."
+                Clicked="AddPlayerToTeamButton_Clicked"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="20" />
+
+            <!-- Remove Player from Team Section -->
+            <Label
+                Text="REMOVE PLAYER FROM TEAM."
+                FontSize="20"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="0" />
+
+            <HorizontalStackLayout 
+                Margin="0" 
+                Padding="0" 
+                VerticalOptions="Center"
+                HorizontalOptions="Center">
+                <Label 
+                    Text="Team ID: "
+                    FontSize="15"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    Margin="20"/>
+                <Entry 
+                    x:Name="TeamIDRemovePlayer"
+                    Placeholder="Team ID."
+                    TextChanged="TeamIDRemovePlayer_TextChanged"
+                    ClearButtonVisibility="WhileEditing"
+                    VerticalOptions="Center"            
+                    HorizontalOptions="Center"               
+                    Margin="0"
+                    Keyboard="Numeric" />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout 
+                Margin="0" 
+                Padding="0" 
+                VerticalOptions="Center"
+                HorizontalOptions="Center">
+                <Label 
+                    Text="Player ID: "
+                    FontSize="15"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    Margin="20"/>
+                <Entry 
+                    x:Name="PlayerIDRemoveFromTeam"
+                    Placeholder="Player ID."
+                    TextChanged="PlayerIDRemoveFromTeam_TextChanged"
+                    ClearButtonVisibility="WhileEditing"
+                    VerticalOptions="Center"            
+                    HorizontalOptions="Center"               
+                    Margin="0"
+                    Keyboard="Numeric" />
+            </HorizontalStackLayout>
+
+            <Button
+                x:Name="RemovePlayerFromTeamButton"
+                Text="Remove Player from Team."
+                SemanticProperties.Hint="Remove a player from a team."
+                Clicked="RemovePlayerFromTeamButton_Clicked"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="20" />
+        </VerticalStackLayout>
+    </HorizontalStackLayout>
+</ContentPage>

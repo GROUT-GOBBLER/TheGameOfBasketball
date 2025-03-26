@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="basketballUI.ScheduleManagement"
+             Title="ScheduleManagement">
+    <HorizontalStackLayout>
+    <VerticalStackLayout Margin="20,20,20,20" Padding="20">
+        <Label 
+            Text="CREATE A SCHEDULE"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" 
+            Margin="10"/>
+
+        <!-- DATE -->
+        <HorizontalStackLayout 
+            Margin="0" 
+            Padding="0" 
+            VerticalOptions="Center"
+            HorizontalOptions="Center" >
+            
+            <Label 
+                Text="Enter a date: "
+                FontSize="15"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                Padding="20"/>
+
+            <Entry 
+                x:Name="DateEntry"
+                Placeholder="Date"
+                TextChanged="DateEntry_TextChanged"
+                ClearButtonVisibility="WhileEditing"
+                VerticalOptions="Center"            
+                HorizontalOptions="Center" />
+        </HorizontalStackLayout>
+
+        <!-- TIME -->
+        <HorizontalStackLayout 
+            Margin="0" 
+            Padding="0" 
+            VerticalOptions="Center"
+            HorizontalOptions="Center" >
+
+            <Label 
+                Text="Enter a time: "
+                FontSize="15"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                Padding="20"/>
+
+            <Entry 
+                x:Name="TimeEntry"
+                Placeholder="Date"
+                TextChanged="TimeEntry_TextChanged"
+                ClearButtonVisibility="WhileEditing"
+                VerticalOptions="Center"            
+                HorizontalOptions="Center" />
+        </HorizontalStackLayout>
+
+
+        <!-- TEAM ONE -->
+        <HorizontalStackLayout 
+            Margin="0" 
+            Padding="0" 
+            VerticalOptions="Center"
+            HorizontalOptions="Center" >
+
+            <Label 
+                Text="Enter a team one: "
+                FontSize="15"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                Padding="20"/>
+
+            <Entry 
+                x:Name="TeamOneEntry"
+                Placeholder="Date"
+                TextChanged="TeamOneEntry_TextChanged"
+                ClearButtonVisibility="WhileEditing"
+                VerticalOptions="Center"            
+                HorizontalOptions="Center" />
+        </HorizontalStackLayout>
+
+        <!-- TEAM TWO -->
+        <HorizontalStackLayout 
+            Margin="0" 
+            Padding="0" 
+            VerticalOptions="Center"
+            HorizontalOptions="Center" >
+
+            <Label 
+                Text="Enter a team two: "
+                FontSize="15"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                Padding="20"/>
+
+            <Entry 
+                x:Name="TeamTwoEntry"
+                Placeholder="Date"
+                TextChanged="TeamTwoEntry_TextChanged"
+                ClearButtonVisibility="WhileEditing"
+                VerticalOptions="Center"            
+                HorizontalOptions="Center" />
+        </HorizontalStackLayout>
+
+        <!-- CITY -->
+        <HorizontalStackLayout 
+            Margin="0" 
+            Padding="0" 
+            VerticalOptions="Center"
+            HorizontalOptions="Center" >
+
+            <Label 
+                Text="Enter a city: "
+                FontSize="15"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                Padding="20"/>
+
+            <Entry 
+                x:Name="CityEntry"
+                Placeholder="Date"
+                TextChanged="CityEntry_TextChanged"
+                ClearButtonVisibility="WhileEditing"
+                VerticalOptions="Center"            
+                HorizontalOptions="Center" />
+        </HorizontalStackLayout>
+
+        <!-- STATE -->
+        <HorizontalStackLayout 
+            Margin="0" 
+            Padding="0" 
+            VerticalOptions="Center"
+            HorizontalOptions="Center" >
+
+            <Label 
+                Text="Enter a state: "
+                FontSize="15"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                Padding="20"/>
+
+            <Entry 
+                x:Name="StateEntry"
+                Placeholder="Date"
+                TextChanged="StateEntry_TextChanged"
+                ClearButtonVisibility="WhileEditing"
+                VerticalOptions="Center"            
+                HorizontalOptions="Center" />
+        </HorizontalStackLayout>
+
+        <!-- ZIP -->
+        <HorizontalStackLayout 
+            Margin="0" 
+            Padding="0" 
+            VerticalOptions="Center"
+            HorizontalOptions="Center" >
+
+            <Label 
+                Text="Enter a zipcode: "
+                FontSize="15"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                Padding="20"/>
+
+            <Entry 
+                x:Name="ZipEntry"
+                Placeholder="Date"
+                TextChanged="ZipEntry_TextChanged"
+                ClearButtonVisibility="WhileEditing"
+                VerticalOptions="Center"            
+                HorizontalOptions="Center" />
+        </HorizontalStackLayout>
+
+        <Button
+            x:Name="CreateGameButton"
+            Text="Create Game."
+            SemanticProperties.Hint="Create a new game."
+            VerticalOptions="Center"
+            Clicked="Create_Schedule_Button_Click"
+            HorizontalOptions="Center"
+            BackgroundColor="LightBlue"
+            Margin="10" />
+
+    </VerticalStackLayout>
+    <VerticalStackLayout Margin="10,10,10,10">
+        <Label
+                Text="DELETE A GAME."
+                FontSize="20"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="0" />
+
+        <HorizontalStackLayout 
+                Margin="0" 
+                Padding="0" 
+                VerticalOptions="Center"
+                HorizontalOptions="Center" >
+            <Label 
+                    Text="Game ID: "
+                    FontSize="15"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    Margin="20"/>
+
+            <Entry 
+                    x:Name="GameIDDelete"
+                    Placeholder="Game ID."
+                    TextChanged="GameIDEdit_TextChanged"
+                    ClearButtonVisibility="WhileEditing"
+                    VerticalOptions="Center"            
+                    HorizontalOptions="Center"               
+                    Margin="0" />
+        </HorizontalStackLayout>
+
+        <Button
+                x:Name="DeleteGameButton"
+                Text="Delete Game."
+                SemanticProperties.Hint="Delete a game."
+                Clicked="Delete_Schedule_Button_Click"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="20" />
+    </VerticalStackLayout>
+    </HorizontalStackLayout>
+
+</ContentPage>
