@@ -186,7 +186,7 @@
     </VerticalStackLayout>
     <VerticalStackLayout Margin="10,10,10,10">
         <Label
-                Text="DELETE A PLAYER"
+                Text="DELETE A GAME."
                 FontSize="20"
                 VerticalOptions="Center"
                 HorizontalOptions="Center"

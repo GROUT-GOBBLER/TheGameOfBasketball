@@ -150,49 +150,52 @@ public partial class TeamManagement : ContentPage
 
     async private void DeleteTeamButton_Clicked(object sender, EventArgs e)
     {
-        string API_URL = "http://localhost:5121/api/Teams";
-        string API_URL_TEAMPLAYERS = "http://localhost:5121/api/TeamPlayers/";
-
-        using (HttpClient client = new HttpClient())
         {
-            try
-            {
-                HttpResponseMessage response1 = await client.GetAsync(API_URL_TEAMPLAYERS);
-                List<TeamPlayer> teamPlayers;
+            string API_URL = "http://localhost:5121/api/Teams";
+            string API_URL_TEAMPLAYERS = "http://localhost:5121/api/TeamPlayers";
 
-                if (response1.IsSuccessStatusCode)
+            using (HttpClient client = new HttpClient())
+            {
+                try
                 {
-                    string json1 = await response1.Content.ReadAsStringAsync();
-                    teamPlayers = JsonConvert.DeserializeObject<List<TeamPlayer>>(json1);
+                    HttpResponseMessage response1 = await client.GetAsync(API_URL_TEAMPLAYERS);
+                    List<TeamPlayer> teamPlayers;
 
-                    foreach (TeamPlayer tp in teamPlayers)
+                    if (response1.IsSuccessStatusCode)
                     {
-                        if (tp.TeamId == int.Parse(TeamIDDelete.Text)) 
+                        string json1 = await response1.Content.ReadAsStringAsync();
+                        teamPlayers = JsonConvert.DeserializeObject<List<TeamPlayer>>(json1);
+
+                        foreach (TeamPlayer tp in teamPlayers)
                         {
-                            HttpResponseMessage response2 = await client.DeleteAsync($"{API_URL_TEAMPLAYERS}/{tp.Id}");
-                            if (response2.IsSuccessStatusCode) 
+                            if (tp.TeamId == int.Parse(TeamIDDelete.Text))
                             {
-                                DeleteTeamButton.Text = "SUCCESS!";
-                                return;
+                                HttpResponseMessage response2 = await client.DeleteAsync($"{API_URL_TEAMPLAYERS}/{tp.Id.ToString()}");
+                                if (response2.IsSuccessStatusCode)
+                                {
+                                }
+                                else
+                                {
+                                    DeleteTeamButton.Text = "Not deleted.\n" + response2;
+                                    return;
+                                }
                             }
-                            else
-                                DeleteTeamButton.Text = "Not deleted.\n" + response2;
                         }
-                    }
 
-                    HttpResponseMessage response3 = await client.DeleteAsync($"{API_URL}/{TeamIDDelete.Text}");
+                        HttpResponseMessage response3 = await client.DeleteAsync($"{API_URL}/{TeamIDDelete.Text}");
 
-                    if (response3.IsSuccessStatusCode)
-                    {
-                        DeleteTeamButton.Text = "Deleted";
+                        if (response3.IsSuccessStatusCode)
+                        {
+                            DeleteTeamButton.Text = "Deleted";
+                        }
+                        else
+                            DeleteTeamButton.Text = "Not deleted.\n" + response3;
                     }
-                    else
-                        DeleteTeamButton.Text = "Not deleted.\n" + response3;
                 }
-            }
-            catch (Exception ex)
-            {
-                DeleteTeamButton.Text = $"Clicked and failed " + ex;
+                catch (Exception ex)
+                {
+                    DeleteTeamButton.Text = $"Clicked and failed " + ex;
+                }
             }
         }
 
