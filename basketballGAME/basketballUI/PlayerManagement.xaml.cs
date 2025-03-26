@@ -213,22 +213,25 @@ public partial class PlayerManagement : ContentPage
     async private void ViewPlayerButton_Clicked(object sender, EventArgs e)
     {
         string API_URL = "http://localhost:5121/api/Players";
-        //copy the url given when running the api
+        
         using (HttpClient client = new HttpClient())
         {
             try
             {
                 HttpResponseMessage response = await client.GetAsync(API_URL);
-                // List<Weather> w = JsonArray.JsonConvert.DeserializeObject<List<Person>>
+                
                 List<Player> players;
                 if (response.IsSuccessStatusCode)
                 {
+                    ViewPlayerButton.Text = "success";
+
                     string json = await response.Content.ReadAsStringAsync();
                     players = JsonConvert.DeserializeObject<List<Player>>(json);
-                    int PlayerIDValue = 0; // = int.Parse(playerID);
-                    int indexOfPlayerInPlayers = 0;
+                    
+                    int indexOfPlayerInPlayers = -1;
+                    int PlayerIDValue = int.Parse(this.playerID);
 
-                    for(int x = 0; x < players.Count; x++)
+                    for (int x = 0; x < players.Count; x++)
                     {
                         if (players[x].PlayerNo == PlayerIDValue)
                         {
@@ -236,10 +239,18 @@ public partial class PlayerManagement : ContentPage
                             break;
                         }
                     }
+                    Player p;
 
-                    Player p = players[indexOfPlayerInPlayers];
+                    if (indexOfPlayerInPlayers != -1)
+                        p = players[indexOfPlayerInPlayers];
+                    else
+                    {
+                        ViewPlayerButton.Text = $"ENTER VALID PLAYER ID.";
+                        PLAYERinfoLABEL.Text = "*** waiting ^-^ for player ^-^ number *** :3";
+                        return;
+                    }
 
-                    ViewPlayerButton.Text = p.PlayerNo + " " + p.FName + " " + p.LName;
+                    PLAYERinfoLABEL.Text = p.PlayerNo + " " + p.FName + " " + p.LName + ".";
                 }
                 else
                 {

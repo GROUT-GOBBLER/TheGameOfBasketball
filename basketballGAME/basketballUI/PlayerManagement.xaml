@@ -224,6 +224,16 @@
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
                 Margin="20" />
+
+            <Label
+                x:Name="PLAYERinfoLABEL"
+                Text="*** waiting ^-^ for player ^-^ number *** :3"
+                FontSize="10"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Padding="0" >
+                
+            </Label>
         </VerticalStackLayout>
     </HorizontalStackLayout>
 </ContentPage>
