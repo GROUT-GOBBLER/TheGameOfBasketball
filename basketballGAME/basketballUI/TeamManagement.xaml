@@ -445,6 +445,6 @@
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
                 Margin="20" />
-        </VerticalStackLayout
+        </VerticalStackLayout>
     </HorizontalStackLayout>
 </ContentPage>

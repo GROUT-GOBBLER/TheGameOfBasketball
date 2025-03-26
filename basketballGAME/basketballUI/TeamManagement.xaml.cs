@@ -367,7 +367,7 @@ public partial class TeamManagement : ContentPage
                     string json2 = await response.Content.ReadAsStringAsync();
                     teamPlayerLIST = JsonConvert.DeserializeObject<List<TeamPlayer>>(json2);
 
-                    int PlayerIDValue = int.Parse(playerIDAddToTeam);
+                    int PlayerIDValue = int.Parse(playerIDRemoveFromTeam);
                     TeamPlayer tp = teamPlayerLIST.Find(e => e.PlayerId == PlayerIDValue);
 
                     if (tp == null)
