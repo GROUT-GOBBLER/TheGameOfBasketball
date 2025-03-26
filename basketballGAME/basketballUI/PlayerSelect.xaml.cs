@@ -33,7 +33,7 @@ public partial class PlayerSelect : Popup
         }
         else
         {
-            LoadPlayers(); // Fallback to API if no players provided
+            LoadPlayers();
         }
     }
 
@@ -86,9 +86,9 @@ public partial class PlayerSelect : Popup
 
             var button = new Button
             {
-                Text = $"{player.PlayerNo}",
-                WidthRequest = (PlayerGrid.Width / buttonsPerRow) - 3,
-                HeightRequest = 80,
+                Text = $"Player {player.PlayerNo}",
+                WidthRequest = 200,
+                HeightRequest = 100,
                 FontSize = 22,
                 Margin = 0,
                 Padding = 0,

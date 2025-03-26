@@ -574,46 +574,53 @@ namespace basketballUI
                     {
                         string json = await response.Content.ReadAsStringAsync();
                         List<TeamPlayer> teamPlayers = JsonConvert.DeserializeObject<List<TeamPlayer>>(json);
-
+                        List<TeamPlayer> ACTUALTEAMPLAYERS = new List<TeamPlayer> { };
+                       
                         if (teamPlayers != null)
                         {
                             for (int index = 0; index < teamPlayers.Count; index++)
                             {
-                                if (teamPlayers[index].TeamId == selectedScoreGameSearchResult.GetTeam1().TeamNo
-                                    || teamPlayers[index].TeamId == selectedScoreGameSearchResult.GetTeam2().TeamNo)
+                               if (teamPlayers[index].TeamId == selectedScoreGameSearchResult.GetTeam1().TeamNo
+                                   || teamPlayers[index].TeamId == selectedScoreGameSearchResult.GetTeam2().TeamNo)
+                               {
+
+                                    ACTUALTEAMPLAYERS.Add(teamPlayers[index]);
+                                   
+                               }
+                            }
+
+                            try
+                            {
+                                HttpResponseMessage response2 = await client.GetAsync($"{URL}/{"Players"}");
+                                if (response2.IsSuccessStatusCode)
                                 {
+                                    string json2 = await response2.Content.ReadAsStringAsync();
+                                    List<Player> t22eamPlayers = JsonConvert.DeserializeObject<List<Player>>(json2);
 
-                                    //  List<Player> playersToAddToList = new List<Player> { };
-                                    try
+                                    foreach (Player player in t22eamPlayers)
                                     {
-                                        HttpResponseMessage response2 = await client.GetAsync($"{URL}/{"Players"}");
-                                        if (response2.IsSuccessStatusCode)
+                                        response2 = await client.GetAsync($"{URL}/{"Players"}/{player.PlayerNo}");
+
+                                        string json3 = await response2.Content.ReadAsStringAsync();
+                                        Player something = JsonConvert.DeserializeObject<Player>(json3);
+                                        if (ACTUALTEAMPLAYERS != null)
                                         {
-                                            string json2 = await response2.Content.ReadAsStringAsync();
-                                            List<Player> t22eamPlayers= JsonConvert.DeserializeObject<List<Player>>(json2);
-                                           
-
-                                            foreach (Player player in t22eamPlayers)
+                                            for (int index = 0; index < ACTUALTEAMPLAYERS.Count; index++)
                                             {
-                                                response2 = await client.GetAsync($"{URL}/{"Players"}/{player.PlayerNo}");
-
-                                                string json3 = await response2.Content.ReadAsStringAsync();
-                                                playerList.Add(JsonConvert.DeserializeObject<Player>(json3));
-
+                                                if (something.PlayerNo == ACTUALTEAMPLAYERS[index].PlayerId)
+                                                {
+                                                    playerList.Add(something);
+                                                }
                                             }
-
-  
                                         }
 
                                     }
-                                    catch (Exception ex)
-                                    {
-                                        await DisplayAlert("Error", "Cannot Connect to API!!!", "OK");
-                                    }
                                 }
                             }
-
-
+                            catch (Exception ex)
+                            {
+                                await DisplayAlert("Error", "Cannot Connect to API!!!", "OK");
+                            }
                         }
 
                     }
@@ -624,15 +631,16 @@ namespace basketballUI
                 }
             }
 
-
-
             var popup = new PlayerSelect("Select Player", selectedPlayer =>
             {
                 this.selectedPlayer = selectedPlayer;
+                if (!string.IsNullOrEmpty(this.selectedPlayer))
+                {
+                    DisplayAlert("Action Recorded", $"{this.selectedPlayer} performed: {this.lastAction}", "OK");
+                }
             }, playerList);
 
             await this.ShowPopupAsync(popup);
-
 
         }
 
@@ -656,7 +664,6 @@ namespace basketballUI
 
             if (playerList != null)
             {
-                // Show the PlayerSelect popup
                 var popup = new PlayerSelect(this.lastAction, selectedPlayer =>
                 {
                     this.selectedPlayer = selectedPlayer;
