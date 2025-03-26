@@ -151,47 +151,21 @@ public partial class TeamManagement : ContentPage
     async private void DeleteTeamButton_Clicked(object sender, EventArgs e)
     {
         string API_URL = "http://localhost:5121/api/Teams";
-        string API_URL_TEAMPLAYERS = "http://localhost:5121/api/TeamPlayers/";
 
         using (HttpClient client = new HttpClient())
         {
             try
             {
-                if (string.IsNullOrEmpty(teamID) || !int.TryParse(teamID, out int teamNo))
-                {
-                    DeleteTeamButton.Text = "Invalid Team ID.";
-                    return;
-                }
+                HttpResponseMessage response3 = await client.DeleteAsync($"{API_URL}/{TeamIDDelete.Text}");
 
-                HttpResponseMessage teamPlayersResponse = await client.GetAsync(API_URL_TEAMPLAYERS);
-                if (teamPlayersResponse.IsSuccessStatusCode)
+                if (response3.IsSuccessStatusCode)
                 {
-                    string json = await teamPlayersResponse.Content.ReadAsStringAsync();
-                    List<TeamPlayer> teamPlayers = JsonConvert.DeserializeObject<List<TeamPlayer>>(json);
-
-                    foreach (var teamPlayer in teamPlayers)
-                    {
-                        if (teamPlayer.TeamId == teamNo)
-                        {
-                            await client.DeleteAsync($"{API_URL_TEAMPLAYERS}{teamPlayer.Id}");
-                        }
-                    }
-                }
-
-                HttpResponseMessage deleteResponse = await client.DeleteAsync($"{API_URL}/{teamNo}");
-
-                if (deleteResponse.IsSuccessStatusCode)
-                {
-                    DeleteTeamButton.Text = "Team deleted successfully.";
-                }
-                else
-                {
-                    DeleteTeamButton.Text = $"Failed to delete team: {deleteResponse.StatusCode}";
+                    DeleteTeamButton.Text = "Deleted";
                 }
             }
             catch (Exception ex)
             {
-                DeleteTeamButton.Text = $"Error: {ex.Message}";
+                DeleteTeamButton.Text = $"Clicked and failed " + ex;
             }
         }
 
@@ -260,84 +234,60 @@ public partial class TeamManagement : ContentPage
 
     async private void AddPlayerToTeamButton_Clicked(object sender, EventArgs e)
     {
-        string API_URL_TEAMS = "http://localhost:5121/api/Teams/";
-        string API_URL_PLAYERS = "http://localhost:5121/api/Players/";
+
         string API_URL_TEAMPLAYERS = "http://localhost:5121/api/TeamPlayers/";
+        string API_URL_1 = "http://localhost:5121/api/Players";
 
         using (HttpClient client = new HttpClient())
         {
             try
             {
-                
-                if (string.IsNullOrEmpty(teamIDAddPlayer) || !int.TryParse(teamIDAddPlayer, out int teamNo))
-                {
-                    AddPlayerToTeamButton.Text = "Invalid Team ID.";
-                    return;
-                }
+                HttpResponseMessage response1 = await client.GetAsync(API_URL_TEAMPLAYERS);
+                HttpResponseMessage response2 = await client.GetAsync(API_URL_1);
 
-                if (string.IsNullOrEmpty(playerIDAddToTeam) || !int.TryParse(playerIDAddToTeam, out int playerNo))
-                {
-                    AddPlayerToTeamButton.Text = "Invalid Player ID.";
-                    return;
-                }
+                List<TeamPlayer> teamPlayers;
+                List<Player> playerList;
 
-               
-                HttpResponseMessage teamResponse = await client.GetAsync($"{API_URL_TEAMS}{teamNo}");
-                if (!teamResponse.IsSuccessStatusCode)
+                if (response1.IsSuccessStatusCode && response2.IsSuccessStatusCode)
                 {
-                    AddPlayerToTeamButton.Text = $"Team not found: {teamResponse.StatusCode}";
-                    return;
-                }
+                    string json1 = await response1.Content.ReadAsStringAsync();
+                    teamPlayers = JsonConvert.DeserializeObject<List<TeamPlayer>>(json1);
 
-                
-                HttpResponseMessage playerResponse = await client.GetAsync($"{API_URL_PLAYERS}{playerNo}");
-                if (!playerResponse.IsSuccessStatusCode)
-                {
-                    AddPlayerToTeamButton.Text = $"Player not found: {playerResponse.StatusCode}";
-                    return;
-                }
+                    string json2 = await response1.Content.ReadAsStringAsync();
+                    playerList = JsonConvert.DeserializeObject<List<Player>>(json2);
 
-                
-                HttpResponseMessage teamPlayersResponse = await client.GetAsync(API_URL_TEAMPLAYERS);
-                if (teamPlayersResponse.IsSuccessStatusCode)
-                {
-                    string json = await teamPlayersResponse.Content.ReadAsStringAsync();
-                    List<TeamPlayer> teamPlayers = JsonConvert.DeserializeObject<List<TeamPlayer>>(json);
+                    TeamPlayer tp = new TeamPlayer();
 
-                    foreach (var teamPlayer in teamPlayers)
+                    tp.Id = teamPlayers[teamPlayers.Count - 1].Id + 1;
+
+                    if (PlayerIDAddToTeam != null)
                     {
-                        if (teamPlayer.TeamId == teamNo && teamPlayer.PlayerId == playerNo)
-                        {
-                            AddPlayerToTeamButton.Text = "Player is already in this team.";
-                            return;
-                        }
+                        tp.PlayerId = int.Parse(PlayerIDAddToTeam.Text);
+                    }
+                    else return;
+                    if (TeamIDAddPlayer != null)
+                    {
+                        tp.TeamId = int.Parse(TeamIDAddPlayer.Text);
+                    }
+                    else return;
+
+                    TeamPlayer tp2 = teamPlayers.Find(e => e.PlayerId == int.Parse(PlayerIDAddToTeam.Text));
+                    if (tp2 != null)
+                    {
+                        return;
                     }
 
-                   
-                    TeamPlayer newTeamPlayer = new TeamPlayer
-                    {
-                        Id = teamPlayers.Count > 0 ? teamPlayers[teamPlayers.Count - 1].Id + 1 : 1,
-                        TeamId = teamNo,
-                        PlayerId = playerNo,
-                        Player = null,
-                        Team = null,
-                        Stats = new List<Stat>()
-                    };
+                    HttpResponseMessage response3 = await client.PostAsJsonAsync(API_URL_TEAMPLAYERS, tp);
 
-                    HttpResponseMessage addResponse = await client.PostAsJsonAsync(API_URL_TEAMPLAYERS, newTeamPlayer);
-
-                    if (addResponse.IsSuccessStatusCode)
+                    if (response3.IsSuccessStatusCode)
                     {
-                        AddPlayerToTeamButton.Text = "Player added to team successfully.";
+                        AddPlayerToTeamButton.Text = $"success ";
                     }
                     else
                     {
-                        AddPlayerToTeamButton.Text = $"Failed to add player to team: {addResponse.StatusCode}";
+                        AddPlayerToTeamButton.Text = $" fail " + response3;
+
                     }
-                }
-                else
-                {
-                    AddPlayerToTeamButton.Text = $"Failed to fetch team players: {teamPlayersResponse.StatusCode}";
                 }
             }
             catch (Exception ex)
@@ -345,10 +295,6 @@ public partial class TeamManagement : ContentPage
                 AddPlayerToTeamButton.Text = $"Error: {ex.Message}";
             }
         }
-
-
-        teamIDAddPlayer = null;
-        playerIDAddToTeam = null;
     }
 
     async private void RemovePlayerFromTeamButton_Clicked(object sender, EventArgs e)
