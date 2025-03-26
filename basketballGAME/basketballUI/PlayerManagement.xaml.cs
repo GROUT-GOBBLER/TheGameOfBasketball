@@ -172,25 +172,27 @@ public partial class PlayerManagement : ContentPage
                         return;
                     }
 
-                    TeamPlayer tp = teamPlayerLIST.Find(e => e.PlayerId == PlayerIdValue);
-                    int PlayerTeamIdValue = tp.Id;
-
-                    HttpResponseMessage response3 = await client.DeleteAsync($"{API_URL_2}/{PlayerTeamIdValue}");
-                    HttpResponseMessage response4 = await client.DeleteAsync($"{API_URL}/{PlayerIdValue}");
-
-                    if (response3.IsSuccessStatusCode)
+                    TeamPlayer tp = teamPlayerLIST.Find(e => e.PlayerId == PlayerIdValue); ; 
+                    
+                    if (tp == null) 
                     {
-                        if (response4.IsSuccessStatusCode)
-                            DeletePlayerButton.Text = $"success ";
-                        else
-                            DeletePlayerButton.Text = $"3 success 4 fail " + response4;
+                        // no team.
                     }
                     else
                     {
-                        if (response4.IsSuccessStatusCode)
-                            DeletePlayerButton.Text = $"3 fail 4 success " + response3;
-                        else
-                            DeletePlayerButton.Text = $"TOTAL FAILURE " + response3 + "\n" + response4;
+                        int PlayerTeamIdValue = tp.Id;
+                        HttpResponseMessage response3 = await client.DeleteAsync($"{API_URL_2}/{PlayerTeamIdValue}");
+                    }
+
+                    HttpResponseMessage response4 = await client.DeleteAsync($"{API_URL}/{PlayerIdValue}");
+
+                    if (response4.IsSuccessStatusCode)
+                    {
+                        DeletePlayerButton.Text = $"success ";
+                    }
+                    else
+                    {
+                        DeletePlayerButton.Text = $"fail " + response4;
                     }
                 }
                 else
