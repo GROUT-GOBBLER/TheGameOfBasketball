@@ -1,6 +1,7 @@
 using basketballUI.models;
 using Newtonsoft.Json;
 using System.Net.Http.Json;
+using Windows.Networking;
 
 namespace basketballUI;
 
@@ -24,6 +25,11 @@ public partial class TeamManagement : ContentPage
  
     async private void CreateTeamButton_Clicked(object sender, EventArgs e)
     {
+        // Button called: CreateTeamButton
+        // Entry called: TeamNameEntry, TeamAbbreviationEntry, TeamWinsEntry, TeamLossesEntry
+        // Entry changed: TeamNameEntry_TextChanged, TeamAbbreviationEntry_TextChanged, TeamLossesEntry_TextChanged, TeamWinsEntry_TextChanged
+        // Variables used teamName, teamAbbreviation, wins, losses.
+
         string API_URL = "http://localhost:5121/api/Teams/";
 
         using (HttpClient client = new HttpClient())
@@ -31,48 +37,23 @@ public partial class TeamManagement : ContentPage
             try
             {
                 HttpResponseMessage response = await client.GetAsync(API_URL);
+                List<Team> teams;
 
                 if (response.IsSuccessStatusCode)
                 {
                     string json = await response.Content.ReadAsStringAsync();
-                    List<Team> teams = JsonConvert.DeserializeObject<List<Team>>(json);
+                    teams = JsonConvert.DeserializeObject<List<Team>>(json);
 
                     Team newTeam = new Team();
                     int length = teams.Count;
 
-                    
                     newTeam.TeamNo = teams[length - 1].TeamNo + 1;
-
-              
-                    if (string.IsNullOrEmpty(teamName))
-                    {
-                        CreateTeamButton.Text = "Team name is required.";
-                        return;
-                    }
                     newTeam.TeamName = teamName;
-
-                    if (string.IsNullOrEmpty(teamAbbreviation))
-                    {
-                        CreateTeamButton.Text = "Team abbreviation is required.";
-                        return;
-                    }
                     newTeam.TeamAbbreviation = teamAbbreviation;
+                    newTeam.Wins = short.Parse(wins);
+                    newTeam.Losses = short.Parse(losses);
 
-                    if (!short.TryParse(wins, out short winsValue))
-                    {
-                        CreateTeamButton.Text = "Invalid wins value.";
-                        return;
-                    }
-                    newTeam.Wins = winsValue;
-
-                    if (!short.TryParse(losses, out short lossesValue))
-                    {
-                        CreateTeamButton.Text = "Invalid losses value.";
-                        return;
-                    }
-                    newTeam.Losses = lossesValue;
-
-               
+                    // Various.
                     newTeam.GameTeamNoOneNavigations = new List<Game>();
                     newTeam.GameTeamNoTwoNavigations = new List<Game>();
                     newTeam.TeamPlayers = new List<TeamPlayer>();
@@ -85,7 +66,9 @@ public partial class TeamManagement : ContentPage
                     }
                     else
                     {
-                        CreateTeamButton.Text = $"Failed to create team: {createResponse.StatusCode}";
+                        CreateTeamButton.Text = $"Failed to create team: " + createResponse + "\n" + length + " " + newTeam.TeamNo + " "
+                            + newTeam.TeamName + " " + newTeam.TeamAbbreviation + " " + newTeam.Wins + " " + newTeam.Losses;
+                        return; ;
                     }
                 }
                 else
@@ -98,8 +81,6 @@ public partial class TeamManagement : ContentPage
                 CreateTeamButton.Text = $"Error: {ex.Message}";
             }
         }
-
-   
         teamName = null;
         teamAbbreviation = null;
         wins = null;
@@ -110,45 +91,32 @@ public partial class TeamManagement : ContentPage
   
     async private void EditTeamButton_Clicked(object sender, EventArgs e)
     {
-        string API_URL = "http://localhost:5121/api/Teams/";
+        string API_URL = "http://localhost:5121/api/Teams";
 
         using (HttpClient client = new HttpClient())
         {
             try
             {
-                if (string.IsNullOrEmpty(teamID) || !int.TryParse(teamID, out int teamNo))
-                {
-                    EditTeamButton.Text = "Invalid Team ID.";
-                    return;
-                }
-
                 HttpResponseMessage response = await client.GetAsync(API_URL);
+                List<Team> teams;
 
                 if (response.IsSuccessStatusCode)
                 {
-                    string json = await response.Content.ReadAsStringAsync();
-                    Team team = JsonConvert.DeserializeObject<Team>(json);
+                    string json1 = await response.Content.ReadAsStringAsync();
+                    teams = JsonConvert.DeserializeObject<List<Team>>(json1);
 
-                    if (team == null)
-                    {
-                        EditTeamButton.Text = "Team not found.";
-                        return;
-                    }
+                    Team team = new Team();
 
-                    
-                    if (!string.IsNullOrEmpty(teamName))
-                        team.TeamName = teamName;
+                    int teamNumber = int.Parse(teamID);
+                    team.TeamName = teamName;
+                    team.TeamAbbreviation = teamAbbreviation;
+                    team.Wins = short.Parse(wins);
+                    team.Losses = short.Parse(losses);
+                    team.GameTeamNoOneNavigations = new List<Game>();
+                    team.GameTeamNoTwoNavigations = new List<Game>();
+                    team.TeamPlayers = new List<TeamPlayer>();
 
-                    if (!string.IsNullOrEmpty(teamAbbreviation))
-                        team.TeamAbbreviation = teamAbbreviation;
-
-                    if (short.TryParse(wins, out short winsValue))
-                        team.Wins = winsValue;
-
-                    if (short.TryParse(losses, out short lossesValue))
-                        team.Losses = lossesValue;
-
-                    HttpResponseMessage updateResponse = await client.PutAsJsonAsync($"{API_URL}{teamNo}", team);
+                    HttpResponseMessage updateResponse = await client.PutAsJsonAsync($"{API_URL}/{teamNumber}", team);
 
                     if (updateResponse.IsSuccessStatusCode)
                     {
@@ -156,7 +124,7 @@ public partial class TeamManagement : ContentPage
                     }
                     else
                     {
-                        EditTeamButton.Text = $"Failed to update team: {updateResponse.StatusCode}";
+                        EditTeamButton.Text = $"Failed to update team: " + updateResponse;
                     }
                 }
                 else
