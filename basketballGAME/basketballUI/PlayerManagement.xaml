@@ -223,9 +223,49 @@
 
             <Button
                 x:Name="DeletePlayerButton"
-                Text="Edit Player."
+                Text="Delete Player."
                 SemanticProperties.Hint="Delete a player."
                 Clicked="DeletePlayerButton_Clicked"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="20" />
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Margin="10,10,10,10">
+            <Label
+                Text="VIEW A PLAYER"
+                FontSize="20"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="0" />
+
+            <HorizontalStackLayout 
+                Margin="0" 
+                Padding="0" 
+                VerticalOptions="Center"
+                HorizontalOptions="Center" >
+                <Label 
+                    Text="Player ID: "
+                    FontSize="15"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    Margin="20"/>
+
+                <Entry 
+                    x:Name="PlayerIDView"
+                    Placeholder="Player ID."
+                    TextChanged="PlayerIDEdit_TextChanged"
+                    ClearButtonVisibility="WhileEditing"
+                    VerticalOptions="Center"            
+                    HorizontalOptions="Center"               
+                    Margin="0" />
+            </HorizontalStackLayout>
+
+            <Button
+                x:Name="ViewPlayerButton"
+                Text="View Player."
+                SemanticProperties.Hint="View a player."
+                Clicked="ViewPlayerButton_Clicked"
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
                 Margin="20" />

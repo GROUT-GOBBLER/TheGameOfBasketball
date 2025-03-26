@@ -112,6 +112,11 @@ public partial class PlayerManagement : ContentPage
         playerID = null;
 	}
 
+    async private void ViewPlayerButton_Clicked(object sender, EventArgs e)
+    {
+
+    }
+
     async private void EditPlayerButton_Clicked_1(object sender, EventArgs e)
     {
         string API_URL_1 = "http://localhost:5121/api/Players/";
