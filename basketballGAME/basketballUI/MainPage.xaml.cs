@@ -551,7 +551,7 @@ namespace basketballUI
         }
 
 
-        GameViewSearchResult selectedScoreGameSearchResult = null;
+        GameViewSearchResult selectedScoreGameSearchResult = null;//
         private async void ScoreViewSearchResults_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             GameViewTeam1.Text = "?";
@@ -643,8 +643,24 @@ namespace basketballUI
             await this.ShowPopupAsync(popup);
 
         }
+        private async void addStat(String selectedPlayer, String selectedAction)
+        {
+              /*      "id": 12,
+                "playerTeamId": 1,
+                "gameId": 1,
+                "statTypeId": 1,
+                "statValue": 3,
+                "game": null,
+                "playerTeam": null,
+                "statType": null*/
+              Stat stat = new Stat();
+            stat.GameId = selectedScoreGameSearchResult.GetGame().GameNo;
+           
+           // stat.StatTypeId = 
 
 
+
+        }
         private async void GoToScoreKeeper_Clicked(object sender, EventArgs e)
         {
             if (Navigation != null)
@@ -657,7 +673,7 @@ namespace basketballUI
             }
         }
 
-        private async void OnActionButtonClicked(object sender, EventArgs e)
+        private async void OnActionButtonClicked(object sender, EventArgs e)//stat info
         {
             var button = sender as Button;
             this.lastAction = button?.Text;
