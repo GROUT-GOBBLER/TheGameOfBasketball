@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="basketballUI.ScoreKeeper"
+             Title="Score Keeping Mode">
+
+    <!-- SCORE KEEPING MODE -->
+        <VerticalStackLayout Padding="10">
+            <!-- Header -->
+            <Label Text="Score Keeping Mode"
+               FontSize="24"
+               HorizontalOptions="Center"
+               Margin="0,10"/>
+
+            <!-- Row 1: 2PT and 3PT -->
+            <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                <VerticalStackLayout>
+                    <!-- TWO POINTER MADE -->
+                    <Button
+                            x:Name="TwoPointMade"
+                            Text="2PT shot made"
+                            SemanticProperties.Hint="A player made a two-pointer."
+                            Clicked="OnActionButtonClicked"
+                            WidthRequest="200"
+                            HeightRequest="100"
+                            CornerRadius="20"
+                            LineBreakMode="WordWrap"
+                            Margin="5"/>
+
+                    <!-- TWO POINTER MISSED -->
+                    <Button 
+                          x:Name="TwoPointMiss"
+                          Text="2PT shot missed"
+                          SemanticProperties.Hint="A player miss a two-pointer."
+                          Clicked="OnActionButtonClicked"
+                          WidthRequest="200"
+                          HeightRequest="100"
+                          CornerRadius="20"
+                          LineBreakMode="WordWrap"
+                          Margin="5"/>
+
+                </VerticalStackLayout>
+                <VerticalStackLayout>
+
+                    <!-- THREE POINTER MADE -->
+                    <Button 
+                            x:Name="ThreePtMade"
+                            Text="3PT shot made"
+                            SemanticProperties.Hint="A player made a three-pointer."
+                            Clicked="OnActionButtonClicked"
+                            WidthRequest="200"
+                            HeightRequest="100"
+                            CornerRadius="20"
+                            LineBreakMode="WordWrap"
+                            Margin="5"/>
+
+                    <!-- THREE POINTER MISSED -->
+                    <Button 
+                            x:Name="ThreePointMiss"
+                            Text="3PT shot missed"
+                            SemanticProperties.Hint="A player missed a three-pointer."
+                            Clicked="OnActionButtonClicked"
+                            WidthRequest="200"
+                            HeightRequest="100"
+                            CornerRadius="20"
+                            LineBreakMode="WordWrap"
+                            Margin="5"/>
+                </VerticalStackLayout>
+
+
+                <VerticalStackLayout>
+                    <HorizontalStackLayout>
+                        <!-- OFFENSIVE REBOUND -->
+                        <Button 
+                                x:Name="OffensiveRebound"
+                                Text="OffRebound"
+                                SemanticProperties.Hint="A player caught a rebound on offense."
+                                Clicked="OnActionButtonClicked"
+                                WidthRequest="200"
+                                HeightRequest="62.5"
+                                CornerRadius="0"
+                                LineBreakMode="WordWrap"
+                                Margin="5"/>
+
+                        <!-- DEFENSIVE REBOUND -->
+                        <Button 
+                                x:Name="DefensiveRebound"
+                                Text="DefRebound"
+                                SemanticProperties.Hint="A player caught a rebound on defense."
+                                Clicked="OnActionButtonClicked"
+                                WidthRequest="200"
+                                HeightRequest="62.5"
+                                CornerRadius="0"
+                                LineBreakMode="WordWrap"
+                                Margin="5"/>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout>
+                        <!-- ASSIST -->
+                        <Button 
+                                x:Name="Assist"
+                                Text="Assist"
+                                SemanticProperties.Hint="A player made an assist."
+                                Clicked="OnActionButtonClicked"
+                                WidthRequest="200"
+                                HeightRequest="62.5"
+                                CornerRadius="0"
+                                LineBreakMode="WordWrap"
+                                Margin="5"/>
+
+                        <!-- TURNOVER -->
+                        <Button 
+                                x:Name="Turnover"
+                                Text="TOver"
+                                SemanticProperties.Hint="A player has made a turnover."
+                                Clicked="OnActionButtonClicked"
+                                WidthRequest="200"
+                                HeightRequest="62.5"
+                                CornerRadius="0"
+                                LineBreakMode="WordWrap"
+                                Margin="5"/>
+
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout>
+                        <!-- BLOCK -->
+                        <Button 
+                                x:Name="Block"
+                                Text="Block"
+                                SemanticProperties.Hint="A player has blocked a shot."
+                                Clicked="OnActionButtonClicked"
+                                WidthRequest="200"
+                                HeightRequest="62.5"
+                                CornerRadius="0"
+                                LineBreakMode="WordWrap"
+                                Margin="5"/>
+
+                        <!-- STEAL -->
+                        <Button 
+                                x:Name="Steal"
+                                Text="Steal"
+                                SemanticProperties.Hint="A player made a three-pointer."
+                                Clicked="OnActionButtonClicked"
+                                WidthRequest="200"
+                                HeightRequest="62.5"
+                                CornerRadius="0"
+                                LineBreakMode="WordWrap"
+                                Margin="5"/>
+
+
+                    </HorizontalStackLayout>
+
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <!-- FREE THROW -->
+                <Button 
+                      x:Name="FreeThrow"
+                      Text="Free throw"
+                      SemanticProperties.Hint="A player is shooting a freethrow."
+                      Clicked="OnFreeThrowClicked"
+                      WidthRequest="400" 
+                      HeightRequest="50"
+                      CornerRadius="20"
+                      LineBreakMode="WordWrap"
+                      Margin="-95, 5, 5, 5"/>
+
+
+                <!-- FOUL -->
+                <Button 
+                        x:Name="Foul"
+                        Text="Foul"
+                        SemanticProperties.Hint="A player has committed a foul."
+                        Clicked="OnActionButtonClicked"
+                        WidthRequest="200" 
+                        CornerRadius="0"
+                        HorizontalOptions="Center"
+                        LineBreakMode="WordWrap"
+                        Margin="125, 5, 5, 5"/>
+
+
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+
+
+</ContentPage>

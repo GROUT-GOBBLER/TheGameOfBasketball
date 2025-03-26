@@ -3,228 +3,417 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="basketballUI.MainPage">
 
-    <!-- STAT MODE -->
-    <ContentPage Title="Stat Mode">
-        <AbsoluteLayout>
-            <Label
-                Text="Player           Team"
-                FontSize="23"
-                VerticalOptions="Center"
-                HorizontalOptions="Center"
-                Margin="23,3,0,0" />
-            <Switch IsToggled="False"
-                Margin="100,0,0,0"/>
-
-            <Button 
-                x:Name="ReloadBtn"
-                Text="Reload stats"
-                SemanticProperties.Hint="A player miss a two-pointer."
-                Clicked="Reload_Clicked"
-                VerticalOptions="Center"
-                HorizontalOptions="Center"
-                Margin="300,0,0,0" />
-
-            <SearchBar 
-                Margin="700,0,0,0"/>
-
-            <ListView x:Name="statsList" Margin="50,50,0,0">
-                <ListView.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Help</x:String>
-                        <x:String>Help</x:String>
-                    </x:Array>
-                </ListView.ItemsSource>
-            </ListView>
-        </AbsoluteLayout>
-    </ContentPage>
-
-    <!-- GAME VIEW MODE -->
-    <ContentPage Title="Game View Mode">
-        <StackLayout>
-            <Label
-                Text="Game View Mode"
-                VerticalOptions="Center"
-                HorizontalOptions="Center" />
-        </StackLayout>
-    </ContentPage>
-
-    <!-- SCORE KEEPING MODE -->
-    <ContentPage Title="Score Keeping Mode">
-        <StackLayout Padding="20,20,20,20" Margin="10">
-            <!--Right,Down,Left,Up-->
-            <Label 
-                Text="Score Keeping Mode"
-                VerticalOptions="Center"
-                HorizontalOptions="Center"
-                Margin="10" />
-
-            <!-- TWO POINTER MADE -->
-            <Button
-                x:Name="TwoPointMade"
-                Text="2PT shot made."
-                SemanticProperties.Hint="A player made a two-pointer."
-                Clicked="Button_Clicked"
-                VerticalOptions="Center"
-                HorizontalOptions="Center"
-                Margin="10" />
-
-            <!-- TWO POINTER MISSED -->
-            <Button 
-                x:Name="TwoPointMiss"
-                Text="2PT shot missed."
-                SemanticProperties.Hint="A player miss a two-pointer."
-                Clicked="Button_Clicked"
-                VerticalOptions="Center"
-                HorizontalOptions="Center"
-                Margin="10" />
-
-            <!-- THREE POINTER MADE -->
-            <Button 
-                x:Name="ThreePtMiss"
-                Text="3PT shot made."
-                SemanticProperties.Hint="A player made a three-pointer."
-                Clicked="Button_Clicked"
-                VerticalOptions="Center"
-                HorizontalOptions="Center"
-                Margin="10" />
-
-            <!-- THREE POINTER MISSED -->
-            <Button 
-                x:Name="ThreePointMiss"
-                Text="3PT shot missed."
-                SemanticProperties.Hint="A player missed a three-pointer."
-                Clicked="Button_Clicked"
-                VerticalOptions="Center"
-                HorizontalOptions="Center"
-                Margin="10" />
-
-            <!-- FREE THROW -->
-            <Button 
-                x:Name="FreeThrow"
-                Text="Free throw."
-                SemanticProperties.Hint="A player is shooting a freethrow."
-                Clicked="Button_Clicked"
-                VerticalOptions="Center"
-                HorizontalOptions="Center"
-                Margin="10" />
-
-            <!-- OFFENSIVE REBOUND -->
-            <Button 
-                x:Name="OffensiveRebound"
-                Text="OffRebound."
-                SemanticProperties.Hint="A player caught a rebound on offense."
-                Clicked="Button_Clicked"
-                VerticalOptions="Center"
-                HorizontalOptions="Center"
-                Margin="10" />
-
-            <!-- DEFENSIVE REBOUND -->
-            <Button 
-                x:Name="DefensiveRebound"
-                Text="DefRebound."
-                SemanticProperties.Hint="A player caught a rebound on defense."
-                Clicked="Button_Clicked"
-                VerticalOptions="Center"
-                HorizontalOptions="Center"
-                Margin="10" />
-
-            <!-- ASSIST -->
-            <Button 
-                x:Name="Assist"
-                Text="Assist."
-                SemanticProperties.Hint="A player made an assist."
-                Clicked="Button_Clicked"
-                VerticalOptions="Center"
-                HorizontalOptions="Center"
-                Margin="10" />
-
-            <!-- TURNOVER -->
-            <Button 
-                x:Name="Turnover"
-                Text="TOver."
-                SemanticProperties.Hint="A player has made a turnover."
-                Clicked="Button_Clicked"
-                VerticalOptions="Center"
-                HorizontalOptions="Center"
-                Margin="10" />
-
-            <!-- BLOCK -->
-            <Button 
-                x:Name="Block"
-                Text="Block."
-                SemanticProperties.Hint="A player has blocked a shot."
-                Clicked="Button_Clicked"
-                VerticalOptions="Center"
-                HorizontalOptions="Center"
-                Margin="10" />
-
-            <!-- STEAL -->
-            <Button 
-                x:Name="Steal"
-                Text="Steal."
-                SemanticProperties.Hint="A player made a three-pointer."
-                Clicked="Button_Clicked"
-                VerticalOptions="Center"
-                HorizontalOptions="Center"
-                Margin="10" />
-
-            <!-- FOUL -->
-            <Button 
-                x:Name="Foul"
-                Text="Foul."
-                SemanticProperties.Hint="A player has committed a foul."
-                Clicked="Button_Clicked"
-                VerticalOptions="Center"
-                HorizontalOptions="Center"
-                Margin="10" />
-        </StackLayout>
-    </ContentPage>
-
-    <!-- MANAGEMENT -->
-    <ContentPage Title="Management">
-        <StackLayout Padding="20,20,20,20" Margin="10">
-            <VerticalStackLayout Spacing="10" VerticalOptions="Start">
-                <Label 
-                Text="Management"
-                FontSize="100"
-                VerticalOptions="Center"
-                HorizontalOptions="Center" 
-                Margin="20" />
-
-                <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
-                    <Button 
-                        x:Name="PManageButton"
-                        FontSize="25"
-                        Text="Player Management"
-                        SemanticProperties.Hint="Create, update, delete, or read a player."
-                        Clicked="Player_Management_Button_Clicked"
-                        VerticalOptions="Center"
-                        HorizontalOptions="Center"
-                        Margin="20" />
-
-                    <Button 
-                        x:Name="TManageButton"
-                        FontSize="25"
-                        Text="Team Management"
-                        SemanticProperties.Hint="Create, update, delete, or read a team."
-                        Clicked="Team_Management_Button_Clicked"
-                        VerticalOptions="Center"
-                        HorizontalOptions="Center"
-                        Margin="20" />
-                </HorizontalStackLayout>
-                    
-                <Button
-                    x:Name="SManageButton"
-                    FontSize="50"
-                    Text="Schedule Management"
-                    SemanticProperties.Hint="Create games and manage a schedule."
-                    Clicked="Schedule_Management_Button_Clicked"
+        <!-- STAT MODE -->
+        <ContentPage Title="Stat Mode">
+            <AbsoluteLayout>
+                <Label
+                    Text="Player           Team"
+                    FontSize="23"
                     VerticalOptions="Center"
                     HorizontalOptions="Center"
-                    Margin="20" />
-                
-            </VerticalStackLayout>
-        </StackLayout>
+                    Margin="23,3,0,0" />
+                <Switch x:Name="modeSwitch"
+                    IsToggled="False"
+                    Margin="100,0,0,0"/>
+
+                <SearchBar x:Name="Searching"
+                    SearchButtonPressed="Reload_Clicked"
+                    Margin="700,0,0,0"/>
+
+            <!-- Needs to be changed to the player name & team -->
+                <ListView x:Name="statsList" Margin="50,50,0,0">
+                    <ListView.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Press the search button</x:String>
+                            <x:String>Press the search button</x:String>
+                        </x:Array>
+                    </ListView.ItemsSource>
+                </ListView>
+            </AbsoluteLayout>
+        </ContentPage>
+
+    <!-- GAME VIEW MODE -->
+    <ContentPage Title="Game View Mode"
+                 x:Name="GameView">
+        <HorizontalStackLayout Padding="20,0,20,0"
+            Margin="20,20,20,20"
+            HorizontalOptions="Start"
+            VerticalOptions="StartAndExpand">
+            <Button 
+               x:Name= "GameViewReload"
+                Text="Reload"
+               
+                Clicked="GameViewReload_Clicked"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="10" />
+
+            <HorizontalStackLayout
+                Margin="20,0,20,0">
+                <Picker x:Name= "GameViewPicker"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Start"
+                    Title="Search by">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Team</x:String>
+                            <x:String>Date</x:String>
+
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+                <VerticalStackLayout Padding="20,0,50,0">
+                    <SearchBar x:Name= "GameViewSearch"
+                        Placeholder="Search items...       "
+                        HorizontalOptions="Center"
+                        
+                        TextChanged="GameViewSearch_TextChanged"/>
+                    <ListView x:Name= "GameViewSearchResults" 
+                              ItemTapped="GameViewSearchResults_ItemTapped"></ListView>
+                </VerticalStackLayout>
+
+
+
+            </HorizontalStackLayout>
+            <StackLayout Padding="25,20,20,20"  AnchorX =" 50">
+
+                <Label
+                Text="Game View Mode"
+                FontSize="23"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+
+                <HorizontalStackLayout Padding="20,0,20,0"
+                    HorizontalOptions="Center">
+                    <Label
+                        Text= "Team 1"
+                        x:Name = "GameViewTeam1"
+                        FontSize="23"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="Center" 
+                        Padding="10,10,10,0"/>
+                    <Label
+                        Text="-"
+                        FontSize="50"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center" 
+                        Padding="20,0,20,0"/>
+                    <Label
+                        x:Name= "GameViewTeam2"
+                        Text="Team2"
+                        FontSize="23"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="Center" 
+                        Padding="20,10,20,0"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Padding="20,0,20,0"
+                        HorizontalOptions="Center">
+                    <Label
+                        x:Name= "GameViewTeam1Score"
+                        Text="#"
+                        FontSize="23"
+                        TextColor ="Green"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="Center" 
+                        Padding="20,0,20,0"/>
+                    <Label
+                        Text=" "
+                        
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center" 
+                        Padding="20,0,20,0"/>
+                    <Label
+                        x:Name= "GameViewTeam2Score"
+                        Text="#" 
+                        FontSize="23"
+                        TextColor = "Red"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="Center" 
+                        Padding="20,0,20,0"/>
+
+
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Padding="10,10,10,10"
+                        Margin="15,0,15,0" 
+                        HorizontalOptions="Center"
+                        VerticalOptions = "FillAndExpand"
+                        BackgroundColor = "Gray">
+                    <ScrollView
+                        Padding="60,0,60,0"
+                        Grid.Row="1"
+                        VerticalOptions= "FillAndExpand">
+                        <ListView x:Name= "GameViewTeam1Stats" ></ListView>
+                    </ScrollView>
+                    <ScrollView
+                        Padding= "60,0,60,0"
+                        Grid.Row="1"
+                        VerticalOptions= "FillAndExpand">
+                        <ListView x:Name= "GameViewTeam2Stats" ></ListView>
+                    </ScrollView>
+
+
+                </HorizontalStackLayout>
+
+
+
+            </StackLayout>
+
+        </HorizontalStackLayout>
+
     </ContentPage>
 
-</TabbedPage>
+
+    <!-- SCORE KEEPING MODE -->
+        <ContentPage Title="Score Keeping Mode"
+                     x:Name="ScoreKeeperView">
+
+        <VerticalStackLayout Padding="10">
+
+            <HorizontalStackLayout Margin="20,0,20,0">
+                <Picker x:Name= "ScoreViewPicker"
+                  HorizontalOptions="Start"
+                  VerticalOptions="Start"
+                  Title="Search by">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Team</x:String>
+                            <x:String>Date</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+                <VerticalStackLayout Padding="20,0,50,0">
+                    <SearchBar x:Name= "ScoreViewSearch"
+                  Placeholder="Search items...       "
+                  HorizontalOptions="Center"
+                  TextChanged="ScoreViewSearch_TextChanged"/>
+                    <ListView x:Name= "ScoreViewSearchResults" 
+                        ItemTapped="ScoreViewSearchResults_ItemTapped"></ListView>
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+
+
+
+            <!-- Row 1: 2PT and 3PT -->
+                <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                    <VerticalStackLayout>
+                        <!-- TWO POINTER MADE -->
+                        <Button
+                            x:Name="TwoPointMade"
+                            Text="2PT shot made"
+                            SemanticProperties.Hint="A player made a two-pointer."
+                            Clicked="OnActionButtonClicked"
+                            WidthRequest="200"
+                            HeightRequest="100"
+                            CornerRadius="20"
+                            LineBreakMode="WordWrap"
+                            BorderWidth="3"
+                            BorderColor="Black"
+                            BackgroundColor="Green"
+                            Margin="5"/>
+
+                        <!-- TWO POINTER MISSED -->
+                        <Button 
+                          x:Name="TwoPointMiss"
+                          Text="2PT shot missed"
+                          SemanticProperties.Hint="A player miss a two-pointer."
+                          Clicked="OnActionButtonClicked"
+                          WidthRequest="200"
+                          HeightRequest="100"
+                          CornerRadius="20"
+                          LineBreakMode="WordWrap"
+                          BorderWidth="3"
+                          BorderColor="Black"
+                          BackgroundColor="Red"
+                          Margin="5"/>
+
+                    </VerticalStackLayout>
+                    <VerticalStackLayout>
+                        
+                        <!-- THREE POINTER MADE -->
+                        <Button 
+                            x:Name="ThreePtMade"
+                            Text="3PT shot made"
+                            SemanticProperties.Hint="A player made a three-pointer."
+                            Clicked="OnActionButtonClicked"
+                            WidthRequest="200"
+                            HeightRequest="100"
+                            CornerRadius="20"
+                            LineBreakMode="WordWrap"
+                            BorderWidth="3"
+                            BorderColor="Black"
+                            BackgroundColor="Green"
+                            Margin="5"/>
+
+                        <!-- THREE POINTER MISSED -->
+                        <Button 
+                            x:Name="ThreePointMiss"
+                            Text="3PT shot missed"
+                            SemanticProperties.Hint="A player missed a three-pointer."
+                            Clicked="OnActionButtonClicked"
+                            WidthRequest="200"
+                            HeightRequest="100"
+                            CornerRadius="20"
+                            LineBreakMode="WordWrap"
+                            BorderWidth="3"
+                            BorderColor="Black"
+                            BackgroundColor="Red"
+                            Margin="5"/>
+                    </VerticalStackLayout>
+                    
+
+                <VerticalStackLayout>
+                        <HorizontalStackLayout>
+                            <!-- OFFENSIVE REBOUND -->
+                            <Button 
+                                x:Name="OffensiveRebound"
+                                Text="OffRebound"
+                                SemanticProperties.Hint="A player caught a rebound on offense."
+                                Clicked="OnActionButtonClicked"
+                                WidthRequest="200"
+                                HeightRequest="62.5"
+                                CornerRadius="0"
+                                LineBreakMode="WordWrap"
+                                BorderWidth="3"
+                                BorderColor="Black"
+                                BackgroundColor="Gray"
+                                Margin="5"/>
+
+                            <!-- DEFENSIVE REBOUND -->
+                            <Button 
+                                x:Name="DefensiveRebound"
+                                Text="DefRebound"
+                                SemanticProperties.Hint="A player caught a rebound on defense."
+                                Clicked="OnActionButtonClicked"
+                                WidthRequest="200"
+                                HeightRequest="62.5"
+                                CornerRadius="0"
+                                LineBreakMode="WordWrap"
+                                BorderWidth="3"
+                                BorderColor="Black"
+                                BackgroundColor="Gray"
+                                Margin="5"/>
+                        </HorizontalStackLayout>
+                        
+                        <HorizontalStackLayout>
+                            <!-- ASSIST -->
+                            <Button 
+                                x:Name="Assist"
+                                Text="Assist"
+                                SemanticProperties.Hint="A player made an assist."
+                                Clicked="OnActionButtonClicked"
+                                WidthRequest="200"
+                                HeightRequest="62.5"
+                                CornerRadius="0"
+                                LineBreakMode="WordWrap"
+                                BorderWidth="3"
+                                BorderColor="Black"
+                                BackgroundColor="Gray"
+                                Margin="5"/>
+
+                            <!-- TURNOVER -->
+                            <Button 
+                                x:Name="Turnover"
+                                Text="TOver"
+                                SemanticProperties.Hint="A player has made a turnover."
+                                Clicked="OnActionButtonClicked"
+                                WidthRequest="200"
+                                HeightRequest="62.5"
+                                CornerRadius="0"
+                                LineBreakMode="WordWrap"
+                                BorderWidth="3"
+                                BorderColor="Black"
+                                BackgroundColor="Gray"
+                                Margin="5"/>
+
+                        </HorizontalStackLayout>
+
+                        <HorizontalStackLayout>
+                            <!-- BLOCK -->
+                            <Button 
+                                x:Name="Block"
+                                Text="Block"
+                                SemanticProperties.Hint="A player has blocked a shot."
+                                Clicked="OnActionButtonClicked"
+                                WidthRequest="200"
+                                HeightRequest="62.5"
+                                CornerRadius="0"
+                                LineBreakMode="WordWrap"
+                                BorderWidth="3"
+                                BorderColor="Black"
+                                BackgroundColor="Gray"
+                                Margin="5"/>
+
+                            <!-- STEAL -->
+                            <Button 
+                                x:Name="Steal"
+                                Text="Steal"
+                                SemanticProperties.Hint="A player made a three-pointer."
+                                Clicked="OnActionButtonClicked"
+                                WidthRequest="200"
+                                HeightRequest="62.5"
+                                CornerRadius="0"
+                                LineBreakMode="WordWrap"
+                                BorderWidth="3"
+                                BorderColor="Black"
+                                BackgroundColor="Gray"
+                                Margin="5"/>
+
+
+                    </HorizontalStackLayout>
+
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <!-- FREE THROW -->
+                <Button 
+                      x:Name="FreeThrow"
+                      Text="Free throw"
+                      SemanticProperties.Hint="A player is shooting a freethrow."
+                      Clicked="OnFreeThrowClicked"
+                      WidthRequest="400" 
+                      HeightRequest="50"
+                      CornerRadius="20"
+                      LineBreakMode="WordWrap"
+                      BackgroundColor="Yellow"
+                      TextColor="Black"
+                      Margin="-95, 5, 5, 5"/>
+
+
+                    <!-- FOUL -->
+                    <Button 
+                        x:Name="Foul"
+                        Text="Foul"
+                        SemanticProperties.Hint="A player has committed a foul."
+                        Clicked="OnActionButtonClicked"
+                        WidthRequest="200" 
+                        CornerRadius="0"
+                        HorizontalOptions="Center"
+                        LineBreakMode="WordWrap"
+                        BorderWidth="3"
+                        BorderColor="Black"
+                        BackgroundColor="Gray"
+                        Margin="125, 5, 5, 5"/>
+           
+
+            </HorizontalStackLayout>
+            
+        </VerticalStackLayout>
+
+
+
+    </ContentPage>
+
+
+    <!-- MANAGEMENT -->
+        <ContentPage Title="Management">
+            <StackLayout>
+                <Label Text="Management"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="CenterAndExpand" />
+            
+            </StackLayout>
+        </ContentPage>
+
+    </TabbedPage>
+
