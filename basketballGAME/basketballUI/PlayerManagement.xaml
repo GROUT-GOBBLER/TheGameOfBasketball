@@ -3,59 +3,194 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="basketballUI.PlayerManagement"
              Title="PlayerManagement">
-    <VerticalStackLayout>
-        <HorizontalStackLayout 
-            Margin="20" 
-            Padding="10" 
-            VerticalOptions="Center"
-            HorizontalOptions="Center" >
-            <Label 
-            Text="Enter player first name: "
-            FontSize="15"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center"
-            Margin="20"/>
+    <HorizontalStackLayout> 
+        <VerticalStackLayout Margin="10,10,10,10">
+            <Label
+                Text="CREATE A PLAYER"
+                FontSize="20"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Padding="0" />
+            
+            <HorizontalStackLayout 
+                Margin="0" 
+                Padding="0" 
+                VerticalOptions="Center"
+                HorizontalOptions="Center" >
+                <Label 
+                    Text="Enter player first name: "
+                    FontSize="15"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    Padding="20"/>
 
-            <Entry 
-            x:Name="PlayerFirstNameEntry"
-            Placeholder="First name."
-            TextChanged="PlayerFirstNameEntry_TextChanged"
-            ClearButtonVisibility="WhileEditing"
-            VerticalOptions="Center"
-            HorizontalOptions="Center"
-            Margin="0" />
-        </HorizontalStackLayout>
+                <Entry 
+                    x:Name="PlayerFirstNameEntry"
+                    Placeholder="First name."
+                    TextChanged="PlayerFirstNameEntry_TextChanged"
+                    ClearButtonVisibility="WhileEditing"
+                    VerticalOptions="Center"            
+                    HorizontalOptions="Center" />
+            </HorizontalStackLayout>
 
-        <HorizontalStackLayout 
-            Margin="0" 
-            Padding="0" 
-            VerticalOptions="Center"
-            HorizontalOptions="Center" >
-            <Label 
-            Text="Enter player last name: "
-            FontSize="15"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center"
-            Margin="20"/>
+            <HorizontalStackLayout 
+                Margin="0" 
+                Padding="0" 
+                VerticalOptions="Center"
+                HorizontalOptions="Center" >
+                <Label 
+                    Text="Enter player last name: "
+                    FontSize="15"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    Margin="20"/>
 
-            <Entry 
-            x:Name="PlayerLastNameEntry"
-            Placeholder="Last name."
-            TextChanged="PlayerLastNameEntry_TextChanged"
-            ClearButtonVisibility="WhileEditing"
-            VerticalOptions="Center"
-            HorizontalOptions="Center"
-            Margin="0" />
-        </HorizontalStackLayout>
+                <Entry 
+                    x:Name="PlayerLastNameEntry"
+                    Placeholder="Last name."
+                    TextChanged="PlayerLastNameEntry_TextChanged"
+                    ClearButtonVisibility="WhileEditing"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    Margin="0" />
+            </HorizontalStackLayout>
 
-        <Button
-            x:Name="CreatePlayerButton"
-            Text="Create Player."
-            SemanticProperties.Hint="Create a player."
-            Clicked="Create_Player_Button_Click"
-            VerticalOptions="Center"
-            HorizontalOptions="Center"
-            Margin="20" />
+            <HorizontalStackLayout 
+                Margin="0" 
+                Padding="0" 
+                VerticalOptions="Center"
+                HorizontalOptions="Center" >
+                <Label 
+                    Text="(Optional) Enter player team: "
+                    FontSize="15"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    Margin="20"/>
 
-    </VerticalStackLayout>
+                <Entry 
+                    x:Name="PlayerTeamEntry"
+                    Placeholder="Player team."
+                    TextChanged="PlayerTeamEntry_TextChanged"
+                    ClearButtonVisibility="WhileEditing"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    Margin="0" />
+            </HorizontalStackLayout>
+
+            <Button
+                x:Name="CreatePlayerButton"
+                Text="Create Player."
+                SemanticProperties.Hint="Create a player."
+                Clicked="Create_Player_Button_Click"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="20" />
+        </VerticalStackLayout
+            >
+        <VerticalStackLayout Margin="10,10,10,10">
+            <Label
+                Text="EDIT A PLAYER"
+                FontSize="20"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="0" />
+
+            <HorizontalStackLayout 
+                Margin="0" 
+                Padding="0" 
+                VerticalOptions="Center"
+                HorizontalOptions="Center" >
+                <Label 
+                    Text="Player ID: "
+                    FontSize="15"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    Margin="20"/>
+
+                <Entry 
+                    x:Name="PlayerIDEdit"
+                    Placeholder="Player ID."
+                    TextChanged="PlayerIDEdit_TextChanged"
+                    ClearButtonVisibility="WhileEditing"
+                    VerticalOptions="Center"            
+                    HorizontalOptions="Center"               
+                    Margin="0" />
+            </HorizontalStackLayout>            
+            
+            <HorizontalStackLayout 
+                Margin="0" 
+                Padding="0" 
+                VerticalOptions="Center"
+                HorizontalOptions="Center" >
+                <Label 
+                    Text="Edit first name: "
+                    FontSize="15"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    Margin="20"/>
+
+                <Entry 
+                    x:Name="PlayerFirstNameEDIT"
+                    Placeholder="First name."
+                    TextChanged="PlayerFirstNameEntry_TextChanged"
+                    ClearButtonVisibility="WhileEditing"
+                    VerticalOptions="Center"            
+                    HorizontalOptions="Center"               
+                    Margin="0" />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout 
+                Margin="0" 
+                Padding="0" 
+                VerticalOptions="Center"
+                HorizontalOptions="Center" >
+                <Label 
+                    Text="Edit last name: "
+                    FontSize="15"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    Margin="20"/>
+
+                <Entry 
+                    x:Name="PlayerLastNameEDIT"
+                    Placeholder="Last name."
+                    TextChanged="PlayerLastNameEntry_TextChanged"
+                    ClearButtonVisibility="WhileEditing"
+                    VerticalOptions="Center"            
+                    HorizontalOptions="Center"               
+                    Margin="0" />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout 
+                Margin="0" 
+                Padding="0" 
+                VerticalOptions="Center"
+                HorizontalOptions="Center" >
+                <Label 
+                    Text="Edit team: "
+                    FontSize="15"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    Margin="20"/>
+
+                <Entry 
+                    x:Name="PlayerTeamEDIT"
+                    Placeholder="Player team."
+                    TextChanged="PlayerTeamEntry_TextChanged"
+                    ClearButtonVisibility="WhileEditing"
+                    VerticalOptions="Center"            
+                    HorizontalOptions="Center"               
+                    Margin="0" />
+            </HorizontalStackLayout>
+
+            <!--<Button
+                x:Name="EditPlayerButton"
+                Text="Edit Player."
+                SemanticProperties.Hint="Edit a player's info."
+                Clicked="EditPlayerButton_Clicked_1"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="20" />-->
+        </VerticalStackLayout>
+    </HorizontalStackLayout>
 </ContentPage>
