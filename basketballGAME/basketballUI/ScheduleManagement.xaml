@@ -57,7 +57,7 @@
         </HorizontalStackLayout>
 
 
-        <!-- GAME -->
+        <!-- TEAM ONE -->
         <HorizontalStackLayout 
             Margin="0" 
             Padding="0" 
@@ -65,16 +65,39 @@
             HorizontalOptions="Center" >
 
             <Label 
-                Text="Enter a game id: "
+                Text="Enter a team one: "
                 FontSize="15"
                 VerticalOptions="Center" 
                 HorizontalOptions="Center"
                 Padding="20"/>
 
             <Entry 
-                x:Name="GameNoEntry"
+                x:Name="TeamOneEntry"
                 Placeholder="Date"
-                TextChanged="GameNoEntry_TextChanged"
+                TextChanged="TeamOneEntry_TextChanged"
+                ClearButtonVisibility="WhileEditing"
+                VerticalOptions="Center"            
+                HorizontalOptions="Center" />
+        </HorizontalStackLayout>
+
+        <!-- TEAM TWO -->
+        <HorizontalStackLayout 
+            Margin="0" 
+            Padding="0" 
+            VerticalOptions="Center"
+            HorizontalOptions="Center" >
+
+            <Label 
+                Text="Enter a team two: "
+                FontSize="15"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                Padding="20"/>
+
+            <Entry 
+                x:Name="TeamTwoEntry"
+                Placeholder="Date"
+                TextChanged="TeamTwoEntry_TextChanged"
                 ClearButtonVisibility="WhileEditing"
                 VerticalOptions="Center"            
                 HorizontalOptions="Center" />
