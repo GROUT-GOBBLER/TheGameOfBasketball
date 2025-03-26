@@ -2,6 +2,7 @@ using basketballUI.models;
 using Newtonsoft.Json;
 using System.Net.Http.Json;
 using System.Reflection;
+using System.Text;
 
 namespace basketballUI;
 
@@ -218,23 +219,74 @@ public partial class PlayerManagement : ContentPage
     async private void DeletePlayerButton_Clicked(object sender, EventArgs e)
     {
         string API_URL = "http://localhost:5121/api/Players";
-        
+        string API_URL_2 = "http://localhost:5121/api/TeamPlayers";
+
         using (HttpClient client = new HttpClient())
         {
             try
             {
-                HttpResponseMessage response = await client.GetAsync(API_URL);
-                
-                if (response.IsSuccessStatusCode)
+                HttpResponseMessage response1 = await client.GetAsync(API_URL);
+                HttpResponseMessage response2 = await client.GetAsync(API_URL_2);
+
+                List<Player> playerLIST;
+                List<TeamPlayer> teamPlayerLIST;
+
+                if (response1.IsSuccessStatusCode && response2.IsSuccessStatusCode)
                 {
-                    HttpResponseMessage response1 = await client.DeleteAsync($"{API_URL}/{6}");
-                    if (response1.IsSuccessStatusCode)
+                    string json1 = await response1.Content.ReadAsStringAsync();
+                    playerLIST = JsonConvert.DeserializeObject<List<Player>>(json1);
+
+                    string json2 = await response2.Content.ReadAsStringAsync();
+                    teamPlayerLIST = JsonConvert.DeserializeObject<List<TeamPlayer>>(json2);
+
+                    int indexPLAYER = playerLIST.Count;
+                    int indexTEAMplayer = playerLIST.Count;
+                    int PlayerIdValue;
+
+                    bool playerInTeam = false;
+
+                    if (playerID != null)
+                        PlayerIdValue = int.Parse(playerID);
+                    else
                     {
-                        DeletePlayerButton.Text = $"success";
+                        DeletePlayerButton.Text = "ENTER PLAYER ID.";
+                        return;
+                    }
+
+                    for (int x = 0; x < playerLIST.Count; x++)
+                    {
+                        if (playerLIST[x].PlayerNo == PlayerIdValue)
+                        {
+                            indexPLAYER = x;
+
+                            for (int y = 0; y < teamPlayerLIST.Count; y++)
+                            {
+                                if (teamPlayerLIST[y].PlayerId == PlayerIdValue)
+                                {
+                                    indexTEAMplayer = y;
+                                    playerInTeam = true;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    HttpResponseMessage response3 = await client.DeleteAsync($"{API_URL_2}/{}");
+                    HttpResponseMessage response4 = await client.DeleteAsync($"{API_URL}/{}");
+
+                    if (response3.IsSuccessStatusCode)
+                    {
+                        if (response4.IsSuccessStatusCode)
+                            DeletePlayerButton.Text = $"success " + indexPLAYER + " " + indexTEAMplayer + " " + PlayerIdValue;
+                        else
+                            DeletePlayerButton.Text = $"3 success 4 fail " + response4 + "\n" + +indexPLAYER + " " + indexTEAMplayer + " " + PlayerIdValue;
                     }
                     else
                     {
-                        DeletePlayerButton.Text = $"no success  " + response1;
+                        if (response4.IsSuccessStatusCode)
+                            DeletePlayerButton.Text = $"3 fail 4 success " + response3 + "\n" + +indexPLAYER + " " + indexTEAMplayer + " " + PlayerIdValue;
+                        else
+                            DeletePlayerButton.Text = $"TOTAL FAILURE " + response3 + "\n" + response4 + "\n" + indexPLAYER + " " + indexTEAMplayer + " " + PlayerIdValue;
                     }
                 }
                 else
@@ -247,6 +299,11 @@ public partial class PlayerManagement : ContentPage
                 DeletePlayerButton.Text = $"Clicked and failed " + ex;
             }
         }
+
+        firstName = null;
+        lastName = null;
+        teamID = null;
+        playerID = null;
     }
 
     private void PlayerFirstNameEntry_TextChanged(object sender, TextChangedEventArgs e)
