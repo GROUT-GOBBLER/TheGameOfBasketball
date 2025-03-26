@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="basketballUI.PlayerManagement"
              Title="PlayerManagement">
-    <HorizontalStackLayout> 
+    <HorizontalStackLayout>
         <VerticalStackLayout Margin="10,10,10,10">
             <Label
                 Text="CREATE A PLAYER"

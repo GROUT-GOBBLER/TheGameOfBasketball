@@ -276,8 +276,8 @@ public partial class PlayerManagement : ContentPage
                         }
                     }
 
-                    HttpResponseMessage response3 = await client.DeleteAsync($"{API_URL_2}/{}");
-                    HttpResponseMessage response4 = await client.DeleteAsync($"{API_URL}/{}");
+                    HttpResponseMessage response3 = await client.DeleteAsync($"{API_URL_2}/{1}");
+                    HttpResponseMessage response4 = await client.DeleteAsync($"{API_URL}/{1}");
 
                     if (response3.IsSuccessStatusCode)
                     {
