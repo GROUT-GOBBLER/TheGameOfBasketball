@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="basketballUI.ScheduleManagement"
              Title="ScheduleManagement">
+    <HorizontalStackLayout>
     <VerticalStackLayout Margin="20,20,20,20" Padding="20">
         <Label 
             Text="CREATE A SCHEDULE"
@@ -177,9 +178,51 @@
             Text="Create Game."
             SemanticProperties.Hint="Create a new game."
             VerticalOptions="Center"
+            Clicked="Create_Schedule_Button_Click"
             HorizontalOptions="Center"
             BackgroundColor="LightBlue"
             Margin="10" />
 
     </VerticalStackLayout>
+    <VerticalStackLayout Margin="10,10,10,10">
+        <Label
+                Text="DELETE A PLAYER"
+                FontSize="20"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="0" />
+
+        <HorizontalStackLayout 
+                Margin="0" 
+                Padding="0" 
+                VerticalOptions="Center"
+                HorizontalOptions="Center" >
+            <Label 
+                    Text="Game ID: "
+                    FontSize="15"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    Margin="20"/>
+
+            <Entry 
+                    x:Name="GameIDDelete"
+                    Placeholder="Game ID."
+                    TextChanged="GameIDEdit_TextChanged"
+                    ClearButtonVisibility="WhileEditing"
+                    VerticalOptions="Center"            
+                    HorizontalOptions="Center"               
+                    Margin="0" />
+        </HorizontalStackLayout>
+
+        <Button
+                x:Name="DeleteGameButton"
+                Text="Delete Game."
+                SemanticProperties.Hint="Delete a game."
+                Clicked="Delete_Schedule_Button_Click"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="20" />
+    </VerticalStackLayout>
+    </HorizontalStackLayout>
+
 </ContentPage>
