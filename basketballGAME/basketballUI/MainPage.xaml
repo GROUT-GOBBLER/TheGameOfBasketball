@@ -12,58 +12,186 @@
                     VerticalOptions="Center"
                     HorizontalOptions="Center"
                     Margin="23,3,0,0" />
-                <Switch IsToggled="False"
+                <Switch x:Name="modeSwitch"
+                    IsToggled="False"
                     Margin="100,0,0,0"/>
 
-                <Button 
-                    x:Name="ReloadBtn"
-                    Text="Reload stats"
-                    SemanticProperties.Hint="A player miss a two-pointer."
-                    Clicked="Reload_Clicked"
-                    VerticalOptions="Center"
-                    HorizontalOptions="Center"
-                    Margin="300,0,0,0" />
-
-                <SearchBar 
+                <SearchBar x:Name="Searching"
+                    SearchButtonPressed="Reload_Clicked"
                     Margin="700,0,0,0"/>
 
-                <!-- Needs to be changed to the player name & team -->
+            <!-- Needs to be changed to the player name & team -->
                 <ListView x:Name="statsList" Margin="50,50,0,0">
                     <ListView.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
-                            <x:String>Help</x:String>
-                            <x:String>Help</x:String>
+                            <x:String>Press the search button</x:String>
+                            <x:String>Press the search button</x:String>
                         </x:Array>
                     </ListView.ItemsSource>
                 </ListView>
             </AbsoluteLayout>
         </ContentPage>
 
-        <!-- GAME VIEW MODE -->
-        <ContentPage Title="Game View Mode">
-            <StackLayout>
+    <!-- GAME VIEW MODE -->
+    <ContentPage Title="Game View Mode"
+                 x:Name="GameView">
+        <HorizontalStackLayout Padding="20,0,20,0"
+            Margin="20,20,20,20"
+            HorizontalOptions="Start"
+            VerticalOptions="StartAndExpand">
+            <Button 
+               x:Name= "GameViewReload"
+                Text="Reload"
+               
+                Clicked="GameViewReload_Clicked"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="10" />
+
+            <HorizontalStackLayout
+                Margin="20,0,20,0">
+                <Picker x:Name= "GameViewPicker"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Start"
+                    Title="Search by">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Team</x:String>
+                            <x:String>Date</x:String>
+
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+                <VerticalStackLayout Padding="20,0,50,0">
+                    <SearchBar x:Name= "GameViewSearch"
+                        Placeholder="Search items...       "
+                        HorizontalOptions="Center"
+                        
+                        TextChanged="GameViewSearch_TextChanged"/>
+                    <ListView x:Name= "GameViewSearchResults" 
+                              ItemTapped="GameViewSearchResults_ItemTapped"></ListView>
+                </VerticalStackLayout>
+
+
+
+            </HorizontalStackLayout>
+            <StackLayout Padding="25,20,20,20"  AnchorX =" 50">
+
                 <Label
-                    Text="Game View Mode"
-                    VerticalOptions="Center"
-                    HorizontalOptions="Center" />
-            <Button x:Name="SelectPlayerButtonOnGameViewMode"
-                    Text="Select Player"
-                    Clicked="Button_Clicked"
-                    VerticalOptions="Center"
-                    HorizontalOptions="Center" />
-        </StackLayout>
-        </ContentPage>
+                Text="Game View Mode"
+                FontSize="23"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+
+                <HorizontalStackLayout Padding="20,0,20,0"
+                    HorizontalOptions="Center">
+                    <Label
+                        Text= "Team 1"
+                        x:Name = "GameViewTeam1"
+                        FontSize="23"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="Center" 
+                        Padding="10,10,10,0"/>
+                    <Label
+                        Text="-"
+                        FontSize="50"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center" 
+                        Padding="20,0,20,0"/>
+                    <Label
+                        x:Name= "GameViewTeam2"
+                        Text="Team2"
+                        FontSize="23"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="Center" 
+                        Padding="20,10,20,0"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Padding="20,0,20,0"
+                        HorizontalOptions="Center">
+                    <Label
+                        x:Name= "GameViewTeam1Score"
+                        Text="#"
+                        FontSize="23"
+                        TextColor ="Green"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="Center" 
+                        Padding="20,0,20,0"/>
+                    <Label
+                        Text=" "
+                        
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center" 
+                        Padding="20,0,20,0"/>
+                    <Label
+                        x:Name= "GameViewTeam2Score"
+                        Text="#" 
+                        FontSize="23"
+                        TextColor = "Red"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="Center" 
+                        Padding="20,0,20,0"/>
+
+
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Padding="10,10,10,10"
+                        Margin="15,0,15,0" 
+                        HorizontalOptions="Center"
+                        VerticalOptions = "FillAndExpand"
+                        BackgroundColor = "Gray">
+                    <ScrollView
+                        Padding="60,0,60,0"
+                        Grid.Row="1"
+                        VerticalOptions= "FillAndExpand">
+                        <ListView x:Name= "GameViewTeam1Stats" ></ListView>
+                    </ScrollView>
+                    <ScrollView
+                        Padding= "60,0,60,0"
+                        Grid.Row="1"
+                        VerticalOptions= "FillAndExpand">
+                        <ListView x:Name= "GameViewTeam2Stats" ></ListView>
+                    </ScrollView>
+
+
+                </HorizontalStackLayout>
+
+
+
+            </StackLayout>
+
+        </HorizontalStackLayout>
+
+    </ContentPage>
 
 
     <!-- SCORE KEEPING MODE -->
-        <ContentPage Title="Score Keeping Mode">
+        <ContentPage Title="Score Keeping Mode"
+                     x:Name="ScoreKeeperView">
 
         <VerticalStackLayout Padding="10">
-            <!-- Header -->
-            <Label Text="Score Keeping Mode"
-               FontSize="24"
-               HorizontalOptions="Center"
-               Margin="0,10"/>
+
+            <HorizontalStackLayout Margin="20,0,20,0">
+                <Picker x:Name= "ScoreViewPicker"
+                  HorizontalOptions="Start"
+                  VerticalOptions="Start"
+                  Title="Search by">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Team</x:String>
+                            <x:String>Date</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+                <VerticalStackLayout Padding="20,0,50,0">
+                    <SearchBar x:Name= "ScoreViewSearch"
+                  Placeholder="Search items...       "
+                  HorizontalOptions="Center"
+                  TextChanged="ScoreViewSearch_TextChanged"/>
+                    <ListView x:Name= "ScoreViewSearchResults" 
+                        ItemTapped="ScoreViewSearchResults_ItemTapped"></ListView>
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+
+
 
             <!-- Row 1: 2PT and 3PT -->
                 <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
@@ -281,8 +409,8 @@
         <ContentPage Title="Management">
             <StackLayout>
                 <Label Text="Management"
-                    VerticalOptions="Center"
-                    HorizontalOptions="Center" />
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="CenterAndExpand" />
             
             </StackLayout>
         </ContentPage>

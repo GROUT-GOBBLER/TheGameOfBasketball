@@ -12,20 +12,29 @@ public partial class PlayerSelect : Popup
 {
     private string lastAction;
     private Action<string> onPlayerSelected;
+   // private List<Player> players;
 
 
-    public PlayerSelect(string lastAction, Action<string> onPlayerSelected)
+    public PlayerSelect(string lastAction, Action<string> onPlayerSelected, List<Player> players = null)
     {
         InitializeComponent();
         this.lastAction = lastAction;
         this.onPlayerSelected = onPlayerSelected;
-        
-        
+       // this.players = players;
+
+
         var widthOfScreen = DeviceDisplay.MainDisplayInfo.Width / DeviceDisplay.MainDisplayInfo.Density;
         var heightOfScreen = DeviceDisplay.MainDisplayInfo.Height / DeviceDisplay.MainDisplayInfo.Density;
         Size = new Size(widthOfScreen * 0.5, heightOfScreen * 0.6);
-        
-        LoadPlayers();
+
+        if (players != null)
+        {
+            PopulatePlayerGrid(players);
+        }
+        else
+        {
+            LoadPlayers(); // Fallback to API if no players provided
+        }
     }
 
     private async void LoadPlayers()
@@ -77,7 +86,7 @@ public partial class PlayerSelect : Popup
 
             var button = new Button
             {
-                Text = $"Player {player.PlayerNo}",
+                Text = $"{player.PlayerNo}",
                 WidthRequest = (PlayerGrid.Width / buttonsPerRow) - 3,
                 HeightRequest = 80,
                 FontSize = 22,

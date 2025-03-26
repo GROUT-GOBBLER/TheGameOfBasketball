@@ -17,6 +17,8 @@ namespace basketballUI
         private string selectedPlayer;
         private string lastAction;
         private List<Player> playerList;
+
+
         public MainPage()
         {
             InitializeComponent();
@@ -111,11 +113,9 @@ namespace basketballUI
                                         }
                                     }
                                 }
-
                                 playerStrings.Add($"Player #: " + player.PlayerNo + "  Name: " + player.FName + " " + player.LName + "  |  Steals: " + steals + "  Turnovers: " + turnovers + "  Assists: " + assists + "  Blocks: " + blocks + "  Fouls: " + fouls + "  OffensiveRebounds: " + ofReb + "  DefensiveRebounds: " + dfReb);
                             }
                         }
-
                         else
                         {
                             foreach (Team t in teams)
@@ -162,14 +162,11 @@ namespace basketballUI
                                                     break;
                                             }
                                         }
-
                                     }
                                 }
-
                                 playerStrings.Add($"Team #: " + t.TeamNo + "  Name: " + t.TeamName + "  Abbreviation: " + t.TeamAbbreviation + "  |  Wins/Losses: " + t.Wins + "/" + t.Losses + "  Steals: " + steals + "  Turnovers: " + turnovers + "  Assists: " + assists + "  Blocks: " + blocks + "  Fouls: " + fouls + "  OffensiveRebounds: " + ofReb + "  DefensiveRebounds: " + dfReb);
                             }
                         }
-
                         statsList.ItemsSource = players;
                         playerList = players;
                         // ReloadBtn.Text = $"Number of players in the list: " + playerList.Count;
@@ -191,16 +188,13 @@ namespace basketballUI
 
             var result = await this.ShowPopupAsync(popup);
 
-            
             if (result is string selectedPlayer && !string.IsNullOrEmpty(selectedPlayer))
             {
-                
                 await DisplayAlert("Player Selected", $"You selected: Player {selectedPlayer}", "OK");
                 // await Navigation.PushAsync(new ScoreKeeper());
 
                 if (Application.Current.MainPage is NavigationPage navPage && navPage.CurrentPage is TabbedPage tabbedPage)
                 {
-                    
                     var scoreKeeperPage = tabbedPage.Children.FirstOrDefault(page => page.Title == "Score Keeping Mode");
                     if (scoreKeeperPage != null)
                     {
@@ -231,7 +225,6 @@ namespace basketballUI
                         {
                             //http://localhost:5121/api/Schedules
                             HttpResponseMessage response = await client.GetAsync($"{URL}/{"Schedules"}");
-                            // List<Weather> w = JsonArray.JsonConvert.DeserializeObject<List<Person>>
                             if (response.IsSuccessStatusCode)
                             {
                                 string json = await response.Content.ReadAsStringAsync();
@@ -244,33 +237,21 @@ namespace basketballUI
                                         response = await client.GetAsync($"{URL}/{"Games"}/{s.GameNo}");
                                         json = await response.Content.ReadAsStringAsync();
                                         Game game = JsonConvert.DeserializeObject<Game>(json);
+
                                         response = await client.GetAsync($"{URL}/{"Teams"}/{game.TeamNoOne}");
                                         json = await response.Content.ReadAsStringAsync();
                                         Team team1 = JsonConvert.DeserializeObject<Team>(json);
+
                                         response = await client.GetAsync($"{URL}/{"Teams"}/{game.TeamNoTwo}");
                                         json = await response.Content.ReadAsStringAsync();
                                         Team team2 = JsonConvert.DeserializeObject<Team>(json);
+
                                         GameViewSearchResult g = new GameViewSearchResult(game, s, team1, team2);
                                         gvsr.Add(g);
                                         results.Add(g.ToString);
 
-
-
                                     }
-
                                 }
-
-
-
-
-
-
-
-
-
-
-
-
                             }
                         }
                         catch (Exception ex)
@@ -293,8 +274,6 @@ namespace basketballUI
                                 if (response.IsSuccessStatusCode)
                                 {
 
-
-
                                     string json = await response.Content.ReadAsStringAsync();
                                     List<Game> games = JsonConvert.DeserializeObject<List<Game>>(json);
                                     foreach (Game game in games)
@@ -303,10 +282,13 @@ namespace basketballUI
 
                                         json = await response.Content.ReadAsStringAsync();
                                         Team team1 = JsonConvert.DeserializeObject<Team>(json);
+
+
                                         response = await client.GetAsync($"{URL}/{"Teams"}/{game.TeamNoTwo}");
 
                                         json = await response.Content.ReadAsStringAsync();
                                         Team team2 = JsonConvert.DeserializeObject<Team>(json);
+
                                         if (team1.TeamName.ToLower().Contains(GameViewSearch.Text.ToLower()) || team2.TeamName.ToLower().Contains(GameViewSearch.Text.ToLower()))
                                         {
 
@@ -323,34 +305,9 @@ namespace basketballUI
                                                     results.Add(g.ToString);
 
                                                 }
-
-
                                             }
-
                                         }
-
                                     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                 }
                             }
                             catch (Exception ex)
@@ -367,10 +324,7 @@ namespace basketballUI
                         GameViewSearchResults.ItemsSource = results;
                         return;
                     }
-
                 }
-
-
             }
             else
             {
@@ -382,7 +336,6 @@ namespace basketballUI
         }
 
 
-
         GameViewSearchResult selectedGameSearchResult = null;
         async private void RefreshGameViewStats()
         {
@@ -392,6 +345,7 @@ namespace basketballUI
                 List<String> result2 = new List<String>();
                 GameViewTeam1Stats.ClearLogicalChildren();
                 GameViewTeam2Stats.ClearLogicalChildren();
+
                 if (selectedGameSearchResult == null)
                 {
                     GameViewTeam1.Text = "?";
@@ -400,6 +354,7 @@ namespace basketballUI
                 }
                 GameViewTeam1.Text = selectedGameSearchResult.GetTeam1().TeamName;
                 GameViewTeam2.Text = selectedGameSearchResult.GetTeam2().TeamName;
+
                 GameViewTeam1Score.Text = selectedGameSearchResult.GetGame().ScoreOne.ToString();
                 GameViewTeam2Score.Text = selectedGameSearchResult.GetGame().ScoreTwo.ToString();
 
@@ -415,9 +370,11 @@ namespace basketballUI
                         response = await client.GetAsync($"{URL}/{"TeamPlayers"}/{s.PlayerTeamId}");
                         json = await response.Content.ReadAsStringAsync();
                         TeamPlayer tp = JsonConvert.DeserializeObject<TeamPlayer>(json);
+
                         response = await client.GetAsync($"{URL}/{"Players"}/{tp.PlayerId}");
                         json = await response.Content.ReadAsStringAsync();
                         Player p = JsonConvert.DeserializeObject<Player>(json);
+
                         response = await client.GetAsync($"{URL}/{"StatsTypes"}/{s.StatTypeId}");
                         json = await response.Content.ReadAsStringAsync();
                         StatsType st = JsonConvert.DeserializeObject<StatsType>(json);
@@ -426,27 +383,17 @@ namespace basketballUI
 
                         if (tp.TeamId == selectedGameSearchResult.GetTeam1().TeamNo)
                         {
-
                             result1.Add(output);
-
-
                         }
                         if (tp.TeamId == selectedGameSearchResult.GetTeam2().TeamNo)
                         {
-
                             result2.Add(output);
-
                         }
-
-
-
                     }
                 }
 
                 GameViewTeam1Stats.ItemsSource = result1;
                 GameViewTeam2Stats.ItemsSource = result2;
-
-
 
             }
         }
@@ -459,7 +406,6 @@ namespace basketballUI
             selectedGameSearchResult = gvsr[i];
             RefreshGameViewStats();
 
-
         }
 
         private void GameViewReload_Clicked(object sender, EventArgs e)
@@ -469,6 +415,226 @@ namespace basketballUI
 
 
 
+
+
+
+
+
+        private List<GameViewSearchResult> gvsrscore = new List<GameViewSearchResult>();
+        async private void ScoreViewSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            gvsrscore.Clear();
+            SearchBar searchBar = (SearchBar)sender;
+            List<string> results = new List<string>();
+
+            ScoreViewSearchResults.ClearLogicalChildren();
+            int selectedIndex = ScoreViewPicker.SelectedIndex;
+
+            if (selectedIndex != -1)
+            {
+                if (ScoreViewPicker.ItemsSource[selectedIndex].Equals("Date"))
+                {
+                    using (HttpClient client = new HttpClient())
+                    {
+                        try
+                        {
+                            //http://localhost:5121/api/Schedules
+                            HttpResponseMessage response = await client.GetAsync($"{URL}/{"Schedules"}");
+                            if (response.IsSuccessStatusCode)
+                            {
+                                string json = await response.Content.ReadAsStringAsync();
+                                List<Schedule> schedule = JsonConvert.DeserializeObject<List<Schedule>>(json);
+
+                                foreach (Schedule s in schedule)
+                                {
+                                    if (s.GameDate.Contains(ScoreViewSearch.Text))
+                                    {
+                                        response = await client.GetAsync($"{URL}/{"Games"}/{s.GameNo}");
+                                        json = await response.Content.ReadAsStringAsync();
+                                        Game game = JsonConvert.DeserializeObject<Game>(json);
+
+                                        response = await client.GetAsync($"{URL}/{"Teams"}/{game.TeamNoOne}");
+                                        json = await response.Content.ReadAsStringAsync();
+                                        Team team1 = JsonConvert.DeserializeObject<Team>(json);
+
+                                        response = await client.GetAsync($"{URL}/{"Teams"}/{game.TeamNoTwo}");
+                                        json = await response.Content.ReadAsStringAsync();
+                                        Team team2 = JsonConvert.DeserializeObject<Team>(json);
+
+                                        GameViewSearchResult g = new GameViewSearchResult(game, s, team1, team2);
+                                        gvsrscore.Add(g);
+                                        results.Add(g.ToString);
+
+                                    }
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            results.Add(" " + ex);
+                            ScoreViewSearchResults.ItemsSource = results;
+                            return;
+                        }
+                    }
+                }
+                else if (ScoreViewPicker.ItemsSource[selectedIndex].Equals("Team"))
+                {
+                    try
+                    {
+                        using (HttpClient client = new HttpClient())
+                        {
+                            try
+                            {
+                                HttpResponseMessage response = await client.GetAsync($"{URL}/{"games"}");
+                                if (response.IsSuccessStatusCode)
+                                {
+
+                                    string json = await response.Content.ReadAsStringAsync();
+                                    List<Game> games = JsonConvert.DeserializeObject<List<Game>>(json);
+                                    foreach (Game game in games)
+                                    {
+                                        response = await client.GetAsync($"{URL}/{"Teams"}/{game.TeamNoOne}");
+
+                                        json = await response.Content.ReadAsStringAsync();
+                                        Team team1 = JsonConvert.DeserializeObject<Team>(json);
+
+
+                                        response = await client.GetAsync($"{URL}/{"Teams"}/{game.TeamNoTwo}");
+
+                                        json = await response.Content.ReadAsStringAsync();
+                                        Team team2 = JsonConvert.DeserializeObject<Team>(json);
+
+                                        if (team1.TeamName.ToLower().Contains(ScoreViewSearch.Text.ToLower()) || team2.TeamName.ToLower().Contains(ScoreViewSearch.Text.ToLower()))
+                                        {
+
+                                            response = await client.GetAsync($"{URL}/{"Schedules"}");
+
+                                            json = await response.Content.ReadAsStringAsync();
+                                            List<Schedule> schedules = JsonConvert.DeserializeObject<List<Schedule>>(json);
+                                            foreach (Schedule schedule in schedules)
+                                            {
+                                                if (schedule.GameNo == game.GameNo)
+                                                {
+                                                    GameViewSearchResult g = new GameViewSearchResult(game, schedule, team1, team2);
+                                                    gvsrscore.Add(g);
+                                                    results.Add(g.ToString);
+
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                results.Add(" " + ex);
+                                ScoreViewSearchResults.ItemsSource = results;
+                                return;
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        results.Add(" " + ex);
+                        ScoreViewSearchResults.ItemsSource = results;
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                results.Add("Please select a search type");
+                ScoreViewSearchResults.ItemsSource = results;
+                return;
+            }
+            ScoreViewSearchResults.ItemsSource = results;
+        }
+
+
+        GameViewSearchResult selectedScoreGameSearchResult = null;
+        private async void ScoreViewSearchResults_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            GameViewTeam1.Text = "?";
+            GameViewTeam2.Text = "?";
+            int i = e.ItemIndex;
+            selectedScoreGameSearchResult = gvsrscore[i];
+            //  RefreshGameViewStats();
+
+            string API_URL = "http://localhost:5121/api/TeamPlayers";
+            string API_URL2 = "http://localhost:5121/api/Players";
+
+            playerList = new List<Player>{};
+           
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    HttpResponseMessage response = await client.GetAsync(API_URL);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string json = await response.Content.ReadAsStringAsync();
+                        List<TeamPlayer> teamPlayers = JsonConvert.DeserializeObject<List<TeamPlayer>>(json);
+
+                        if (teamPlayers != null)
+                        {
+                            for (int index = 0; index < teamPlayers.Count; index++)
+                            {
+                                if (teamPlayers[index].TeamId == selectedScoreGameSearchResult.GetTeam1().TeamNo
+                                    || teamPlayers[index].TeamId == selectedScoreGameSearchResult.GetTeam2().TeamNo)
+                                {
+
+                                    //  List<Player> playersToAddToList = new List<Player> { };
+                                    try
+                                    {
+                                        HttpResponseMessage response2 = await client.GetAsync($"{URL}/{"Players"}");
+                                        if (response2.IsSuccessStatusCode)
+                                        {
+                                            string json2 = await response2.Content.ReadAsStringAsync();
+                                            List<Player> t22eamPlayers= JsonConvert.DeserializeObject<List<Player>>(json2);
+                                           
+
+                                            foreach (Player player in t22eamPlayers)
+                                            {
+                                                response2 = await client.GetAsync($"{URL}/{"Players"}/{player.PlayerNo}");
+
+                                                string json3 = await response2.Content.ReadAsStringAsync();
+                                                playerList.Add(JsonConvert.DeserializeObject<Player>(json3));
+
+                                            }
+
+  
+                                        }
+
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        await DisplayAlert("Error", "Cannot Connect to API!!!", "OK");
+                                    }
+                                }
+                            }
+
+
+                        }
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    await DisplayAlert("Error", "Cannot Connect to API!!!", "OK");
+                }
+            }
+
+
+
+            var popup = new PlayerSelect("Select Player", selectedPlayer =>
+            {
+                this.selectedPlayer = selectedPlayer;
+            }, playerList);
+
+            await this.ShowPopupAsync(popup);
+
+
+        }
 
 
         private async void GoToScoreKeeper_Clicked(object sender, EventArgs e)
@@ -512,19 +678,16 @@ namespace basketballUI
         {
             if (playerList != null)
             {
-                // Show the PlayerSelect popup
+              
                 var popup = new PlayerSelect("Free Throw", selectedPlayer =>
                 {
                     this.selectedPlayer = selectedPlayer;
                 });
 
-                // Show the popup and wait for a result (the selected player)
                 var result = await this.ShowPopupAsync(popup);
 
-                // If a player was selected (result will be the selected player's number)
                 if (result is string selectedPlayer && !string.IsNullOrEmpty(selectedPlayer))
                 {
-                    // Navigate to the FreeThrow page
                     await Navigation.PushAsync(new FreeThrow(selectedPlayer));
                 }
             }
