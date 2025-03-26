@@ -183,7 +183,7 @@ public partial class PlayerManagement : ContentPage
                         int PlayerTeamIdValue = tp.Id;
                         HttpResponseMessage response3 = await client.DeleteAsync($"{API_URL_2}/{PlayerTeamIdValue}");
                     }
-
+                    
                     HttpResponseMessage response4 = await client.DeleteAsync($"{API_URL}/{PlayerIdValue}");
 
                     if (response4.IsSuccessStatusCode)
