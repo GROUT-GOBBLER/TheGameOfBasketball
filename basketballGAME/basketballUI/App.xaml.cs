@@ -9,8 +9,6 @@ namespace basketballUI
             InitializeComponent();
 
             MainPage = new NavigationPage(new MainPage());
-           
-            
         }
     }
 }
