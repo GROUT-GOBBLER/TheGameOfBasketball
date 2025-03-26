@@ -7,18 +7,20 @@
     <ContentPage Title="Stat Mode">
         <AbsoluteLayout>
             <Label
-            Text="Player           Team"
-            FontSize="23"
-            VerticalOptions="Center"
-            HorizontalOptions="Center"
-            Margin="23,3,0,0" />
+                Text="Player           Team"
+                FontSize="23"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="23,3,0,0" />
+            
             <Switch x:Name="modeSwitch"
-            IsToggled="False"
-            Margin="100,0,0,0"/>
+                IsToggled="False"
+                Margin="100,0,0,0"/>
 
             <SearchBar x:Name="Searching"
-            SearchButtonPressed="Reload_Clicked"
-            Margin="700,0,0,0"/>
+                SearchButtonPressed="Reload_Clicked"
+                CancelButtonColor="Red"
+                Margin="700,0,0,0"/>
 
             <ListView x:Name="statsList" Margin="50,50,0,0">
                 <ListView.ItemsSource>
