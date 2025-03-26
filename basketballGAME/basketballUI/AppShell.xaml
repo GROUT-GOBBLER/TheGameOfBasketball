@@ -7,27 +7,9 @@
     Shell.FlyoutBehavior="Disabled"
     Title="basketballUI">
 
-
-    
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
-
-
-    <ShellContent
-        Title="Score Keeping Mode"
-        ContentTemplate="{DataTemplate local:ScoreKeeper}"
-        Route="ScoreKeeper" />
-
-    <ShellContent
-        Title="Player Select"
-        ContentTemplate="{DataTemplate local:PlayerSelect}"
-        Route="PlayerSelect" />
-
-    <ShellContent
-        Title="Free Throw"
-        ContentTemplate="{DataTemplate local:FreeThrow}"
-        Route="FreeThrow" />
 
 </Shell>
