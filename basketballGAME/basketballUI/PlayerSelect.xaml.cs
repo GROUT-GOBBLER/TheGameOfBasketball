@@ -20,8 +20,6 @@ public partial class PlayerSelect : Popup
         InitializeComponent();
         this.lastAction = lastAction;
         this.onPlayerSelected = onPlayerSelected;
-       // this.players = players;
-
 
         var widthOfScreen = DeviceDisplay.MainDisplayInfo.Width / DeviceDisplay.MainDisplayInfo.Density;
         var heightOfScreen = DeviceDisplay.MainDisplayInfo.Height / DeviceDisplay.MainDisplayInfo.Density;
@@ -86,8 +84,8 @@ public partial class PlayerSelect : Popup
 
             var button = new Button
             {
-                Text = $"Player {player.PlayerNo}",
-                WidthRequest = 200,
+                Text = $"Player {player.FName}",
+                WidthRequest = 180,
                 HeightRequest = 100,
                 FontSize = 22,
                 Margin = 0,
@@ -107,15 +105,8 @@ public partial class PlayerSelect : Popup
                 {
                     Close(selectedPlayer);
                 }
-                /*
-                else if (!string.IsNullOrEmpty(_lastAction))
-                {
-                    Close(selectedPlayer);
-                }
-                */
                 else
                 {
-                   
                     Close(selectedPlayer);
                 }
                 

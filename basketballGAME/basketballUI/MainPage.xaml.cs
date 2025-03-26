@@ -184,7 +184,7 @@ namespace basketballUI
             var popup = new PlayerSelect("Select Player", selectedPlayer =>
             {
 
-            });
+            }, SavedList.CurrentPlayerList);
 
             var result = await this.ShowPopupAsync(popup);
 
@@ -631,6 +631,16 @@ namespace basketballUI
                 }
             }
 
+            SavedList.CurrentPlayerList = playerList;
+
+            // Update the ScoreKeeper tab with the new playerList
+            var scoreKeeperPage = Children.FirstOrDefault(page => page is ScoreKeeper) as ScoreKeeper;
+            if (scoreKeeperPage != null)
+            {
+                scoreKeeperPage.UpdatePlayerList(playerList);
+            }
+
+
             var popup = new PlayerSelect("Select Player", selectedPlayer =>
             {
                 this.selectedPlayer = selectedPlayer;
@@ -638,7 +648,7 @@ namespace basketballUI
                 {
                     DisplayAlert("Action Recorded", $"{this.selectedPlayer} performed: {this.lastAction}", "OK");
                 }
-            }, playerList);
+            }, SavedList.CurrentPlayerList);
 
             await this.ShowPopupAsync(popup);
 
@@ -687,7 +697,7 @@ namespace basketballUI
                     {
                         DisplayAlert("Action Recorded", $"{this.selectedPlayer} performed: {this.lastAction}", "OK");
                     }
-                });
+                }, SavedList.CurrentPlayerList);
 
                 await this.ShowPopupAsync(popup);
             }
@@ -705,7 +715,7 @@ namespace basketballUI
                 var popup = new PlayerSelect("Free Throw", selectedPlayer =>
                 {
                     this.selectedPlayer = selectedPlayer;
-                });
+                }, SavedList.CurrentPlayerList);
 
                 var result = await this.ShowPopupAsync(popup);
 
