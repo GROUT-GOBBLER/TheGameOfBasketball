@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="basketballUI.PlayerManagement"
              Title="PlayerManagement">
-    <HorizontalStackLayout> 
+    <HorizontalStackLayout>
         <VerticalStackLayout Margin="10,10,10,10">
             <Label
                 Text="CREATE A PLAYER"
@@ -11,7 +11,7 @@
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
                 Padding="0" />
-            
+
             <HorizontalStackLayout 
                 Margin="0" 
                 Padding="0" 
@@ -55,28 +55,6 @@
                     Margin="0" />
             </HorizontalStackLayout>
 
-            <HorizontalStackLayout 
-                Margin="0" 
-                Padding="0" 
-                VerticalOptions="Center"
-                HorizontalOptions="Center" >
-                <Label 
-                    Text="(Optional) Enter player team: "
-                    FontSize="15"
-                    VerticalOptions="Center" 
-                    HorizontalOptions="Center"
-                    Margin="20"/>
-
-                <Entry 
-                    x:Name="PlayerTeamEntry"
-                    Placeholder="Player team."
-                    TextChanged="PlayerTeamEntry_TextChanged"
-                    ClearButtonVisibility="WhileEditing"
-                    VerticalOptions="Center"
-                    HorizontalOptions="Center"
-                    Margin="0" />
-            </HorizontalStackLayout>
-
             <Button
                 x:Name="CreatePlayerButton"
                 Text="Create Player."
@@ -114,8 +92,8 @@
                     VerticalOptions="Center"            
                     HorizontalOptions="Center"               
                     Margin="0" />
-            </HorizontalStackLayout>            
-            
+            </HorizontalStackLayout>
+
             <HorizontalStackLayout 
                 Margin="0" 
                 Padding="0" 
@@ -154,28 +132,6 @@
                     x:Name="PlayerLastNameEDIT"
                     Placeholder="Last name."
                     TextChanged="PlayerLastNameEntry_TextChanged"
-                    ClearButtonVisibility="WhileEditing"
-                    VerticalOptions="Center"            
-                    HorizontalOptions="Center"               
-                    Margin="0" />
-            </HorizontalStackLayout>
-
-            <HorizontalStackLayout 
-                Margin="0" 
-                Padding="0" 
-                VerticalOptions="Center"
-                HorizontalOptions="Center" >
-                <Label 
-                    Text="Edit team: "
-                    FontSize="15"
-                    VerticalOptions="Center" 
-                    HorizontalOptions="Center"
-                    Margin="20"/>
-
-                <Entry 
-                    x:Name="PlayerTeamEDIT"
-                    Placeholder="Player team."
-                    TextChanged="PlayerTeamEntry_TextChanged"
                     ClearButtonVisibility="WhileEditing"
                     VerticalOptions="Center"            
                     HorizontalOptions="Center"               
@@ -230,10 +186,9 @@
                 HorizontalOptions="Center"
                 Margin="20" />
         </VerticalStackLayout>
-
         <VerticalStackLayout Margin="10,10,10,10">
             <Label
-                Text="VIEW A PLAYER"
+                Text="VIEW A PLAYER" 
                 FontSize="20"
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
@@ -252,7 +207,7 @@
                     Margin="20"/>
 
                 <Entry 
-                    x:Name="PlayerIDView"
+                    x:Name="PlayerVIEWview"
                     Placeholder="Player ID."
                     TextChanged="PlayerIDEdit_TextChanged"
                     ClearButtonVisibility="WhileEditing"
