@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 namespace basketballUI.models
 {
     internal class GameViewSearchResult
-    {
-
-        Game game { get; set; }
+    {        
+        Game game{ get; set; }
         Schedule schedule { get; set; }
-        Team team1 { get; set; }
+        Team team1 {  get; set; }
         Team team2 { get; set; }
         public GameViewSearchResult(Game game, Schedule schedule, Team team1, Team team2)
         {
@@ -25,7 +24,6 @@ namespace basketballUI.models
         {
             get
             {
-
                 return team1.TeamName + " vs " + team2.TeamName + " at " + schedule.GameDate;
             }
         }

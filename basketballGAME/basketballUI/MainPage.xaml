@@ -2,35 +2,36 @@
 <TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="basketballUI.MainPage">
+  
+    <!-- STAT MODE -->
+    <ContentPage Title="Stat Mode">
+        <AbsoluteLayout>
+            <Label
+                Text="Player           Team"
+                FontSize="23"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="23,3,0,0" />
+            
+            <Switch x:Name="modeSwitch"
+                IsToggled="False"
+                Margin="100,0,0,0"/>
 
-        <!-- STAT MODE -->
-        <ContentPage Title="Stat Mode">
-            <AbsoluteLayout>
-                <Label
-                    Text="Player           Team"
-                    FontSize="23"
-                    VerticalOptions="Center"
-                    HorizontalOptions="Center"
-                    Margin="23,3,0,0" />
-                <Switch x:Name="modeSwitch"
-                    IsToggled="False"
-                    Margin="100,0,0,0"/>
+            <SearchBar x:Name="Searching"
+                SearchButtonPressed="Reload_Clicked"
+                CancelButtonColor="Red"
+                Margin="700,0,0,0"/>
 
-                <SearchBar x:Name="Searching"
-                    SearchButtonPressed="Reload_Clicked"
-                    Margin="700,0,0,0"/>
-
-            <!-- Needs to be changed to the player name & team -->
-                <ListView x:Name="statsList" Margin="50,50,0,0">
-                    <ListView.ItemsSource>
-                        <x:Array Type="{x:Type x:String}">
-                            <x:String>Press the search button</x:String>
-                            <x:String>Press the search button</x:String>
-                        </x:Array>
-                    </ListView.ItemsSource>
-                </ListView>
-            </AbsoluteLayout>
-        </ContentPage>
+            <ListView x:Name="statsList" Margin="50,50,0,0">
+                <ListView.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Press the search button</x:String>
+                        <x:String>Press the search button</x:String>
+                    </x:Array>
+                </ListView.ItemsSource>
+            </ListView>
+        </AbsoluteLayout>
+    </ContentPage>
 
     <!-- GAME VIEW MODE -->
     <ContentPage Title="Game View Mode"
@@ -159,7 +160,6 @@
             </StackLayout>
 
         </HorizontalStackLayout>
-
     </ContentPage>
 
 
