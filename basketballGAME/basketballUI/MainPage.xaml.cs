@@ -85,31 +85,37 @@ namespace basketballUI
                                         switch (s.StatTypeId)
                                         {
                                             case 5:
-                                                steals = (int)s.StatValue;
+                                                steals += (int)s.StatValue;
                                                 break;
                                             case 6:
-                                                turnovers = (int)s.StatValue;
+                                                turnovers += (int)s.StatValue;
                                                 break;
                                             case 7:
-                                                assists = (int)s.StatValue;
+                                                assists += (int)s.StatValue;
                                                 break;
                                             case 8:
-                                                blocks = (int)s.StatValue;
+                                                blocks += (int)s.StatValue;
                                                 break;
                                             case 9:
-                                                fouls = (int)s.StatValue;
+                                                fouls += (int)s.StatValue;
                                                 break;
                                             case 10:
-                                                ofReb = (int)s.StatValue;
+                                                ofReb += (int)s.StatValue;
                                                 break;
                                             case 11:
-                                                dfReb = (int)s.StatValue;
+                                                dfReb += (int)s.StatValue;
                                                 break;
                                         }
                                     }
                                 }
+                                if (player.FName.ToUpper() != "NULL" && player.FName != null && player.LName.ToUpper() != "NULL" && player.LName != null)
+                                {
+                                    String[] query = Searching.Text.ToLower().Split(" ");
 
-                                playerStrings.Add($"Player #: " + player.PlayerNo + "  Name: " + player.FName + " " + player.LName + "  |  Steals: " + steals + "  Turnovers: " + turnovers + "  Assists: " + assists + "  Blocks: " + blocks + "  Fouls: " + fouls + "  OffensiveRebounds: " + ofReb + "  DefensiveRebounds: " + dfReb);
+                                    if (query.Length == 1 && query[0] != " " && (player.FName.ToLower() == query[0] || player.LName.ToLower() == query[0])) playerStrings.Add($"Player #: " + player.PlayerNo + "  Name: " + player.FName + " " + player.LName + "  |  Steals: " + steals + "  Turnovers: " + turnovers + "  Assists: " + assists + "  Blocks: " + blocks + "  Fouls: " + fouls + "  OffensiveRebounds: " + ofReb + "  DefensiveRebounds: " + dfReb);
+                                    else if (query.Length == 2 && query[0] != " " && (player.FName.ToLower() == query[0] && player.LName.ToLower() == query[1])) playerStrings.Add($"Player #: " + player.PlayerNo + "  Name: " + player.FName + " " + player.LName + "  |  Steals: " + steals + "  Turnovers: " + turnovers + "  Assists: " + assists + "  Blocks: " + blocks + "  Fouls: " + fouls + "  OffensiveRebounds: " + ofReb + "  DefensiveRebounds: " + dfReb);
+                                    else if (Searching.Text.Length == 0) playerStrings.Add($"Player #: " + player.PlayerNo + "  Name: " + player.FName + " " + player.LName + "  |  Steals: " + steals + "  Turnovers: " + turnovers + "  Assists: " + assists + "  Blocks: " + blocks + "  Fouls: " + fouls + "  OffensiveRebounds: " + ofReb + "  DefensiveRebounds: " + dfReb);
+                                }
                             }
                         }
 
@@ -163,7 +169,11 @@ namespace basketballUI
                                     }
                                 }
 
-                                playerStrings.Add($"Team #: " + t.TeamNo + "  Name: " + t.TeamName + "  Abbreviation: " + t.TeamAbbreviation + "  |  Wins/Losses: " + t.Wins + "/" + t.Losses + "  Steals: " + steals + "  Turnovers: " + turnovers + "  Assists: " + assists + "  Blocks: " + blocks + "  Fouls: " + fouls + "  OffensiveRebounds: " + ofReb + "  DefensiveRebounds: " + dfReb);
+                                if (t.TeamName.ToUpper() != "NULL" && t.TeamName != null)
+                                {
+                                    if (Searching.Text.Length == 0) playerStrings.Add($"Team #: " + t.TeamNo + "  Name: " + t.TeamName + "  Abbreviation: " + t.TeamAbbreviation + "  |  Wins/Losses: " + t.Wins + "/" + t.Losses + "  Steals: " + steals + "  Turnovers: " + turnovers + "  Assists: " + assists + "  Blocks: " + blocks + "  Fouls: " + fouls + "  OffensiveRebounds: " + ofReb + "  DefensiveRebounds: " + dfReb);
+                                    else if (t.TeamName.ToLower().Contains(Searching.Text.ToLower())) playerStrings.Add($"Team #: " + t.TeamNo + "  Name: " + t.TeamName + "  Abbreviation: " + t.TeamAbbreviation + "  |  Wins/Losses: " + t.Wins + "/" + t.Losses + "  Steals: " + steals + "  Turnovers: " + turnovers + "  Assists: " + assists + "  Blocks: " + blocks + "  Fouls: " + fouls + "  OffensiveRebounds: " + ofReb + "  DefensiveRebounds: " + dfReb);
+                                }
                             }
                         }
 
@@ -172,7 +182,7 @@ namespace basketballUI
                 }
                 catch (Exception ex)
                 {
-                    Seaching.Text = $"Clicked and failed";
+                    Searching.Text = $"Clicked and failed";
                 }
             }
         }
