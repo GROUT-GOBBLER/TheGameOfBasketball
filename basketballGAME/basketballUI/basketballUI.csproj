@@ -69,17 +69,30 @@
 	<ItemGroup>
 	  <Compile Update="FreeThrow.xaml.cs">
 	    <DependentUpon>FreeThrow.xaml</DependentUpon>
+	  <Compile Update="Player-Team_Management.xaml.cs">
+	    <DependentUpon>Player-Team_Management.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="TeamManagement.xaml.cs">
+	    <DependentUpon>TeamManagement.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
 	  <MauiXaml Update="FreeThrow.xaml">
+	  <MauiXaml Update="Player-Team_Management.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="PlayerManagement.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="PlayerSelect.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="ScoreKeeper.xaml">
+	  <MauiXaml Update="ScheduleManagement.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="TeamManagement.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

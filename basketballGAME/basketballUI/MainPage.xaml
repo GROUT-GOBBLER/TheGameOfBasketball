@@ -403,17 +403,49 @@
 
 
     </ContentPage>
+  
+    <ContentPage Title="Management">
+        <StackLayout Padding="20,20,20,20" Margin="10">
+            <VerticalStackLayout Spacing="10" VerticalOptions="Start">
+                <Label 
+                Text="Management"
+                FontSize="100"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" 
+                Margin="20" />
 
+                <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                    <Button 
+                        x:Name="PManageButton"
+                        FontSize="25"
+                        Text="Player Management"
+                        SemanticProperties.Hint="Create, update, delete, or read a player."
+                        Clicked="Player_Management_Button_Clicked"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        Margin="20" />
 
-    <!-- MANAGEMENT -->
-        <ContentPage Title="Management">
-            <StackLayout>
-                <Label Text="Management"
-                    VerticalOptions="CenterAndExpand"
-                    HorizontalOptions="CenterAndExpand" />
-            
-            </StackLayout>
-        </ContentPage>
-
-    </TabbedPage>
-
+                    <Button 
+                        x:Name="TManageButton"
+                        FontSize="25"
+                        Text="Team Management"
+                        SemanticProperties.Hint="Create, update, delete, or read a team."
+                        Clicked="Team_Management_Button_Clicked"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        Margin="20" />
+                </HorizontalStackLayout>
+                    
+                <Button
+                    x:Name="SManageButton"
+                    FontSize="50"
+                    Text="Schedule Management"
+                    SemanticProperties.Hint="Create games and manage a schedule."
+                    Clicked="Schedule_Management_Button_Clicked"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    Margin="20" />
+                
+            </VerticalStackLayout>
+        </StackLayout>
+    </ContentPage>

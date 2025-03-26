@@ -17,7 +17,7 @@ public partial class Game
 
     public virtual ICollection<Stat> Stats { get; set; } = new List<Stat>();
 
-    public virtual Team TeamNoOneNavigation { get; set; } = null!;
+    public virtual Team? TeamNoOneNavigation { get; set; }
 
-    public virtual Team TeamNoTwoNavigation { get; set; } = null!;
+    public virtual Team? TeamNoTwoNavigation { get; set; }
 }
