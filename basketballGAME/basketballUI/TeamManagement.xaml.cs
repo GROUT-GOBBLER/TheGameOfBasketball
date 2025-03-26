@@ -150,47 +150,21 @@ public partial class TeamManagement : ContentPage
     async private void DeleteTeamButton_Clicked(object sender, EventArgs e)
     {
         string API_URL = "http://localhost:5121/api/Teams";
-        string API_URL_TEAMPLAYERS = "http://localhost:5121/api/TeamPlayers/";
 
         using (HttpClient client = new HttpClient())
         {
             try
             {
-                if (string.IsNullOrEmpty(teamID) || !int.TryParse(teamID, out int teamNo))
-                {
-                    DeleteTeamButton.Text = "Invalid Team ID.";
-                    return;
-                }
+                HttpResponseMessage response3 = await client.DeleteAsync($"{API_URL}/{TeamIDDelete.Text}");
 
-                HttpResponseMessage teamPlayersResponse = await client.GetAsync(API_URL_TEAMPLAYERS);
-                if (teamPlayersResponse.IsSuccessStatusCode)
+                if (response3.IsSuccessStatusCode)
                 {
-                    string json = await teamPlayersResponse.Content.ReadAsStringAsync();
-                    List<TeamPlayer> teamPlayers = JsonConvert.DeserializeObject<List<TeamPlayer>>(json);
-
-                    foreach (var teamPlayer in teamPlayers)
-                    {
-                        if (teamPlayer.TeamId == teamNo)
-                        {
-                            await client.DeleteAsync($"{API_URL_TEAMPLAYERS}{teamPlayer.Id}");
-                        }
-                    }
-                }
-
-                HttpResponseMessage deleteResponse = await client.DeleteAsync($"{API_URL}/{teamNo}");
-
-                if (deleteResponse.IsSuccessStatusCode)
-                {
-                    DeleteTeamButton.Text = "Team deleted successfully.";
-                }
-                else
-                {
-                    DeleteTeamButton.Text = $"Failed to delete team: {deleteResponse.StatusCode}";
+                    DeleteTeamButton.Text = "Deleted";
                 }
             }
             catch (Exception ex)
             {
-                DeleteTeamButton.Text = $"Error: {ex.Message}";
+                DeleteTeamButton.Text = $"Clicked and failed " + ex;
             }
         }
 
