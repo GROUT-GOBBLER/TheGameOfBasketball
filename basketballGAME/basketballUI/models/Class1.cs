@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 namespace basketballUI.models
 {
     internal class GameViewSearchResult
-    {
-        
+    {        
         Game game{ get; set; }
         Schedule schedule { get; set; }
         Team team1 {  get; set; }
@@ -25,8 +24,7 @@ namespace basketballUI.models
         {
             get
             {
-
-                return team1.TeamName + " vs " + team2.TeamName + " at " + schedule.GameTime;
+                return team1.TeamName + " vs " + team2.TeamName + " at " + schedule.GameDate;
             }
         }
         public virtual Game? GetGame()
