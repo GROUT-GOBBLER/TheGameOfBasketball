@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using basketballAPI.models;
 
-namespace basketballAPI.controllers
+namespace basketballAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
