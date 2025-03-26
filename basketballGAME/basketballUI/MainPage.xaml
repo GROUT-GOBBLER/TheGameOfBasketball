@@ -46,7 +46,8 @@
                     Text="Game View Mode"
                     VerticalOptions="Center"
                     HorizontalOptions="Center" />
-            <Button Text="Select Player"
+            <Button x:Name="SelectPlayerButtonOnGameViewMode"
+                    Text="Select Player"
                     Clicked="Button_Clicked"
                     VerticalOptions="Center"
                     HorizontalOptions="Center" />
@@ -77,6 +78,9 @@
                             HeightRequest="100"
                             CornerRadius="20"
                             LineBreakMode="WordWrap"
+                            BorderWidth="3"
+                            BorderColor="Black"
+                            BackgroundColor="Green"
                             Margin="5"/>
 
                         <!-- TWO POINTER MISSED -->
@@ -89,6 +93,9 @@
                           HeightRequest="100"
                           CornerRadius="20"
                           LineBreakMode="WordWrap"
+                          BorderWidth="3"
+                          BorderColor="Black"
+                          BackgroundColor="Red"
                           Margin="5"/>
 
                     </VerticalStackLayout>
@@ -104,6 +111,9 @@
                             HeightRequest="100"
                             CornerRadius="20"
                             LineBreakMode="WordWrap"
+                            BorderWidth="3"
+                            BorderColor="Black"
+                            BackgroundColor="Green"
                             Margin="5"/>
 
                         <!-- THREE POINTER MISSED -->
@@ -116,6 +126,9 @@
                             HeightRequest="100"
                             CornerRadius="20"
                             LineBreakMode="WordWrap"
+                            BorderWidth="3"
+                            BorderColor="Black"
+                            BackgroundColor="Red"
                             Margin="5"/>
                     </VerticalStackLayout>
                     
@@ -132,6 +145,9 @@
                                 HeightRequest="62.5"
                                 CornerRadius="0"
                                 LineBreakMode="WordWrap"
+                                BorderWidth="3"
+                                BorderColor="Black"
+                                BackgroundColor="Gray"
                                 Margin="5"/>
 
                             <!-- DEFENSIVE REBOUND -->
@@ -144,6 +160,9 @@
                                 HeightRequest="62.5"
                                 CornerRadius="0"
                                 LineBreakMode="WordWrap"
+                                BorderWidth="3"
+                                BorderColor="Black"
+                                BackgroundColor="Gray"
                                 Margin="5"/>
                         </HorizontalStackLayout>
                         
@@ -158,6 +177,9 @@
                                 HeightRequest="62.5"
                                 CornerRadius="0"
                                 LineBreakMode="WordWrap"
+                                BorderWidth="3"
+                                BorderColor="Black"
+                                BackgroundColor="Gray"
                                 Margin="5"/>
 
                             <!-- TURNOVER -->
@@ -170,6 +192,9 @@
                                 HeightRequest="62.5"
                                 CornerRadius="0"
                                 LineBreakMode="WordWrap"
+                                BorderWidth="3"
+                                BorderColor="Black"
+                                BackgroundColor="Gray"
                                 Margin="5"/>
 
                         </HorizontalStackLayout>
@@ -185,6 +210,9 @@
                                 HeightRequest="62.5"
                                 CornerRadius="0"
                                 LineBreakMode="WordWrap"
+                                BorderWidth="3"
+                                BorderColor="Black"
+                                BackgroundColor="Gray"
                                 Margin="5"/>
 
                             <!-- STEAL -->
@@ -197,6 +225,9 @@
                                 HeightRequest="62.5"
                                 CornerRadius="0"
                                 LineBreakMode="WordWrap"
+                                BorderWidth="3"
+                                BorderColor="Black"
+                                BackgroundColor="Gray"
                                 Margin="5"/>
 
 
@@ -216,6 +247,8 @@
                       HeightRequest="50"
                       CornerRadius="20"
                       LineBreakMode="WordWrap"
+                      BackgroundColor="Yellow"
+                      TextColor="Black"
                       Margin="-95, 5, 5, 5"/>
 
 
@@ -229,6 +262,9 @@
                         CornerRadius="0"
                         HorizontalOptions="Center"
                         LineBreakMode="WordWrap"
+                        BorderWidth="3"
+                        BorderColor="Black"
+                        BackgroundColor="Gray"
                         Margin="125, 5, 5, 5"/>
            
 

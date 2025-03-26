@@ -3,18 +3,28 @@ using System.Text.Json.Nodes;
 using basketballUI.models;
 using Newtonsoft.Json;
 
+using CommunityToolkit.Maui.Views;
+using System;
+
 namespace basketballUI;
 
-public partial class PlayerSelect : ContentPage
+public partial class PlayerSelect : Popup
 {
-    private string _lastAction;
-    private Action<string> _onPlayerSelected;
+    private string lastAction;
+    private Action<string> onPlayerSelected;
+
 
     public PlayerSelect(string lastAction, Action<string> onPlayerSelected)
     {
         InitializeComponent();
-        _lastAction = lastAction;
-        _onPlayerSelected = onPlayerSelected;
+        this.lastAction = lastAction;
+        this.onPlayerSelected = onPlayerSelected;
+        
+        
+        var widthOfScreen = DeviceDisplay.MainDisplayInfo.Width / DeviceDisplay.MainDisplayInfo.Density;
+        var heightOfScreen = DeviceDisplay.MainDisplayInfo.Height / DeviceDisplay.MainDisplayInfo.Density;
+        Size = new Size(widthOfScreen * 0.5, heightOfScreen * 0.6);
+        
         LoadPlayers();
     }
 
@@ -35,12 +45,12 @@ public partial class PlayerSelect : ContentPage
                 }
                 else
                 {
-                    await DisplayAlert("Error", "Failed to load players", "OK");
+                    Close();
                 }
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Error", $"Failed to load players: {ex.Message}", "OK");
+                Close();
             }
         }
     }
@@ -48,6 +58,7 @@ public partial class PlayerSelect : ContentPage
     private void PopulatePlayerGrid(List<Player> players)
     {
         PlayerGrid.RowDefinitions.Clear();
+        
         PlayerGrid.Children.Clear();
 
         int buttonsPerRow = 4;
@@ -67,32 +78,39 @@ public partial class PlayerSelect : ContentPage
             var button = new Button
             {
                 Text = $"Player {player.PlayerNo}",
-                WidthRequest = PlayerGrid.Width,
-                // HeightRequest = 10,
-                Margin = 10
+                WidthRequest = (PlayerGrid.Width / buttonsPerRow) - 3,
+                HeightRequest = 80,
+                FontSize = 22,
+                Margin = 0,
+                Padding = 0,
+                BorderWidth = 3,
+                BorderColor = Color.FromArgb("#000000"),
+                BackgroundColor = Color.FromArgb("#A9A9A9")
             };
+
 
             button.Clicked += async (sender, e) =>
             {
                 string selectedPlayer = player.PlayerNo.ToString();
-                _onPlayerSelected?.Invoke(selectedPlayer);
+                onPlayerSelected?.Invoke(selectedPlayer);
 
-                if (_lastAction == "Free Throw")
+                if (lastAction == "Free Throw")
                 {
-                    // Navigate to FreeThrow page
-                    await Navigation.PushAsync(new FreeThrow(selectedPlayer));
+                    Close(selectedPlayer);
                 }
+                /*
                 else if (!string.IsNullOrEmpty(_lastAction))
                 {
-                    await DisplayAlert("Action Recorded", $"Player {selectedPlayer} performed: {_lastAction}", "OK");
-                    await Navigation.PopAsync();
+                    Close(selectedPlayer);
                 }
+                */
                 else
                 {
-                    await Navigation.PopAsync();
+                   
+                    Close(selectedPlayer);
                 }
+                
 
-                    
             };
 
             PlayerGrid.Children.Add(button);
@@ -101,8 +119,8 @@ public partial class PlayerSelect : ContentPage
         }
     }
 
-    private async void OnBackClicked(object sender, EventArgs e)
+    private void OnBackClicked(object sender, EventArgs e)
     {
-        await Navigation.PopAsync();
+        Close();
     }
 }

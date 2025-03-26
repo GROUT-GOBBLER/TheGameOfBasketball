@@ -1,3 +1,5 @@
+using CommunityToolkit.Maui.Views;
+
 namespace basketballUI;
 
 public partial class ScoreKeeper : ContentPage
@@ -12,23 +14,31 @@ public partial class ScoreKeeper : ContentPage
         var button = sender as Button;
         string lastAction = button?.Text;
         //await Navigation.PushAsync(new PlayerSelect(lastAction));
-        // Create a new PlayerSelect instance with the required parameters
-        await Navigation.PushAsync(new PlayerSelect(lastAction, selectedPlayer =>
+        var popup = new PlayerSelect(lastAction, selectedPlayer =>
         {
-            // Callback when a player is selected
-            // For non-free-throw actions, we can log the action here if needed
-        }));
+            if (!string.IsNullOrEmpty(selectedPlayer))
+            {
+                DisplayAlert("Action Recorded", $"Player {selectedPlayer} performed: {lastAction}", "OK");
+            }
+        });
+
+        await this.ShowPopupAsync(popup);
     }
 
     private async void OnFreeThrowClicked(object sender, EventArgs e)
     {
-        // await Navigation.PushAsync(new PlayerSelect("Free Throw"));
-        // Create a new PlayerSelect instance for free throw with the required parameters
-        await Navigation.PushAsync(new PlayerSelect("Free Throw", selectedPlayer =>
+
+        var popup = new PlayerSelect("Free Throw", selectedPlayer =>
         {
-            // Callback when a player is selected
-            // The free throw logic is handled in PlayerSelect, which navigates to FreeThrow
-        }));
+
+        });
+
+        var result = await this.ShowPopupAsync(popup);
+
+        if (result is string selectedPlayer && !string.IsNullOrEmpty(selectedPlayer))
+        {
+            await Navigation.PushAsync(new FreeThrow(selectedPlayer));
+        }
     }
 
     private async void OnBackClicked(object sender, EventArgs e)

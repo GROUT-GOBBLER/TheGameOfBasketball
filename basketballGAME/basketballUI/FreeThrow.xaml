@@ -5,22 +5,34 @@
              Title="Free Throw">
     
     <VerticalStackLayout Padding="20">
-        <!-- Header -->
-        <Label Text="Free Throw"
+        <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
+            <!-- Back Button -->
+            <Button Text="Back"
+                HorizontalOptions="Start"
+                Margin="-100,0,0,0"
+                Clicked="OnBackClicked"/>
+
+            <!-- Header -->
+            <Label Text="Free Throw"
                FontSize="24"
                HorizontalOptions="Center"
-               Margin="0,0,0,20"/>
+               Margin="250,0,0,20"/>
 
-        <!-- Main Content: Number of Shots and Miss/Made Buttons -->
+
+        </HorizontalStackLayout>
+
+        <!-- Main Content: Number of Shots & Miss/Made Buttons -->
         <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
             <!-- Left Side: Number of Shots -->
-            <VerticalStackLayout Spacing="10">
+            <VerticalStackLayout Spacing="10" Margin="0,30,0,0">
                 <Button x:Name="OneShotButton"
                         Text="1"
                         WidthRequest="50"
                         HeightRequest="50"
                         CornerRadius="25"
                         BackgroundColor="LightGray"
+                        BorderWidth="3"
+                        BorderColor="Black"
                         Clicked="OnShotCountClicked"/>
                 <Button x:Name="TwoShotsButton"
                         Text="2"
@@ -28,6 +40,8 @@
                         HeightRequest="50"
                         CornerRadius="25"
                         BackgroundColor="LightGray"
+                        BorderWidth="3"
+                        BorderColor="Black"
                         Clicked="OnShotCountClicked"/>
                 <Button x:Name="ThreeShotsButton"
                         Text="3"
@@ -35,6 +49,8 @@
                         HeightRequest="50"
                         CornerRadius="25"
                         BackgroundColor="LightGray"
+                        BorderWidth="3"
+                        BorderColor="Black"
                         Clicked="OnShotCountClicked"/>
                 <Label Text="Generates miss # of foul shot"
                        FontSize="12"
@@ -42,29 +58,31 @@
                        Margin="0,5,0,0"/>
             </VerticalStackLayout>
 
-            <!-- Right Side: Miss and Made Buttons -->
+            <!-- Right Side: Miss & Made Buttons -->
             <VerticalStackLayout Spacing="10">
-                <Button x:Name="MissButton"
-                        Text="MISS"
-                        WidthRequest="100"
-                        HeightRequest="50"
-                        BackgroundColor="Red"
-                        TextColor="White"
-                        Clicked="OnMissClicked"/>
-                <Button x:Name="MadeButton"
-                        Text="MADE"
-                        WidthRequest="100"
-                        HeightRequest="50"
-                        BackgroundColor="Green"
-                        TextColor="White"
-                        Clicked="OnMadeClicked"/>
+                <HorizontalStackLayout>
+                    <Button x:Name="MissButton"
+                            Text="MISS"
+                            WidthRequest="150"
+                            HeightRequest="75"
+                            BackgroundColor="Red"
+                            BorderWidth="4"
+                            BorderColor="Black"
+                            Margin="50,100,0,0"
+                            Clicked="OnMissClicked"/>
+                    <Button x:Name="MadeButton"
+                            Text="MADE"
+                            WidthRequest="150"
+                            HeightRequest="75"
+                            BackgroundColor="Green"
+                            BorderWidth="4"
+                            BorderColor="Black"
+                            Margin="50,100,0,0"
+                            Clicked="OnMadeClicked"/>
+                </HorizontalStackLayout>
             </VerticalStackLayout>
         </HorizontalStackLayout>
 
-        <!-- Back Button -->
-        <Button Text="Back"
-                HorizontalOptions="Center"
-                Margin="0,20,0,0"
-                Clicked="OnBackClicked"/>
+
     </VerticalStackLayout>
 </ContentPage>
