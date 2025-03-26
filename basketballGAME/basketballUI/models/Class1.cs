@@ -26,7 +26,7 @@ namespace basketballUI.models
             get
             {
 
-                return team1.TeamName + " vs " + team2.TeamName + " at " + schedule.GameTime;
+                return team1.TeamName + " vs " + team2.TeamName + " at " + schedule.GameDate;
             }
         }
         public virtual Game? GetGame()

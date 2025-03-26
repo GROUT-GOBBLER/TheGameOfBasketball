@@ -8,6 +8,8 @@ using Windows.Media.Audio;
 using Windows.Media.Protection.PlayReady;
 using System.Collections.Generic;
 using Windows.Media.PlayTo;
+using System.Net.Http.Json;
+using System.Linq;
 
 namespace basketballUI
 {
@@ -663,10 +665,193 @@ namespace basketballUI
                 "game": null,
                 "playerTeam": null,
                 "statType": null*/
-              Stat stat = new Stat();
+            Stat stat = new Stat();
+            
             stat.GameId = selectedScoreGameSearchResult.GetGame().GameNo;
-           
-           // stat.StatTypeId = 
+            //GameViewTeam1.Text = "" + selectedScoreGameSearchResult.GetGame().TeamNoTwo;
+            
+            if (stat.GameId == null)
+            {
+                return;
+            }
+            stat.StatTypeId = -1;
+            if (selectedAction.Contains("2PT shot made")) {
+
+                stat.StatTypeId = 2;
+            }
+            else if (selectedAction.Contains("3PT shot made"))
+            {
+                stat.StatTypeId = 4;
+
+            }
+            else if (selectedAction.Contains("2PT shot missed"))
+            {
+                stat.StatTypeId = 1;
+
+            }
+            else if (selectedAction.Contains("3PT shot missed"))
+            {
+                stat.StatTypeId = 3;
+
+            }
+            else if (selectedAction.Contains("Free throw"))
+            {
+                stat.StatTypeId = 1;
+
+            }
+            else if (selectedAction.Contains("OffRebound"))
+            {
+                stat.StatTypeId = 10;
+
+            }
+            else if (selectedAction.Contains("DefRebound"))
+            {
+                stat.StatTypeId = 11;
+
+            }
+            else if (selectedAction.Contains("Assist"))
+            {
+                stat.StatTypeId = 7;
+
+            }
+            else if (selectedAction.Contains("TOver"))
+            {
+                stat.StatTypeId = 6;
+
+            }
+            else if (selectedAction.Contains("Block"))
+            {
+                stat.StatTypeId = 8;
+
+            }
+            else if (selectedAction.Contains("Steal"))
+            {
+                stat.StatTypeId = 5;
+
+            }
+            else if (selectedAction.Contains("Foul"))
+            {
+                stat.StatTypeId = 9;
+
+            }
+            if(stat.StatTypeId == -1)
+            {
+                return;
+            }
+            Player p = new Player();//SavedList.CurrentPlayerList[index];
+            using (HttpClient client = new HttpClient())
+            {
+                HttpResponseMessage response2 = await client.GetAsync($"{URL}/{"Players"}");
+
+                string json2 = await response2.Content.ReadAsStringAsync();
+                int index = int.Parse(selectedPlayer);
+                List<Player> Players = JsonConvert.DeserializeObject<List<Player>>(json2);
+                foreach (Player player in Players)
+                {
+                    if( index == player.PlayerNo)
+                    {
+                        p = player;
+                        break;
+                    }
+                }
+
+               
+               
+
+            }
+                
+            
+            if (p.FName == null)
+            {
+                GameViewTeam1.Text = "player not found";
+                return;
+            }
+
+            using (HttpClient client = new HttpClient())
+            {
+                HttpResponseMessage response = await client.GetAsync($"{URL}/{"TeamPlayers"}");
+
+                String json = await response.Content.ReadAsStringAsync();
+                List<TeamPlayer> teamPlayer = JsonConvert.DeserializeObject<List<TeamPlayer>>(json);
+                foreach (TeamPlayer t in teamPlayer) {
+                    if (t.PlayerId == p.PlayerNo)
+                    {
+
+                        if (t.Id == selectedScoreGameSearchResult.GetGame().TeamNoOne)
+                        {
+                            stat.PlayerTeamId = selectedScoreGameSearchResult.GetGame().TeamNoOne;
+                            break;
+                        }
+                        else if (t.Id == selectedScoreGameSearchResult.GetGame().TeamNoTwo)
+                        {
+                            stat.PlayerTeamId = selectedScoreGameSearchResult.GetGame().TeamNoTwo;
+                            break;
+                        }
+
+
+
+
+
+
+
+
+
+
+                    }
+
+
+                }
+
+                if (selectedScoreGameSearchResult.GetGame() == null)
+                {
+                    return;
+                }
+                if (stat.PlayerTeamId == null)
+                {
+                    return;
+                }
+                response = await client.GetAsync($"{URL}/{"Stats"}");
+
+                json = await response.Content.ReadAsStringAsync();
+                List<Stat> S = JsonConvert.DeserializeObject<List<Stat>>(json);
+                stat.Id = S[S.Count - 1].Id + 1 ;
+
+
+
+
+
+
+
+                stat.Game = null;
+                stat.StatType = null;
+                stat.PlayerTeam = null;
+                foreach (Stat s in S)
+                {
+                    if (s.GameId == stat.GameId && s.PlayerTeamId == stat.PlayerTeamId && s.StatTypeId == stat.StatTypeId){
+
+                        stat.Id = s.Id;
+                        short i = 1;
+                        stat.StatValue = (short)(s.StatValue + 1);
+
+                        
+
+                        response = await client.PutAsJsonAsync($"{URL}/{"Stats"}/{stat.Id}", stat);
+                       // GameViewTeam1.Text = "" + response;
+
+                        return;
+                    }
+                }
+                if (stat.StatValue == null)
+                {
+                    stat.StatValue = 1;
+                }
+
+
+                response = await client.PostAsJsonAsync($"{URL}/{"Stats"}",stat);
+                //GameViewTeam1.Text = "" + response;
+            }
+
+
 
 
 
@@ -695,6 +880,7 @@ namespace basketballUI
                     this.selectedPlayer = selectedPlayer;
                     if (!string.IsNullOrEmpty(this.selectedPlayer))
                     {
+                        addStat(this.selectedPlayer, this.lastAction);
                         DisplayAlert("Action Recorded", $"{this.selectedPlayer} performed: {this.lastAction}", "OK");
                     }
                 }, SavedList.CurrentPlayerList);
